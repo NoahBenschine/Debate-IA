@@ -1,6 +1,7 @@
 .container{
   min-height:  100vh;
-
+  background-color: #221e24;
+    background-image: url("https://www.transparenttextures.com/patterns/back-pattern.png");
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,26 +30,37 @@
 
 
 /* for the sides module */
-
-.rightlist{
-
+.Col{
+  flex:1;
+  height:100vh;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   display:flex;
-  flex-direction:column;
-  align-items: flex-end;
 }
+.Col .voteButton{
+  position: absolute;
+  align-self: flex-end;
+  top: 2%;
+}
+
+
 .list_container{
+border-color: #FFFFFF;
   margin-top: 10px;
   border-style: solid;
   border-width: medium;
-  height:25%;
-  width:50%;
+  height:55%;
+  width:40%;
   display:flex;
   flex-direction:column;
 
 }
-
+.list li{
+    color:#FFFFFF;
+}
 .joinbutton{
-  margin-top: 150px;
-  width:100%;
-  align-self: flex-end;
+  margin-top: 125%;
+  width:50%;
+  align-self: center;
 }

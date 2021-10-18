@@ -19,17 +19,13 @@ export default function Transcript(){
 
   <Container fluid>
    <Row>
-   <Col lg={2}>
+   <Col className={styles.Col} lg={6}>
      <Side side="Pro"/>
    </Col>
 
-   <Col className={styles.transcriptCol} lg={8}>
-      <textarea  className={styles.transcript} rows="4" cols="50"></textarea>
-
-   </Col>
-
-   <Col className={styles.rightlist} lg={2}>
+   <Col className={styles.Col} lg={6}>
    <Side side="Con"/>
+   <Button className={styles.voteButton} size="lg">Vote!</Button>
    </Col>
    </Row>
 

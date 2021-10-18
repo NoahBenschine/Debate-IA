@@ -24,14 +24,17 @@ export default function HomeScreen(){
   {/* Stack the columns on mobile by making one full-width and the other half-width */}
   <Row>
 
-    <Col >
+    <Col lg={6}>
     <main className={styles.main}>
     <h2> Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
-    <button className={styles.signin}>Sign in with Google</button>
+    <form action="../api/auth/signin">
+    <input className={styles.signin} type="submit" value="Go to Google" />
+    </form>
+   <a href="../api/auth/signin"> Signin</a>
     </main>
     </Col>
-    <Col  >
+    <Col  lg={6}>
     <div     style={{
         position: "relative",
         width: "50vw",
@@ -40,13 +43,13 @@ export default function HomeScreen(){
         objectFit: "contain",
         maxWidth: "50vw",
       }}>
-    <Image src="/../public/image-deb.jpg"
-    alt="Couldn't find this image sry"
-     width={100}
-     height={100}
-     layout="fill"
-     resizeMode="contain"
-     />
+      <Image src="/../public/image-deb.jpg"
+      alt="Couldn't find this image sry"
+       width={100}
+       height={100}
+
+
+       />
       </div>
     </Col>
   </Row>
