@@ -3,9 +3,18 @@ import Head from "next/head";
 import Image from "next/image";
 import Dimensions from "react";
 import { Button, Container, Row, Col } from 'react-bootstrap';
+import { useSession, signIn, signOut } from "next-auth/client"
+import {useRouter} from "next/router"
 import styles from "../styles/Home.module.css";
 // import Date from "../api/date.js";
 export default function HomeScreen(){
+  const { data: session, status } = useSession()
+ const router = useRouter()
+
+
+  if (status === "authenticated") {
+ router.push("/during/transcript")
+}else{
   return(
     <div className={styles.container}>
 <Head>
@@ -15,7 +24,7 @@ export default function HomeScreen(){
  rel="stylesheet"
  href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
  integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
- // crossOrigin="anonymous"
+  crossOrigin="anonymous"
 />
 </Head>
 
@@ -28,10 +37,14 @@ export default function HomeScreen(){
     <main className={styles.main}>
     <h2> Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
-    <form action="../api/auth/signin">
-    <input className={styles.signin} type="submit" value="Go to Google" />
-    </form>
-   <a href="../api/auth/signin"> Signin</a>
+    <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: 'http://localhost:3000/during/transcript' })}>Go to Google</button>
+    {session && (
+           <div>
+             <p>Signed in as {session.user.email}</p>
+             <p>Name {session.user.name}</p>
+             <img src={session.user.image} alt={session.user.name} />
+           </div>
+         )}
     </main>
     </Col>
     <Col  lg={6}>
@@ -56,10 +69,8 @@ export default function HomeScreen(){
 
   {/* Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop */}
 
-
-
 </Container>
 </div>
   )
-
+}
 }
