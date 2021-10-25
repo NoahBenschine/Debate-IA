@@ -3,18 +3,19 @@ import Head from "next/head";
 import Image from "next/image";
 import Dimensions from "react";
 import { Button, Container, Row, Col } from 'react-bootstrap';
-import { useSession, signIn, signOut } from "next-auth/client"
+import { useSession, signIn, signOut } from "next-auth/react"
 import {useRouter} from "next/router"
 import styles from "../styles/Home.module.css";
+
 // import Date from "../api/date.js";
 export default function HomeScreen(){
   const { data: session, status } = useSession()
  const router = useRouter()
 
 
-  if (status === "authenticated") {
- router.push("/during/transcript")
-}else{
+//   if (status === "authenticated") {
+//  router.push("/during/transcript")
+// }else{
   return(
     <div className={styles.container}>
 <Head>
@@ -37,7 +38,7 @@ export default function HomeScreen(){
     <main className={styles.main}>
     <h2> Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
-    <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: 'http://localhost:3000/during/transcript' })}>Go to Google</button>
+    <button className={styles.signin} onClick={() => signIn("google")}>Go to Google</button>
     {session && (
            <div>
              <p>Signed in as {session.user.email}</p>
@@ -72,5 +73,5 @@ export default function HomeScreen(){
 </Container>
 </div>
   )
-}
+// }
 }
