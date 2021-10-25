@@ -8,13 +8,10 @@ import {useRouter} from "next/router"
 import styles from "../styles/Home.module.css";
 // import Date from "../api/date.js";
 export default function HomeScreen(){
-  const { data: session, status } = useSession()
+  const [session] = useSession()
  const router = useRouter()
 
 
-  if (status === "authenticated") {
- router.push("/during/transcript")
-}else{
   return(
     <div className={styles.container}>
 <Head>
@@ -72,5 +69,5 @@ export default function HomeScreen(){
 </Container>
 </div>
   )
-}
+
 }
