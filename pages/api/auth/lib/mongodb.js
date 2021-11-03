@@ -22,10 +22,7 @@ if (process.env.NODE_ENV === "development") {
     global._mongoClientPromise = client.connect()
   }
   clientPromise = global._mongoClientPromise
-  console.log(clientPromise);
-  console.log(clientPromise.MongoClient);
-    // console.log(clientPromise.MongoClient.s);
-    //   console.log(clientPromise.MongoClient.s.bsonOptions);
+
 } else {
   // In production mode, it's best to not use a global variable.
   client = new MongoClient(uri, options)
