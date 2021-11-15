@@ -34,7 +34,7 @@ export default function HomeScreen(){
     <main className={styles.main}>
     <h2> Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
-    <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: 'http://localhost:3000/during/transcript' })}>Go to Google</button>
+    <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: 'debate-ia.vercel.app' })}>Go to Google</button>
     {session && (
            <div>
              <p>Signed in as {session.user.email}</p>
