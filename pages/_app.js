@@ -1,12 +1,16 @@
 import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Provider } from "next-auth/client";
-function MyApp({ Component, pageProps }) {
+import { SessionProvider } from "next-auth/react";
+function MyApp
+({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
 
 return (
-  <Provider session={pageProps.session}>
+  <SessionProvider session={session}>
     <Component {...pageProps} />
-  </Provider>
+  </SessionProvider>
 );
 }
 

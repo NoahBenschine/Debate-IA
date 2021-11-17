@@ -1,17 +1,29 @@
+
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import Dimensions from "react";
 import { Button, Container, Row, Col } from 'react-bootstrap';
-import { useSession, signIn, signOut } from "next-auth/client"
-import {useRouter} from "next/router"
+import { useSession, signIn, signOut,getSession, SessionProvider} from "next-auth/react";
+import {useRouter} from "next/router";
 import styles from "../styles/Home.module.css";
+
 // import Date from "../api/date.js";
+<<<<<<< HEAD
+export default function HomeScreen(props){
+ const router = useRouter()
+
+
+//   if (status === "authenticated") {
+//  router.push("/during/transcript")
+// }else{
+=======
 export default function HomeScreen(){
   const [session] = useSession()
  const router = useRouter()
 
 
+>>>>>>> main
   return(
     <div className={styles.container}>
 <Head>
@@ -35,12 +47,14 @@ export default function HomeScreen(){
     <h2> Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
     <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: 'http://localhost:3000/during/transcript' })}>Go to Google</button>
-    {session && (
+    {props.session && (
+
            <div>
-             <p>Signed in as {session.user.email}</p>
-             <p>Name {session.user.name}</p>
-             <img src={session.user.image} alt={session.user.name} />
+             <p>Signed in as {props.session.user.email}</p>
+             <p>Name {props.session.user.name}</p>
+             <img src={props.session.user.image} alt={props.session.user.name} />
            </div>
+
          )}
     </main>
     </Col>
@@ -69,5 +83,17 @@ export default function HomeScreen(){
 </Container>
 </div>
   )
+<<<<<<< HEAD
+// }
+}
 
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      session: await getSession(context),
+    },
+  }
+=======
+
+>>>>>>> main
 }

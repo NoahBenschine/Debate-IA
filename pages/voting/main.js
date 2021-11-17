@@ -1,10 +1,25 @@
-import React from "react"
+import React,{useState} from "react"
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import Head from "next/head"
 import Vote from "./vote.js"
+import VoteElement from "./voteelement.js"
 import MostVotes from "./MostVotes"
 import styles from "../../styles/Vote.module.css";
 export default function Main(){
+const [voteState,setVoteState] = useState([]);
+  function createVotes(votes){
+console.log(votes);
+  const voteArray=[]
+
+
+
+  votes.forEach((element, index)=>{
+    voteArray.push(<VoteElement key={index} topic={element.voteName}/>)
+  })
+  console.log(voteArray);
+  setVoteState(voteArray);
+
+  }
   return(
     <div className={styles.container}>
     <Head>
@@ -19,16 +34,17 @@ export default function Main(){
     </Head>
 
   <Container fluid>
-  <Row>
-  <Col lg={2}>  <Vote /></Col>
-  <Col lg={6}>  </Col>
+  <Row className={styles.rowvote}>
 
-  <Col  className={styles.mostVotCol} lg={4}>
-   <MostVotes />
-    </Col>
+  <Col> <Vote updateVotes={createVotes}/></Col>
+  <Col></Col>
+  <Col> <MostVotes /> </Col>
 
   </Row>
+<Row className={styles.rowvoteelements}>
+  <Col>  <div>{voteState}</div> </Col>
 
+</Row>
 
   </Container>
    </div>
