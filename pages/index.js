@@ -58,13 +58,13 @@ export default function HomeScreen(props){
         objectFit: "contain",
         maxWidth: "50vw",
       }}>
-      <Image src="/../public/image-deb.jpg"
-      alt="Couldn't find this image sry"
-       width={100}
-       height={100}
-
-
-       />
+      // <Image src="/../public/image-deb.jpg"
+      // alt="Couldn't find this image sry"
+      //  width={100}
+      //  height={100}
+      //
+      //
+      //  />
       </div>
     </Col>
   </Row>
