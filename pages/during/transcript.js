@@ -1,6 +1,7 @@
 import React from "react"
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import Head from "next/head"
+import Link from "next/link"
 import Side from "./side.js"
 import styles from "../../styles/Transcript.module.css";
 export default function Transcript(){
@@ -25,7 +26,9 @@ export default function Transcript(){
 
    <Col className={styles.Col} lg={6}>
    <Side side="Con"/>
-   <Button className={styles.voteButton} size="lg">Vote!</Button>
+
+   <Link href="/voting/main" passHref><Button className={styles.voteButton} size="lg">Vote!</Button></Link>
+
    </Col>
    </Row>
 

@@ -9,6 +9,7 @@ import {useRouter} from "next/router";
 import styles from "../styles/Home.module.css";
 
 // import Date from "../api/date.js";
+<<<<<<< HEAD
 export default function HomeScreen(props){
  const router = useRouter()
 
@@ -16,6 +17,13 @@ export default function HomeScreen(props){
 //   if (status === "authenticated") {
 //  router.push("/during/transcript")
 // }else{
+=======
+export default function HomeScreen(){
+  const [session] = useSession()
+ const router = useRouter()
+
+
+>>>>>>> main
   return(
     <div className={styles.container}>
 <Head>
@@ -75,6 +83,7 @@ export default function HomeScreen(props){
 </Container>
 </div>
   )
+<<<<<<< HEAD
 // }
 }
 
@@ -84,4 +93,7 @@ export async function getServerSideProps(context) {
       session: await getSession(context),
     },
   }
+=======
+
+>>>>>>> main
 }

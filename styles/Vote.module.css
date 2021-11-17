@@ -12,7 +12,23 @@ background-color: #221e24;
 
 }
 
+.rowvote{
+  height:25vh;
+}
+.rowvoteelements{
+  height:75vh;
+}
 
+/* For vote elments*/
+.vote {
+
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  width: 240px;
+  margin: 16px;
+    float: left;
+}
 /* This is the section for mostVotes */
 .mostVotCol{
   flex:1;
