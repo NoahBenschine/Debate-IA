@@ -8,22 +8,13 @@ import { useSession, signIn, signOut,getSession, SessionProvider} from "next-aut
 import {useRouter} from "next/router";
 import styles from "../styles/Home.module.css";
 
-// import Date from "../api/date.js";
-<<<<<<< HEAD
+
 export default function HomeScreen(props){
+  const {data:session} = useSession();
  const router = useRouter()
 
 
-//   if (status === "authenticated") {
-//  router.push("/during/transcript")
-// }else{
-=======
-export default function HomeScreen(){
-  const [session] = useSession()
- const router = useRouter()
 
-
->>>>>>> main
   return(
     <div className={styles.container}>
 <Head>
@@ -46,7 +37,7 @@ export default function HomeScreen(){
     <main className={styles.main}>
     <h2> Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
-    <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: 'http://localhost:3000/during/transcript' })}>Go to Google</button>
+    <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: 'https://debate-ia-pl4b8hfl1-noahbenschine.vercel.app/during/transcript' })}>Go to Google</button>
     {props.session && (
 
            <div>
@@ -83,7 +74,7 @@ export default function HomeScreen(){
 </Container>
 </div>
   )
-<<<<<<< HEAD
+
 // }
 }
 
@@ -93,7 +84,7 @@ export async function getServerSideProps(context) {
       session: await getSession(context),
     },
   }
-=======
 
->>>>>>> main
+
+
 }
