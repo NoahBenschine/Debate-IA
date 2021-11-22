@@ -7,18 +7,31 @@ import MostVotes from "./MostVotes"
 import styles from "../../styles/Vote.module.css";
 export default function Main(){
 const [voteState,setVoteState] = useState([]);
+const [mostVotes,setMostVotes] = useState({
+  username:"",
+  nameVote:"",
+  voteNum:0,
+});
+
+function updateMostVoted(voteobject){
+
+    console.log("Update is wokring"+voteobject);
+    setMostVotes(voteobject);
+  }
+function checkState(){
+  return (mostVotes.voteNum)
+}
+
   function createVotes(votes){
 console.log(votes);
+console.log(checkState());
+console.log(mostVotes.voteNum)
   const voteArray=[]
-
-
-
   votes.forEach((element, index)=>{
-    voteArray.push(<VoteElement key={index} topic={element.voteName}/>)
+    voteArray.push(<VoteElement key={index} update={(object)=>{updateMostVoted(object)}} checkState={()=>{return (mostVotes.voteNum)}} topic={element.voteName}/>)
   })
   console.log(voteArray);
   setVoteState(voteArray);
-
   }
   return(
     <div className={styles.container}>
@@ -38,7 +51,7 @@ console.log(votes);
 
   <Col> <Vote updateVotes={createVotes}/></Col>
   <Col></Col>
-  <Col> <MostVotes /> </Col>
+  <Col> <MostVotes name={mostVotes.username} voteName={ mostVotes.nameVote} numVotes={mostVotes.voteNum}/> </Col>
 
   </Row>
 <Row className={styles.rowvoteelements}>

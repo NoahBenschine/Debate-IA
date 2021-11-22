@@ -30,6 +30,9 @@ background-color: #221e24;
     float: left;
 }
 /* This is the section for mostVotes */
+.values{
+  color: #FFF
+}
 .mostVotCol{
   flex:1;
   height:100vh;

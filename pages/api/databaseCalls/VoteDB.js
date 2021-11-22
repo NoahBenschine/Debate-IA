@@ -23,7 +23,7 @@ var body = JSON.parse(req.body);
       name:body.user,
       voteName:body.topic,
       voteDesc:body.description,
-      numVotes:10
+      numVotes:0
   });
   console.log(new_vote);
 new_vote.save(function(err){

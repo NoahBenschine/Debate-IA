@@ -14,7 +14,24 @@ const Vote = mongoose.models.Vote;
   if(req.method === "POST"){
 var body = JSON.parse(req.body);
 console.log("voteclicked user:" +body.user+" voteclicked body:"+body);
-Vote.update({name:body.user,voteName:body.voteName},{$inc:{numVotes:1}})
+Vote.updateOne({name:body.user,voteName:body.voteName},
+    {$inc:{numVotes:1}}, function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Updated Docs : ", docs);
+    }
+});
+// Vote.updateOne({name:body.user,voteName:body.voteName},{$inc:{numVotes:1},function (err, docs) {
+//     if (err){
+//         console.log(err)
+//     }
+//     else{
+//         console.log("Updated Docs : ", docs);
+//     }
+// }
+//   })
 
 
  Vote.find({},function (err, votes){
@@ -22,7 +39,7 @@ Vote.update({name:body.user,voteName:body.voteName},{$inc:{numVotes:1}})
     console.log(err+"There was an error in voteclicked");
   }else{
     if(votes){
-    
+
         res.send({votes:votes})
 
     }
