@@ -47,24 +47,7 @@ export default function HomeScreen(props){
          )}
     </main>
     </Col>
-    <Col  lg={6}>
-    <div     style={{
-        position: "relative",
-        width: "50vw",
-        height: "100vw",
-        maxHeight: "100vh",
-        objectFit: "contain",
-        maxWidth: "50vw",
-      }}>
-      <Image src="/../public/image-deb.jpg"
-      alt="Couldn't find this image sry"
-       width={100}
-       height={100}
 
-
-       />
-      </div>
-    </Col>
   </Row>
 
   {/* Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop */}
@@ -86,3 +69,23 @@ export async function getServerSideProps(context) {
 
 
 }
+
+
+// <Col  lg={6}>
+// <div     style={{
+//     position: "relative",
+//     width: "50vw",
+//     height: "100vw",
+//     maxHeight: "100vh",
+//     objectFit: "contain",
+//     maxWidth: "50vw",
+//   }}>
+//   <Image src="/../public/image-deb.jpg"
+//   alt="Couldn't find this image sry"
+//    width={100}
+//    height={100}
+//
+//
+//    />
+//   </div>
+// </Col>
