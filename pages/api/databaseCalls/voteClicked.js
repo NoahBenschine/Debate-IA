@@ -21,6 +21,7 @@ Vote.updateOne({name:body.user,voteName:body.voteName},
     }
     else{
         console.log("Updated Docs : ", docs);
+        findAll();
     }
 });
 // Vote.updateOne({name:body.user,voteName:body.voteName},{$inc:{numVotes:1},function (err, docs) {
@@ -33,19 +34,20 @@ Vote.updateOne({name:body.user,voteName:body.voteName},
 // }
 //   })
 
-
+function findAll(){
  Vote.find({},function (err, votes){
   if(err){
     console.log(err+"There was an error in voteclicked");
   }else{
     if(votes){
-
+        console.log("this should go last")
         res.send({votes:votes})
 
     }
   }
 
 })
+}
       // on retrieval of the users collection run any desired query methods to the collection
       // sidesCollection.find({}).toArray((err, sides) => {
 

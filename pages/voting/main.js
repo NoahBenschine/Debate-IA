@@ -5,6 +5,7 @@ import Vote from "./vote.js"
 import VoteElement from "./voteelement.js"
 import MostVotes from "./MostVotes"
 import styles from "../../styles/Vote.module.css";
+import useSWR from 'swr'
 export default function Main(){
 const [voteState,setVoteState] = useState([]);
 const [mostVotes,setMostVotes] = useState({
@@ -12,23 +13,22 @@ const [mostVotes,setMostVotes] = useState({
   nameVote:"",
   voteNum:0,
 });
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+function useUser() {
+  const { data, error } = useSWR('/api/databaseCalls/getVotes', fetcher)
 
-function updateMostVoted(voteobject){
-
-    console.log("Update is wokring"+voteobject);
-    setMostVotes(voteobject);
-  }
-function checkState(){
-  return (mostVotes.voteNum)
+    return {
+      user: data,
+      isLoading: !error && !data,
+      isError: error
+    }
 }
+  const {user,isLoading,isError} = useUser();
 
   function createVotes(votes){
-console.log(votes);
-console.log(checkState());
-console.log(mostVotes.voteNum)
   const voteArray=[]
   votes.forEach((element, index)=>{
-    voteArray.push(<VoteElement key={index} update={(object)=>{updateMostVoted(object)}} checkState={()=>{return (mostVotes.voteNum)}} topic={element.voteName}/>)
+    voteArray.push(<VoteElement key={index} topic={element.voteName}/>)
   })
   console.log(voteArray);
   setVoteState(voteArray);
@@ -51,7 +51,7 @@ console.log(mostVotes.voteNum)
 
   <Col> <Vote updateVotes={createVotes}/></Col>
   <Col></Col>
-  <Col> <MostVotes name={mostVotes.username} voteName={ mostVotes.nameVote} numVotes={mostVotes.voteNum}/> </Col>
+  <Col> <MostVotes name={mostVotes.username} voteName={ mostVotes.nameVote} numVotes={user&&user.numVotes}/> </Col>
 
   </Row>
 <Row className={styles.rowvoteelements}>

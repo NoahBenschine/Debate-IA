@@ -32,7 +32,6 @@ export default function Vote(props){
      })
 
      const result = response.json();
-     console.log(result);
      result.then(function(resu){
             console.log(resu);
             props.updateVotes(resu.votes);

@@ -39,13 +39,11 @@ export default function HomeScreen(props){
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
     <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: 'http://localhost:3000/during/transcript' })}>Go to Google</button>
     {props.session && (
-
            <div>
              <p>Signed in as {props.session.user.email}</p>
              <p>Name {props.session.user.name}</p>
              <img src={props.session.user.image} alt={props.session.user.name} />
            </div>
-
          )}
     </main>
     </Col>

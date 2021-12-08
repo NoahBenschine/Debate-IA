@@ -25,29 +25,30 @@ var body = JSON.parse(req.body);
       voteDesc:body.description,
       numVotes:0
   });
-  console.log(new_vote);
+//find is going earlier than save.
 new_vote.save(function(err){
-    if(err) console.log(err);
-  });
-  Vote.find({},function (err, votes){
-    if(err){
-      console.log(err+"There was an error");
-    }else{
-      if(votes){
-          res.send({votes:votes})
-
-      }
-    }
+  console.log("what is going first");
+    findAll();
+    if(err) console.log(err+"This is the error");
 
   })
-      // on retrieval of the users collection run any desired query methods to the collection
-      // sidesCollection.find({}).toArray((err, sides) => {
+function findAll(){
+  Vote.find({},function (err, votes){
+     if(err){
+       console.log(err+"There was an error");
+     }else{
+       if(votes){
+         // console.log(votes+"These are the votes");
+           res.send({votes:votes})
 
-      // respond with users as json
+       }
+     }
+
+   })
+}
 
 
-      // })
-    // );
+
   }else{
     console.log("Error, Wrong method bro");
   }
