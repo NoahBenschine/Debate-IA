@@ -34,7 +34,7 @@ import { MongoClient } from "mongodb"
 
 
 let clientPromise
-const uri = "mongodb+srv://admin-noah:1KHCmKN2hx23eQ2l@cluster0.zhxis.mongodb.net/debateDB?retryWrites=true&w=majority";
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 clientPromise = client.connect();
 console.log(clientPromise);
