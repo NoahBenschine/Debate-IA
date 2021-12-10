@@ -20,6 +20,7 @@ import clientPromise from "./lib/mongodb"
 // import DBADD from "./users/index.js";
 export default async function auth(req, res) {
   return await NextAuth(req, res, {
+
     providers: [
       GoogleProvider({
   clientId: process.env.GOOGLE_CLIENT_ID,
@@ -41,4 +42,5 @@ export default async function auth(req, res) {
 
         // other options (pages, callbacks, session, ...etc)
   })
+    console.log(process.env.GOOGLE_CLIENT_ID)
 }
