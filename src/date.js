@@ -21,8 +21,9 @@
   // current seconds
   let seconds = date_ob.getSeconds();
 
-getDate(){
-return (year + "-" + month + "-" + date)
+const getDate = () => {
+
+return (year + "-" + month + "-" + date);
 }
   // prints date in YYYY-MM-DD format
   console.log(year + "-" + month + "-" + date);
@@ -33,4 +34,4 @@ return (year + "-" + month + "-" + date)
   // prints time in HH:MM format
   console.log(hours + ":" + minutes);
 
-exports.geDate = getDate;
+module.exports = getDate;
