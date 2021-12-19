@@ -19,12 +19,20 @@ if (typeof require !== 'undefined' && require.main === module) {
     fnName();
 }
 
-// 
-// function changeVote(topic_id){
-//   const text = 'UPDATE vote SET topic_id = $1 WHERE user_id = $2 RETURNING *'
-//   const values = [topic_id,user_id]
-//   pool.query(text,values, (err, res) => {
-// console.log(err, res)
-// pool.end()
-// })
-// }
+function deleteTopic(topic_name){
+  const text = 'DELTE FROM topic where name = [$1] RETURNING *'
+  const values = [topic_name]
+  pool.query(text,values, (err, res) => {
+console.log(err, res)
+pool.end()
+})
+}
+
+function changeVote(topic_id){
+  const text = 'UPDATE vote SET topic_id = $1 WHERE user_id = $2 RETURNING *'
+  const values = [topic_id,user_id]
+  pool.query(text,values, (err, res) => {
+console.log(err, res)
+pool.end()
+})
+}

@@ -47,7 +47,7 @@ pool.end()
 }
 
 function topicInsert(){
-  const text = 'INSERT INTO vote(name,owner_id) VALUES($1,$2) RETURNING *'
+  const text = 'INSERT INTO topic(name,owner_id) VALUES($1,$2) RETURNING *'
   const values = []
   pool.query(text,values, (err, res) => {
 console.log(err, res)
