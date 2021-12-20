@@ -19,37 +19,10 @@ if (typeof require !== 'undefined' && require.main === module) {
     fnName();
 }
 
-
 function getUserID(){
   const text = 'SELECT * from User'
   const values = []
   pool.query(text,values, (err, res) => {
-console.log(err, res)
-pool.end()
-})
-}
-
-function getCurrentDebate(){
-  const text = 'SELECT * from debate WHERE date = $1 '
-  const values = [date()]
-  pool.query(text,values, (err, res) => {
-console.log(err, res)
-pool.end()
-})
-}
-
-function getTopic(name){
-  const text = 'SELECT * from topic WHERE name = $1 '
-  const values = [name]
-  pool.query(text,values, (err, res) => {
-console.log(err, res)
-pool.end()
-})
-}
-function getAllTopic(){
-  const text = 'SELECT * from topic'
-  const values =
-  pool.query(text, (err, res) => {
 console.log(err, res)
 pool.end()
 })

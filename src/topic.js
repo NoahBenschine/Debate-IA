@@ -11,26 +11,25 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var fnName = function() {
     // main code
-    console.log(date());
+   getUserID();
 
 }
 
 if (typeof require !== 'undefined' && require.main === module) {
     fnName();
 }
-
-function deleteTopic(topic_name){
-  const text = 'DELTE FROM topic where name = [$1] RETURNING *'
-  const values = [topic_name]
-  pool.query(text,values, (err, res) => {
+function getTopic(){
+const text = 'SELECT * from topic WHERE name = $1 '
+const values = [name]
+pool.query(text,values, (err, res) => {
 console.log(err, res)
 pool.end()
 })
 }
 
-function changeVote(topic_id){
-  const text = 'UPDATE vote SET topic_id = $1 WHERE user_id = $2 RETURNING *'
-  const values = [topic_id,user_id]
+function deleteTopic(topic_name){
+  const text = 'DELTE FROM topic where name = [$1] RETURNING *'
+  const values = [topic_name]
   pool.query(text,values, (err, res) => {
 console.log(err, res)
 pool.end()
