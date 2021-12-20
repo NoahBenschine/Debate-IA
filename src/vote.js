@@ -36,3 +36,13 @@ console.log(err, res)
 pool.end()
 })
 }
+
+
+function voteInsert(){
+  const text = 'INSERT INTO vote(topic_id,owner_id,debate_id) VALUES($1,$2,$3) RETURNING *'
+  const values = [topi c_id,user_id,debate_id]
+  pool.query(text,values, (err, res) => {
+console.log(err, res)
+pool.end()
+})
+}

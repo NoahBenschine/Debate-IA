@@ -11,35 +11,18 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var fnName = function() {
     // main code
-   getUserID();
+    debateInsert("Prisons");
 
 }
 
 if (typeof require !== 'undefined' && require.main === module) {
     fnName();
 }
-function getTopic(){
-const text = 'SELECT * from topic WHERE name = $1 '
-const values = [name]
-pool.query(text,values, (err, res) => {
-console.log(err, res)
-pool.end()
-})
-}
 
 
-function topicInsert(){
-  const text = 'INSERT INTO topic(name,owner_id) VALUES($1,$2) RETURNING *'
-  const values = [name,owner_id]
-  pool.query(text,values, (err, res) => {
-console.log(err, res)
-pool.end()
-})
-}
-
-function deleteTopic(topic_name){
-  const text = 'DELTE FROM topic where name = [$1] RETURNING *'
-  const values = [topic_name]
+function sideInsert(){
+  const text = 'INSERT INTO sides(topic_id,owner_id,debate_id,side) VALUES($1,$2,$3) RETURNING *'
+  const values = [topic_id,user_id,debate_id]
   pool.query(text,values, (err, res) => {
 console.log(err, res)
 pool.end()

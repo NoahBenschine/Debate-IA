@@ -13,14 +13,13 @@
 // });
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
-import clientPromise from "./lib/prisma"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient();
 // import Adapters from "next-auth/adapters";
 // import User, { UserSchema } from "../../../models/User";
 // import DBADD from "./users/index.js";
-export default async function auth(req, res) {
+export default async function auth(req, res){
   return await NextAuth(req, res, {
  adapter: PrismaAdapter(prisma),
     providers: [
