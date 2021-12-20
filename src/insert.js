@@ -11,7 +11,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var fnName = function() {
     // main code
-    console.log(date());
+    debateInsert("Prisons");
 
 }
 
@@ -20,8 +20,8 @@ if (typeof require !== 'undefined' && require.main === module) {
 }
 
 function sideInsert(){
-  const text = 'INSERT INTO sides(topic_id,owner_id,debate_id,side) VALUES($1,$2) RETURNING *'
-  const values = [tname,date()]
+  const text = 'INSERT INTO sides(topic_id,owner_id,debate_id,side) VALUES($1,$2,$3) RETURNING *'
+  const values = [topic_id,user_id,debate_id]
   pool.query(text,values, (err, res) => {
 console.log(err, res)
 pool.end()
@@ -30,7 +30,7 @@ pool.end()
 
 function debateInsert(tname){
   const text = 'INSERT INTO debate(topic_name,date) VALUES($1,$2) RETURNING *'
-  const values = {}
+  const values = [tname,date()]
   pool.query(text,values, (err, res) => {
 console.log(err, res)
 pool.end()
@@ -38,8 +38,8 @@ pool.end()
 }
 
 function voteInsert(){
-  const text = 'INSERT INTO vote(topic_id,owner_id,debate_id) VALUES($1,$2) RETURNING *'
-  const values = []
+  const text = 'INSERT INTO vote(topic_id,owner_id,debate_id) VALUES($1,$2,$3) RETURNING *'
+  const values = [topi c_id,user_id,debate_id]
   pool.query(text,values, (err, res) => {
 console.log(err, res)
 pool.end()
@@ -48,7 +48,7 @@ pool.end()
 
 function topicInsert(){
   const text = 'INSERT INTO topic(name,owner_id) VALUES($1,$2) RETURNING *'
-  const values = []
+  const values = [name,owner_id]
   pool.query(text,values, (err, res) => {
 console.log(err, res)
 pool.end()

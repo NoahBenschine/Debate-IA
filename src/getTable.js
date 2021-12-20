@@ -11,7 +11,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var fnName = function() {
     // main code
-    console.log(date());
+   getAllTopic();
 
 }
 
@@ -19,12 +19,38 @@ if (typeof require !== 'undefined' && require.main === module) {
     fnName();
 }
 
-// 
-// function changeVote(topic_id){
-//   const text = 'UPDATE vote SET topic_id = $1 WHERE user_id = $2 RETURNING *'
-//   const values = [topic_id,user_id]
-//   pool.query(text,values, (err, res) => {
-// console.log(err, res)
-// pool.end()
-// })
-// }
+
+function getUserID(name){
+  const text = 'SELECT from $2 RETURNING *'
+  const values = [topic_id,user_id]
+  pool.query(text,values, (err, res) => {
+console.log(err, res)
+pool.end()
+})
+}
+
+function getCurrentDebate(){
+  const text = 'SELECT * from debate WHERE date = $1 '
+  const values = [date()]
+  pool.query(text,values, (err, res) => {
+console.log(err, res)
+pool.end()
+})
+}
+
+function getTopic(name){
+  const text = 'SELECT * from topic WHERE name = $1 '
+  const values = [name]
+  pool.query(text,values, (err, res) => {
+console.log(err, res)
+pool.end()
+})
+}
+function getAllTopic(){
+  const text = 'SELECT * from topic'
+  const values =
+  pool.query(text, (err, res) => {
+console.log(err, res)
+pool.end()
+})
+}

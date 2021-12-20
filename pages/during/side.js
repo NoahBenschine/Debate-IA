@@ -36,7 +36,8 @@ const [sides, setSides] = useState();
   const sideObject = response.json();
   sideObject.then(function(resu){
          setSides(resu.sides);
-       });       
+       });
+       console.log(session);
 }
 
   return(

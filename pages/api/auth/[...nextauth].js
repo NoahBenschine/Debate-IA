@@ -15,12 +15,14 @@ import NextAuth from "next-auth"
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import GoogleProvider from "next-auth/providers/google"
 import clientPromise from "./lib/mongodb"
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { PrismaClient } from "@prisma/client"
 // import Adapters from "next-auth/adapters";
 // import User, { UserSchema } from "../../../models/User";
 // import DBADD from "./users/index.js";
 export default async function auth(req, res) {
   return await NextAuth(req, res, {
-
+ adapter: PrismaAdapter(prisma),
     providers: [
       GoogleProvider({
   clientId: process.env.GOOGLE_CLIENT_ID,
