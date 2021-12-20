@@ -11,7 +11,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var fnName = function() {
     // main code
-   getAllTopic();
+   getUserID();
 
 }
 
@@ -20,9 +20,9 @@ if (typeof require !== 'undefined' && require.main === module) {
 }
 
 
-function getUserID(name){
-  const text = 'SELECT from $2 RETURNING *'
-  const values = [topic_id,user_id]
+function getUserID(){
+  const text = 'SELECT * from User'
+  const values = []
   pool.query(text,values, (err, res) => {
 console.log(err, res)
 pool.end()
