@@ -37,7 +37,7 @@ export default function HomeScreen(props){
     <main className={styles.main}>
     <h2> Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
-    <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: 'https://debate-ia.vercel.app/during/transcript' }) }>Go to Google</button>
+    <button className={styles.signin} onClick={() => (signIn("google",{ callbackUrl: 'https://debate-ia.vercel.app/during/transcript' })) }>Go to Google</button>
     {props.session && (
            <div>
              <p>Signed in as {props.session.user.email}</p>
@@ -45,6 +45,13 @@ export default function HomeScreen(props){
              <img src={props.session.user.image} alt={props.session.user.name} />
            </div>
          )}
+         {session && (
+                <div>
+                  <p>Signed in as {session.user.email}</p>
+                  <p>Name {session.user.name}</p>
+                  <img src={session.user.image} alt={session.user.name} />
+                </div>
+              )}
     </main>
     </Col>
 

@@ -19,6 +19,7 @@ const prisma = new PrismaClient();
 // import Adapters from "next-auth/adapters";
 // import User, { UserSchema } from "../../../models/User";
 // import DBADD from "./users/index.js";
+// console.log(prisma);
 export default async function auth(req, res){
   return await NextAuth(req, res, {
  adapter: PrismaAdapter(prisma),
@@ -28,6 +29,8 @@ export default async function auth(req, res){
   clientSecret: process.env.GOOGLE_CLIENT_SECRET
 }),
     ],
+
+    secret:"The dragon soars high into the sky",
     // adapter: MongoDBAdapter({
     //   db: (await clientPromise).db("debateUserDB")
     // }),
@@ -41,7 +44,7 @@ export default async function auth(req, res){
         // updateAge: 24 * 60 * 60, // 24 hours
       },
 
+
         // other options (pages, callbacks, session, ...etc)
   })
-    console.log(process.env.GOOGLE_CLIENT_ID)
 }

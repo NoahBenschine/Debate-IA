@@ -28,12 +28,14 @@ CREATE TABLE vote(
     FOREIGN KEY (debate_id) REFERENCES debate(id) ON DELETE CASCADE
 );
 CREATE TYPE side AS ENUM ('Pro', 'Con');
+
+
 CREATE TABLE sides(
     id      serial,
     topic_id  int NOT NULL,
     owner_id  int NOT NULL,
     debate_id int NOT NULL,
-    side      varchar (90) NOT NULL,
+    side      side,
     PRIMARY KEY (id),
     FOREIGN KEY (owner_id) REFERENCES user_profile(id)ON it DELETE CASCADE,
     FOREIGN KEY (debate_id) REFERENCES debate(id) ON DELETE CASCADE

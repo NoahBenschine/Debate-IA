@@ -16,51 +16,33 @@ model debate {
 }
 
 model sides {
-  id           Int           @id @default(autoincrement())
-  topic_id     Int?
-  owner_id     Int?
-  debate_id    Int
-  side         side?
-  debate       debate        @relation(fields: [debate_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  user_profile user_profile? @relation(fields: [owner_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  topic        topic?        @relation(fields: [topic_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  id        Int     @id @default(autoincrement())
+  topic_id  Int?
+  owner_id  String?
+  debate_id Int
+  side      side?
+  debate    debate  @relation(fields: [debate_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  topic     topic?  @relation(fields: [topic_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
 
 model topic {
-  id           Int           @id @default(autoincrement())
-  name         String?       @db.VarChar(80)
-  owner_id     Int?
-  user_profile user_profile? @relation(fields: [owner_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  sides        sides[]
-  vote         vote[]
-}
-
-model user_profile {
-  id    Int     @id @default(autoincrement())
-  name  String  @db.VarChar(80)
-  email String  @db.VarChar(90)
-  sides sides[]
-  topic topic[]
-  vote  vote[]
+  id       Int     @id @default(autoincrement())
+  name     String? @db.VarChar(80)
+  owner_id String?
+  sides    sides[]
+  vote     vote[]
 }
 
 model vote {
-  id           Int           @id @default(autoincrement())
-  topic_id     Int?
-  owner_id     Int?
-  debate_id    Int
-  debate       debate        @relation(fields: [debate_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  user_profile user_profile? @relation(fields: [owner_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  topic        topic?        @relation(fields: [topic_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  id        Int     @id @default(autoincrement())
+  topic_id  Int?
+  owner_id  String?
+  debate_id Int
+  debate    debate  @relation(fields: [debate_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  topic     topic?  @relation(fields: [topic_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
 
-enum side {
-  Pro
-  Con
-}
-
-
-model Account {
+model account {
   id                 String  @id @default(cuid())
   userId             String
   type               String
@@ -75,34 +57,38 @@ model Account {
   session_state      String?
   oauth_token_secret String?
   oauth_token        String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user               users   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
 
-model Session {
+model session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         users    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model User {
+model users {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  accounts      Account[]
-  sessions      Session[]
+  accounts      account[]
+  sessions      session[]
 }
 
-model VerificationToken {
+model verificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+enum side {
+  Pro
+  Con
 }

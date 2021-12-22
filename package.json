@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "prisma": {
-  "schema": "etc/prisma/schema.prisma"
+  "schema": "./etc/prisma/schema.prisma"
 },
   "dependencies": {
     "@emotion/react": "^11.4.1",
