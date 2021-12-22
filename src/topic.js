@@ -60,4 +60,9 @@ pool.end()
 })
 }
 
-module.exports = getTopic;
+
+module.exports = {
+    getTopic: getTopic,
+    topicInsert: topicInsert,
+    deleteTopic: deleteTopic
+};

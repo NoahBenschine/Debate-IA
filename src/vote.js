@@ -3,7 +3,7 @@ const date = require("./date.js");
 const prisma = require("./prismaClient");
 const debate = require("./debate.js");
 const user = require("./user.js");
-const getTopic = require("./topic.js");
+const Topic = require("./topic.js");
 
 const DATABASE_URL="postgres://umrmaqjiosxlzz:19003182defd9632bc4ab99e883e17ff03eb9582be42f65c8c53cfff0139b89a@ec2-52-200-188-218.compute-1.amazonaws.com:5432/d1a4rmjasfh6co"
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -14,8 +14,8 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var fnName = async function() {
   const user_id = await user();
-  const debate_id = await debate();
-  const topic = await getTopic();
+  const debate_id = await debate.getDebate();
+  const topic = await Topic.getTopic("prisons");
   console.log(await getVote(topic.id));
   // voteInsert(topic.id,user_id,debate_id);
 }

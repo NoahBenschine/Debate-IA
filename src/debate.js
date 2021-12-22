@@ -14,7 +14,7 @@ let currentD = "";
 const date = getDate();
 var fnName = async function() {
     // main code
-    console.log(await getDebate())
+    debateInsert("Death penalty");
 }
 
 if (typeof require !== 'undefined' && require.main === module) {
@@ -31,27 +31,16 @@ if (typeof require !== 'undefined' && require.main === module) {
     return currentDebate.id;
 }
 
-// function getCurrentDebate(){
-//   const text = 'SELECT * from debate WHERE date = $1 '
-//   const values = [date()]
-//
-// var val = pool.query(text,values, (err, res) => {
-// // console.log(err, res)
-// pool.end()
-// return res;
-// })
-// console.log(val)
-// return val;
-// }
-
-
 function debateInsert(name){
   const text = 'INSERT INTO debate(topic_name,date) VALUES($1,$2) RETURNING *'
-  const values = [name,date()]
+  const values = [name,date]
   pool.query(text,values, (err, res) => {
 console.log(err, res)
 pool.end()
 })
 }
 
-module.exports = getDebate;
+module.exports = {
+  getDebate: getDebate,
+  debateInsert: debateInsert
+}
