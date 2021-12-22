@@ -1,5 +1,5 @@
 
-
+function getDate(){
   let date_ob = new Date();
 
   // current date
@@ -21,17 +21,19 @@
   // current seconds
   let seconds = date_ob.getSeconds();
 
-const getDate = () => {
+const getCDate = () => {
 
 return (year + "-" + month + "-" + date);
 }
   // prints date in YYYY-MM-DD format
-  console.log(year + "-" + month + "-" + date);
+  // console.log(year + "-" + month + "-" + date);
+  //
+  // // prints date & time in YYYY-MM-DD HH:MM:SS format
+  // console.log(year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
+  //
+  // // prints time in HH:MM format
+  // console.log(hours + ":" + minutes);
 
-  // prints date & time in YYYY-MM-DD HH:MM:SS format
-  console.log(year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
-
-  // prints time in HH:MM format
-  console.log(hours + ":" + minutes);
+}
 
 module.exports = getDate;

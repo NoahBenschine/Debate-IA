@@ -20,7 +20,7 @@ if (typeof require !== 'undefined' && require.main === module) {
 }
 function tableGet(){
   text = 'SELECT column_name FROM information_schema.columns WHERE table_name = $1;'
-  values = ["User"]
+  values = ["sides"]
  pool.query(text, values,(err, res) => {
     if (err) throw err;
     for (let row of res.rows) {
