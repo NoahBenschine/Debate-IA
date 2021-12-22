@@ -10,13 +10,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     });
 
 var fnName = async function() {
-    // main code
-   // console.log(await getUserId("Noah Benschine"));
-   // getAccount();
-   // getSession();
-   // getAccount();
-   // getSession();
-
+    console.log(await getUserId("Noah Benschine"));
 }
 
 if (typeof require !== 'undefined' && require.main === module) {
@@ -31,16 +25,6 @@ async function getUserId(user_name){
    })
    return user.id;
 }
-//
-// function getUserID(){
-//   const text = 'SELECT * from users'
-//   const values = []
-//   pool.query(text,values, (err, res) => {
-// console.log(err, res)
-// pool.end()
-// })
-// }
-
 
 function getAccount(){
   const text = 'SELECT * from Account'

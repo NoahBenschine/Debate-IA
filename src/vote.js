@@ -12,10 +12,12 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
         ssl: true,
     });
 
-var fnName = function() {
-    // main code
-   getUserID();
-
+var fnName = async function() {
+  const user_id = await user();
+  const debate_id = await debate();
+  const topic = await getTopic();
+  console.log(await getVote(topic.id));
+  // voteInsert(topic.id,user_id,debate_id);
 }
 
 if (typeof require !== 'undefined' && require.main === module) {
@@ -31,6 +33,15 @@ pool.end()
 })
 }
 
+async function getVote(topic_id){
+ const votes = await prisma.vote.findMany({
+     where: {
+       topic_id:topic_id
+     },
+   })
+   return votes;
+}
+
 function changeVote(topic_id){
   const text = 'UPDATE vote SET topic_id = $1 WHERE user_id = $2 RETURNING *'
   const values = [topic_id,user_id]
@@ -41,9 +52,9 @@ pool.end()
 }
 
 
-function voteInsert(){
+function voteInsert(topic_id,user_id,debate_id){
   const text = 'INSERT INTO vote(topic_id,owner_id,debate_id) VALUES($1,$2,$3) RETURNING *'
-  const values = [topi c_id,user_id,debate_id]
+  const values = [topic_id,user_id,debate_id]
   pool.query(text,values, (err, res) => {
 console.log(err, res)
 pool.end()
