@@ -37,14 +37,8 @@ export default function HomeScreen(props){
     <main className={styles.main}>
     <h2> Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
-    <button className={styles.signin} onClick={() => (signIn("google",{ callbackUrl: 'https://debate-ia.vercel.app/during/transcript' })) }>Go to Google</button>
-    {props.session && (
-           <div>
-             <p>Signed in as {props.session.user.email}</p>
-             <p>Name {props.session.user.name}</p>
-             <img src={props.session.user.image} alt={props.session.user.name} />
-           </div>
-         )}
+    <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: 'http://localhost:3000/choosing/main'}) }>Go to Google</button>
+
          {session && (
                 <div>
                   <p>Signed in as {session.user.email}</p>

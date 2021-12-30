@@ -43,7 +43,9 @@ export default async function auth(req, res){
         // Note: This option is ignored if using JSON Web Tokens
         // updateAge: 24 * 60 * 60, // 24 hours
       },
+      callbacks: {
 
+}
 
         // other options (pages, callbacks, session, ...etc)
   })

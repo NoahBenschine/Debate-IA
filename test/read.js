@@ -6,13 +6,13 @@ const vote = require("../src/vote.js");
 
 var fnName = async function() {
   const user_id = await user("Noah Benschine");
-  debate.debateInsert("Death Penalty");
   const debate_id = await debate.getDebate();
-  Topic.topicInsert("Death Penalty",user_id)
 const topic_id = await Topic.getTopic("Death Penalty");
-  side.sideInsert(topic_id,user_id,debate_id,"Pro");
-  vote.voteInsert(topic_id,user_id,debate_id);
-
+const side_obj = await side.getSide(debate_id);
+const vote_obj = await vote.getVote(topic_id.id);
+console.log("User_id:"+user_id+" DebateId:"+debate_id+"topic_id"+topic_id)
+console.log("Side Object:"+JSON.stringify(side_obj))
+console.log("Vote Object:"+JSON.stringify(vote_obj))
 }
 
 if (typeof require !== 'undefined' && require.main === module) {

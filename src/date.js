@@ -20,11 +20,10 @@ function getDate(){
 
   // current seconds
   let seconds = date_ob.getSeconds();
+     const s = year + "-" + month + "-" + date;
+     const d = new Date(s);
+return (d);
 
-const getCDate = () => {
-
-return (year + "-" + month + "-" + date);
-}
   // prints date in YYYY-MM-DD format
   // console.log(year + "-" + month + "-" + date);
   //

@@ -1,0 +1,86 @@
+/* This is the section for main */
+
+.container{
+  min-height:  100vh;
+background-color: #221e24;
+  background-image: url("https://www.transparenttextures.com/patterns/back-pattern.png");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+
+.rowvote{
+  height:25vh;
+}
+.rowvoteelements{
+  height:75vh;
+}
+
+/* For vote elments*/
+.vote {
+
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  width: 240px;
+  margin: 16px;
+    float: left;
+}
+/* This is the section for mostVotes */
+.values{
+  color: #FFF
+}
+.mostVotCol{
+  flex:1;
+  height:100vh;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  display:flex;
+
+}
+.mostVoteContainer{
+  border-style: solid;
+  border-width: medium;
+  width:300px;
+  height:100px;
+    margin: .5% 0 0 51.5%;
+    padding: .25em;
+  display:inline-block;
+}
+/* Section for voting  */
+.voteContainer{
+    height:24%;
+  border-style: solid;
+  border-width: medium;
+      margin: .5% 0 0 0;
+}
+form.create_vote{
+  height: 100%;
+}
+form.create_vote input, form.create_vote textarea {
+  width: 100%;
+
+  padding: 4px;
+  outline: none;
+  font-size: 1.2em;
+  font-family: inherit;
+  resize: none;
+}
+.voteButton{
+  position: relative;
+  left: 80%;
+  bottom: 23%;
+  background: #f5ba13;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  outline: none;
+}
