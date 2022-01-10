@@ -15,7 +15,8 @@ const date = getDate();
 var fnName = async function() {
     // main code
     console.log(date);
-    debateInsert("Death Penalty");
+    console.log(await getDebate());
+    // debateInsert("Death Penalty");
 }
 
 if (typeof require !== 'undefined' && require.main === module) {

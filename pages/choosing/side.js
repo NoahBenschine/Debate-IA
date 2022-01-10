@@ -13,13 +13,11 @@ const [sides, setSides] = useState();
       const data = await response
       // console.log(data);
     }
-
-
     function createLi(){
        const names= []
        sides.forEach(function(element){
      if (element.side == props.side){
-       names.push(<li>{element.name}</li>)
+       names.push(<li>{element.owner_id}</li>)
     }
 
     })
@@ -28,14 +26,16 @@ const [sides, setSides] = useState();
   const postData =  async() => {
       // console.log(props.session);
       //  console.log(session);
-    const response = await fetch("/api/databaseCalls/extraSignIn",{
+    const response = await fetch("/api/Calls/SideChoosing",{
         method:"POST",
 
         body:JSON.stringify({side:props.side,user:session.user.name}),
       });
   const sideObject = response.json();
+
   sideObject.then(function(resu){
-         setSides(resu.sides);
+    console.log(resu);
+         setSides(resu);
        });
        console.log(session);
 }

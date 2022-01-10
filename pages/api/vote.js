@@ -25,7 +25,7 @@ if (typeof require !== 'undefined' && require.main === module) {
 }
 
 
-async function getVote(topic_id){
+async function getVotesByTopic(topic_id){
  const votes = await prisma.vote.findMany({
      where: {
        topic_id:topic_id
@@ -33,24 +33,45 @@ async function getVote(topic_id){
    })
    return votes;
 }
-async function changeVote(topic_id,user_id){
+
+async function getVoteByUser(user_id){
+ const votes = await prisma.vote.findMany({
+     where: {
+       owner_id:user_id
+     },
+   })
+   return votes;
+}
+
+async function findOrUpdate(user_id,topic_id,debate_id){
+   const upsertVote = await prisma.vote.upsert({
+     where: {
+       owner_id: user_id,
+       debate_id:debate_id
+     },
+     update: {
+       topic_id: topic_id,
+     },
+     create: {
+       owner_id: user_id,
+       topic_id: topic_id,
+       debate_id: debate_id
+     },
+   })
+  return upsertVote;
+}
+
+async function changeVote(user_id,topic_id){
   const updateVote = await prisma.vote.update({
   where: {
-     user_id:user_id,
+     owner_id:user_id,
   },
   data: {
     topic_id:topic_id,
   },
 })
 }
-// function changeVote(topic_id){
-//   const text = 'UPDATE vote SET topic_id = $1 WHERE user_id = $2 RETURNING *'
-//   const values = [topic_id,user_id]
-//   pool.query(text,values, (err, res) => {
-// console.log(err, res)
-// pool.end()
-// })
-// }
+
 
 async function voteInsert(topic_id,user_id,debate_id){
   const vote_object = await prisma.vote.create({
@@ -61,17 +82,5 @@ async function voteInsert(topic_id,user_id,debate_id){
     },
   })
 }
-// function voteInsert(topic_id,user_id,debate_id){
-//   const text = 'INSERT INTO vote(topic_id,owner_id,debate_id) VALUES($1,$2,$3) RETURNING *'
-//   const values = [topic_id,user_id,debate_id]
-//   pool.query(text,values, (err, res) => {
-// console.log(err, res)
-// pool.end()
-// })
-// }
 
-module.exports = {
-  getVote: getVote,
-  voteInsert: voteInsert,
-  changeVote: changeVote
-}
+export {getVoteByUser,getVotesByTopic,voteInsert,changeVote,findOrUpdate}

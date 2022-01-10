@@ -10,7 +10,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     });
 
 var fnName = async function() {
-    console.log(await getUserId("Noah Benschine"));
+    console.log(await deleteUsers());
 }
 
 if (typeof require !== 'undefined' && require.main === module) {
@@ -25,6 +25,15 @@ async function getUserId(user_name){
    })
    return user.id;
 }
+async function getAllUserIds(){
+ const user = await prisma.users.findMany()
+   return user;
+}
+
+async function deleteUsers(){
+  const user = await prisma.users.deleteMany()
+}
+
 
 function getAccount(){
   const text = 'SELECT * from Account'

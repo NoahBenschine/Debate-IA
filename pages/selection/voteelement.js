@@ -1,7 +1,6 @@
 import React,{useState, useEffect}from "react"
 import { Button} from 'react-bootstrap';
 import Head from "next/head"
-import updateMostVoted from "./MostVotes.js"
 import {getSession, useSession}  from "next-auth/react";
 import styles from "../../styles/Vote.module.css";
 export default function VoteElement(props){

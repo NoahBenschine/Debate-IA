@@ -27,8 +27,9 @@ model sides {
 
 model topic {
   id       Int     @id @default(autoincrement())
-  name     String? @db.VarChar(80)
+  name     String? @db.VarChar(80)  @unique
   owner_id String?
+  active   Boolean @default(false)
   sides    sides[]
   vote     vote[]
 }

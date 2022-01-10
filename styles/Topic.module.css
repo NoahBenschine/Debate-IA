@@ -70,17 +70,7 @@ form.create_vote input, form.create_vote textarea {
   font-family: inherit;
   resize: none;
 }
-.voteButton{
-  position: relative;
-  left: 80%;
-  bottom: 23%;
-  background: #f5ba13;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  outline: none;
+ .voteButton{
+  align-self: flex-end;
+  top: 2%;
 }

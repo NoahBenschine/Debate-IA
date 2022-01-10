@@ -1,9 +1,10 @@
 import React,{useState} from "react"
 import { Button, Container, Row, Col } from 'react-bootstrap';
-import Head from "next/head"
-import Vote from "./vote.js"
-import VoteElement from "./voteelement.js"
-import MostVotes from "./MostVotes"
+import Head from "next/head";
+import Vote from "./vote.js";
+import VoteElement from "./voteelement.js";
+import MostVotes from "./MostVotes";
+import TextField from '@mui/material/TextField';
 import styles from "../../styles/Vote.module.css";
 import useSWR from 'swr'
 export default function Main(){
@@ -13,24 +14,27 @@ const [mostVotes,setMostVotes] = useState({
   nameVote:"",
   voteNum:0,
 });
+
 const fetcher = (...args) => fetch(...args).then(res => res.json())
-function useUser() {
-  const { data, error } = useSWR('/api/databaseCalls/getVotes', fetcher)
+function connectDB(id,token) {
+    const { data, error } = useSWR([`/api/Calls/${id}`,token], fetcher)
 
     return {
-      user: data,
+      response: data,
       isLoading: !error && !data,
       isError: error
     }
 }
-  const {user,isLoading,isError} = useUser();
-
-  function createVotes(votes){
-  const voteArray=[]
-  votes.forEach((element, index)=>{
-    voteArray.push(<VoteElement key={index} topic={element.voteName}/>)
+  const {response,isLoading,isError} = connectDB("topicHandler",{headers:{deeperMethod:"voteRequest"}});
+  console.log(response);
+  if (response != undefined && voteState.length == 0){
+    createVotes(response);
+  }
+  function createVotes(topics){
+      const voteArray=[]
+  topics.forEach((element, index)=>{
+    voteArray.push(<VoteElement key={index} topic={element.name}/>)
   })
-  console.log(voteArray);
   setVoteState(voteArray);
   }
   return(
@@ -48,10 +52,9 @@ function useUser() {
 
   <Container fluid>
   <Row className={styles.rowvote}>
-
-  <Col> <Vote updateVotes={createVotes}/></Col>
+  <Col> </Col>
   <Col></Col>
-  <Col> <MostVotes name={mostVotes.username} voteName={ mostVotes.nameVote} numVotes={user&&user.numVotes}/> </Col>
+  <Col> </Col>
 
   </Row>
 <Row className={styles.rowvoteelements}>
@@ -63,3 +66,4 @@ function useUser() {
    </div>
   )
 }
+// <MostVotes name={mostVotes.username} voteName={ mostVotes.nameVote} numVotes={user&&user.numVotes}/>

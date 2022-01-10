@@ -1,11 +1,58 @@
-import React,{useState} from "react"
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import Head from "next/head"
 import styles from "../../styles/Topic.module.css";
 import useSWR from 'swr'
 import TopicList from "./topiclist.js"
-export default function Main(){
+import React,{useState} from "react"
+import Link from "next/link"
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import {getSession, useSession}  from "next-auth/react";
+import VoteElement from "./voteelement.js";
 
+export default function Main(){
+const [inputState,setInputState] = useState("");
+  const [topicState,setTopicState] = useState([]);
+  const [chosenTopics,setChosenTopics] = useState([]);
+  const {data:session} = useSession();
+  const fetcher = (...args) => fetch(...args).then(res => res.json())
+  function getTopics(id) {
+    const { data, error } = useSWR(`/api/Calls/${id}`, fetcher)
+
+    return {
+      topics: data,
+      isLoading: !error && !data,
+      isError: error
+    }
+  }
+    const response = getTopics("topicHandler");
+    if (response.topics != undefined && topicState.length == 0) {
+         setTopicState(Object.values(response.topics));
+         console.log(topicState);
+    }
+
+    function createTopic(topic_name){
+    setChosenTopics(previousArr => [...previousArr, <VoteElement topic={topic_name}/>]);
+    }
+
+    async function topicClick(name){
+    //   const myHeaders = new Headers({
+    const topicString = JSON.stringify(topicState);
+    const present = topicString.includes(name)
+    const header = present?{deeperMethod:"makeActive"}:{deeperMethod:"Create"}
+    console.log(header);
+
+      const response = await fetch("/api/Calls/topicHandler",{
+        method:"POST",
+        body:JSON.stringify({topic_name:name,user: session.user.name}),
+        headers: header
+      })
+      const agreement = response.json();
+      agreement.then((result) =>{
+          createTopic(name)
+        console.log(result);
+      })
+  }
   return(
     <div className={styles.container}>
     <Head>
@@ -23,14 +70,27 @@ export default function Main(){
   <Row className={styles.rowvote}>
 
   <Col>
-  <TopicList/>
+  <Autocomplete
+    disablePortal
+    freeSolo
+    onInputChange={(event,value) =>{setInputState(value)}}
+    options={topicState}
+    getOptionLabel={topicState => topicState.name}
+    id="combo-box-demo"
+    sx={{ width: 300 }}
+    renderInput={(params) => (<TextField {...params} name="Topic" />)}
+  />
+<Button onClick={()=>(topicClick(inputState))}>Choose Topic</Button>
    </Col>
-  <Col></Col>
+  <Col>
+{chosenTopics}
+  </Col>
+
 
 
   </Row>
 <Row className={styles.rowvoteelements}>
-  <Col>   </Col>
+  <Col>     <Link href="/voting/main" passHref><Button className={styles.voteButton} size="lg">Vote!</Button></Link> </Col>
 
 </Row>
 
