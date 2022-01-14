@@ -5,13 +5,10 @@ import Image from "next/image";
 import Dimensions from "react";
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useSession, signIn, signOut,getSession, SessionProvider} from "next-auth/react";
-import {useRouter} from "next/router";
 import styles from "../styles/Home.module.css";
-
 
 export default function HomeScreen(props){
   const {data:session} = useSession();
- const router = useRouter()
 
 
 
@@ -70,23 +67,3 @@ export async function getServerSideProps(context) {
 
 
 }
-
-
-// <Col  lg={6}>
-// <div     style={{
-//     position: "relative",
-//     width: "50vw",
-//     height: "100vw",
-//     maxHeight: "100vh",
-//     objectFit: "contain",
-//     maxWidth: "50vw",
-//   }}>
-//   <Image src="/../public/image-deb.jpg"
-//   alt="Couldn't find this image sry"
-//    width={100}
-//    height={100}
-//
-//
-//    />
-//   </div>
-// </Col>
