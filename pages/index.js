@@ -1,8 +1,5 @@
-
-import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-import Dimensions from "react";
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useSession, signIn, signOut,getSession, SessionProvider} from "next-auth/react";
 import styles from "../styles/Home.module.css";
@@ -55,15 +52,4 @@ export default function HomeScreen(props){
   )
 
 // }
-}
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      session: await getSession(context),
-    },
-  }
-
-
-
 }

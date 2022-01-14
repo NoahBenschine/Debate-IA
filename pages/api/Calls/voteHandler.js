@@ -1,6 +1,6 @@
 const prisma = require("../prismaClient");
 const debate = require("../debate.js");
-const user = require("../user.js");
+const {getUserId} = {getUserId,getAllUserIds}require("../user.js");
 const {getVoteByUser, getVoteIdByUD,getVotesByTopic,getVotesByDebate,voteInsert,changeVote,findOrUpdate} = require("../vote.js")
 const {getAllTopics,getTopic,getTopicName, turnOffActives} = require("../topic.js")
 
@@ -13,7 +13,7 @@ export default async function voteHandler(req,res){
     const body = JSON.parse(req.body);
 
     const topic_id = await getTopic(body.voteName);
-    const user_id = await user(body.user);
+    const user_id = await getUserId(body.user);
  var vote_id = await getVoteIdByUD(user_id,debate_id)
  const vote_userid = await getVoteByUser(user_id);
 if (!vote_id){vote_id= -1}

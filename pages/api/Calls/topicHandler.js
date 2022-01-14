@@ -1,5 +1,5 @@
 const prisma = require("../prismaClient");
-const user = require("../user.js");
+const {getUserId} = require("../user.js");
 const {getAllTopics, getTopic,topicInsert,deleteTopic,selectTopic,getAllActiveTopics} = require("../topic.js")
 
 export default async function topicHandler(req,res){
@@ -11,10 +11,9 @@ if (req.method =="GET") {
      topics = await getAllTopics();
 }
   res.send(topics);
-
 }else{
-  const body = JSON.(req.body);
-const user_id = await user(body.user)
+  const body = JSON.parse(req.body);
+const user_id = await getUserId(body.user)
   if (req.headers.deepermethod == "Create"){
     topicInsert(body.topic_name, user_id,true);
  }else if(req.headers.deepermethod == "makeActive") {
