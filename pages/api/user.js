@@ -24,22 +24,7 @@ async function getAllUserIds(user_name){
  const user = await prisma.users.findMany({
    })
    return user.id;
-}
-function getAccount(){
-  const text = 'SELECT * from Account'
-  const values = []
-  pool.query(text,values, (err, res) => {
-console.log(err, res)
-pool.end()
-})
-}
-function getSession(){
-  const text = 'SELECT * from Session'
-  const values = []
-  pool.query(text,values, (err, res) => {
-console.log(err, res)
-pool.end()
-})
-}
+ }
 
-module.exports = getUserId;
+
+export {getUserId,getAllUserIds};
