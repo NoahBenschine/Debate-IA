@@ -32,7 +32,6 @@ if (voteList.hasOwnProperty(id)){
   voteList[id] = 1;
 }
 
-console.log("Thisis the voteList"+JSON.stringify(voteList));
 })
 const valArr = Object.values(voteList);
 const keyArr = Object.keys(voteList)
@@ -40,9 +39,6 @@ const winningTopic = keyArr[valArr.indexOf(Math.max(...valArr))]
 const topic_name = await getTopicName(parseInt(winningTopic));
 const topics = await getAllTopics();
 
-// debate.debateInsert(topic_name)
-console.log(valArr);
-console.log(Math.max(valArr))
 const test = await turnOffActives(parseInt(winningTopic))
 res.send({name:topic_name,numVotes:Math.max(...valArr)});
 }

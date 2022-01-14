@@ -8,7 +8,6 @@ const {sideInsert,getSide,changeSide} = require("../side.js")
 
 export default async function sideHandler(req,res){
     const  body = JSON.parse(req.body);
-  // debateInsert("Prisons");
   const user_id = await user(body.user);
   const debate_id = await debate.getDebate();
  const topic_id = await getTopic("Death Penalty");

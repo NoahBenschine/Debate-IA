@@ -5,7 +5,6 @@ const user = require("../user.js");
 const {getAllTopics, getTopic,topicInsert,deleteTopic,selectTopic,getAllActiveTopics} = require("../topic.js")
 
 export default async function topicHandler(req,res){
-console.log(req.headers.deeperMethod+"This is the conosle");
 if (req.method =="GET") {
   var topics = []
   if ( req.headers.deepermethod == "voteRequest"){
