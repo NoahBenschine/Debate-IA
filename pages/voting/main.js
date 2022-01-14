@@ -10,10 +10,6 @@ import useSWR from 'swr'
 export default function Main(){
 const [voteState,setVoteState] = useState([]);
 const [winDisplay,setWinDisplay] = useState();
-const [mostVotes,setMostVotes] = useState({
-  nameVote:"",
-  voteNum:0,
-});
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 function connectDB(id,token) {
@@ -79,4 +75,3 @@ function connectDB(id,token) {
    </div>
   )
 }
-// <MostVotes name={mostVotes.username} voteName={ mostVotes.nameVote} numVotes={user&&user.numVotes}/>
