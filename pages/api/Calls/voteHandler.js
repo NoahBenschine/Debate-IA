@@ -1,4 +1,3 @@
-const date = require("../date.js");
 const prisma = require("../prismaClient");
 const debate = require("../debate.js");
 const user = require("../user.js");

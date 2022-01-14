@@ -1,6 +1,4 @@
-const date = require("../date.js");
 const prisma = require("../prismaClient");
-const debate = require("../debate.js");
 const user = require("../user.js");
 const {getAllTopics, getTopic,topicInsert,deleteTopic,selectTopic,getAllActiveTopics} = require("../topic.js")
 
@@ -15,7 +13,7 @@ if (req.method =="GET") {
   res.send(topics);
 
 }else{
-  const body = JSON.parse(req.body);
+  const body = JSON.(req.body);
 const user_id = await user(body.user)
   if (req.headers.deepermethod == "Create"){
     topicInsert(body.topic_name, user_id,true);
