@@ -23,6 +23,15 @@ async function getTopic(name){
    return topic.id;
 }
 
+async function getTopicName(topic_id){
+ const topic = await prisma.topic.findFirst({
+     where: {
+       id:topic_id
+     },
+   })
+   return topic.name;
+}
+
 async function getAllTopics(){
  const topic = await prisma.topic.findMany({
 
@@ -40,6 +49,33 @@ async function getAllActiveTopics(){
    return topic;
 }
 
+async function turnOffActives(winner){
+  const activeTopic = await prisma.topic.updateMany({
+    where:{
+      AND: [
+            {
+              NOT: {
+                id:{
+                  equals:winner
+                }
+              },
+            },
+            {
+              active: {
+                equals: true,
+              },
+            },
+          ],
+
+
+    },
+    data:{
+      active:false
+    }
+
+  })
+  return activeTopic;
+}
  async function topicInsert(name,owner_id,active_type){
   const topic_object = await prisma.topic.create({
     data: {
@@ -77,4 +113,4 @@ return updateVote
 //     topicInsert: topicInsert,
 //     deleteTopic: deleteTopic
 // };
-export {getAllTopics, getTopic,topicInsert,deleteTopic,selectTopic,getAllActiveTopics}
+export {getAllTopics,getTopicName, getTopic,topicInsert,deleteTopic,selectTopic,getAllActiveTopics, turnOffActives}

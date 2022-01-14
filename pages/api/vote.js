@@ -27,7 +27,14 @@ async function getVotesByTopic(topic_id){
    })
    return votes;
 }
-
+async function getVotesByDebate(debate_id){
+ const votes = await prisma.vote.findMany({
+     where: {
+       debate_id:debate_id
+     },
+   })
+   return votes;
+}
 async function getVoteByUser(user_id){
  const votes = await prisma.vote.findMany({
      where: {
@@ -36,12 +43,21 @@ async function getVoteByUser(user_id){
    })
    return votes;
 }
+async function getVoteIdByUD(user_id,debate_id){
+  const vote = await prisma.vote.findMany({
+      where: {
+        owner_id:user_id,
+        debate_id:debate_id
+      },
+    })
 
-async function findOrUpdate(user_id,topic_id,debate_id){
+    return vote.id;
+}
+
+async function findOrUpdate(user_id,topic_id,debate_id,vote_id){
    const upsertVote = await prisma.vote.upsert({
      where: {
-       owner_id: user_id,
-       debate_id:debate_id
+       id:vote_id
      },
      update: {
        topic_id: topic_id,
@@ -77,4 +93,4 @@ async function voteInsert(topic_id,user_id,debate_id){
   })
 }
 
-export {getVoteByUser,getVotesByTopic,voteInsert,changeVote,findOrUpdate}
+export {getVoteByUser,getVoteIdByUD,getVotesByTopic,getVotesByDebate,voteInsert,changeVote,findOrUpdate}

@@ -1,3 +1,4 @@
+const {Pool} = require("pg");
 const date = require("./date.js");
 const prisma = require("./prismaClient");
 const debate = require("./debate.js");
@@ -35,8 +36,20 @@ async function sideInsert(topic_id,user_id,debate_id,side){
       side: side
     },
   })
+  return side_object;
 }
 
+async function changeSide(newside,user_id){
+  const updateSide = await prisma.sides.updateMany({
+  where: {
+     owner_id:user_id,
+  },
+  data: {
+    side:newside,
+  },
+})
+return updateSide;
+}
 
 async function getSide(debate_id){
  const sides = await prisma.sides.findMany({
@@ -47,7 +60,4 @@ async function getSide(debate_id){
    return sides;
 }
 
-module.exports = {
-  getSide: getSide,
-  sideInsert: sideInsert
-}
+export {getSide, sideInsert,changeSide}

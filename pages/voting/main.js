@@ -10,7 +10,6 @@ import useSWR from 'swr'
 export default function Main(){
 const [voteState,setVoteState] = useState([]);
 const [mostVotes,setMostVotes] = useState({
-  username:"",
   nameVote:"",
   voteNum:0,
 });
@@ -37,6 +36,17 @@ function connectDB(id,token) {
   })
   setVoteState(voteArray);
   }
+
+  async function voteWinner(){
+    const response = await fetch("/api/Calls/voteHandler",{
+      method:"GET",
+      headers:{voteMethod:"selectWinner"}
+    })
+    const agreement = response.json();
+    agreement.then((result) =>{
+      console.log(result)
+    })
+  }
   return(
     <div className={styles.container}>
     <Head>
@@ -52,7 +62,7 @@ function connectDB(id,token) {
 
   <Container fluid>
   <Row className={styles.rowvote}>
-  <Col> </Col>
+  <Col><Button onClick={voteWinner}>Choose Winner</Button> </Col>
   <Col></Col>
   <Col> </Col>
 

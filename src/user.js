@@ -1,16 +1,10 @@
-const {Pool} = require("pg");
+
 const date = require("./date.js");
 const prisma = require("./prismaClient");
 
-const DATABASE_URL="postgres://umrmaqjiosxlzz:19003182defd9632bc4ab99e883e17ff03eb9582be42f65c8c53cfff0139b89a@ec2-52-200-188-218.compute-1.amazonaws.com:5432/d1a4rmjasfh6co"
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-  pool = new Pool({
-        connectionString: DATABASE_URL,
-        ssl: true,
-    });
 
 var fnName = async function() {
-    console.log(await deleteUsers());
+    console.log(await getAllUserIds());
 }
 
 if (typeof require !== 'undefined' && require.main === module) {
@@ -25,16 +19,12 @@ async function getUserId(user_name){
    })
    return user.id;
 }
-async function getAllUserIds(){
- const user = await prisma.users.findMany()
-   return user;
+
+async function getAllUserIds(user_name){
+ const user = await prisma.users.findMany({
+   })
+   return user.id;
 }
-
-async function deleteUsers(){
-  const user = await prisma.users.deleteMany()
-}
-
-
 function getAccount(){
   const text = 'SELECT * from Account'
   const values = []

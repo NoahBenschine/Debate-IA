@@ -9,8 +9,7 @@ let currentD = "";
 const date = getDate();
 var fnName = async function() {
     // main code
-    console.log(date);
-    debateInsert("Death Penalty");
+
 }
 
 if (typeof require !== 'undefined' && require.main === module) {
@@ -25,6 +24,12 @@ if (typeof require !== 'undefined' && require.main === module) {
       },
     })
     return currentDebate.id;
+}
+async function getAllDebates(){
+ const currentDebate = await prisma.debate.findMany({
+
+   })
+   return currentDebate;
 }
 
 async function debateInsert(name){

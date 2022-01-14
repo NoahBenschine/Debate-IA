@@ -18,7 +18,8 @@ const {data:session} = useSession();
    console.log("click went off");
    const response = await fetch("/api/Calls/voteHandler",{
      method:"POST",
-     body:JSON.stringify({voteName:props.topic,user: session.user.name})
+     body:JSON.stringify({voteName:props.topic,user: session.user.name}),
+     headers:{voteMethod:"CreateVote"}
    })
    const agreement = response.json();
    agreement.then((result) =>{
