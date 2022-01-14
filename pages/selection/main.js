@@ -2,7 +2,6 @@ import { Button, Container, Row, Col } from 'react-bootstrap';
 import Head from "next/head"
 import styles from "../../styles/Topic.module.css";
 import useSWR from 'swr'
-import TopicList from "./topiclist.js"
 import React,{useState} from "react"
 import Link from "next/link"
 import TextField from '@mui/material/TextField';
