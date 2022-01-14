@@ -40,9 +40,11 @@ const winningTopic = keyArr[valArr.indexOf(Math.max(...valArr))]
 const topic_name = await getTopicName(parseInt(winningTopic));
 const topics = await getAllTopics();
 
-debate.debateInsert(topic_name)
+// debate.debateInsert(topic_name)
+console.log(valArr);
+console.log(Math.max(valArr))
 const test = await turnOffActives(parseInt(winningTopic))
-res.send({name:topic_name,numVotes:Math.max(valArr)});
+res.send({name:topic_name,numVotes:Math.max(...valArr)});
 }
 
 }

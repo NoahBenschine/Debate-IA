@@ -9,6 +9,7 @@ import styles from "../../styles/Vote.module.css";
 import useSWR from 'swr'
 export default function Main(){
 const [voteState,setVoteState] = useState([]);
+const [winDisplay,setWinDisplay] = useState();
 const [mostVotes,setMostVotes] = useState({
   nameVote:"",
   voteNum:0,
@@ -44,6 +45,8 @@ function connectDB(id,token) {
     })
     const agreement = response.json();
     agreement.then((result) =>{
+
+      setWinDisplay(<MostVotes voteName={result.name} numVotes={result.numVotes}/>)
       console.log(result)
     })
   }
@@ -62,9 +65,9 @@ function connectDB(id,token) {
 
   <Container fluid>
   <Row className={styles.rowvote}>
-  <Col><Button onClick={voteWinner}>Choose Winner</Button> </Col>
+  <Col><Button onClick={voteWinner}>Choose Winner</Button></Col>
   <Col></Col>
-  <Col> </Col>
+  <Col>{winDisplay} </Col>
 
   </Row>
 <Row className={styles.rowvoteelements}>

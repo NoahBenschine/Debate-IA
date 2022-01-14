@@ -66,8 +66,6 @@ async function turnOffActives(winner){
               },
             },
           ],
-
-
     },
     data:{
       active:false
@@ -76,6 +74,7 @@ async function turnOffActives(winner){
   })
   return activeTopic;
 }
+
  async function topicInsert(name,owner_id,active_type){
   const topic_object = await prisma.topic.create({
     data: {
