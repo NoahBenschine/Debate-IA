@@ -76,16 +76,3 @@ export default function Vote(props){
    </div>
   )
 }
-// <form className={styles.create_vote}>
-//  <input  name="Topic"onChange={updateText}type="text" placeholder="Topic name"></input>
-//    <textarea name="Description" onChange={updateText} onClick={changeVotingState} placeholder="Topic Description"  rows="6"/>
-//
-//
-// </form>
-// export async function getServerSideProps(context) {
-//   return {
-//     props: {
-//       session: await getSession(context),
-//     },
-//   }
-// }

@@ -23,16 +23,11 @@ export default function Transcript(){
    <Col className={styles.Col} lg={6}>
      <Side side="Pro"/>
    </Col>
-
    <Col className={styles.Col} lg={6}>
    <Side side="Con"/>
-
    <Link href="/selection/main" passHref><Button className={styles.voteButton} size="lg">Choose Topic!</Button></Link>
-
    </Col>
    </Row>
-
-
   </Container>
    </div>
   )

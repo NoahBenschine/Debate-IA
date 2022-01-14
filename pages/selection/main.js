@@ -35,12 +35,9 @@ const [inputState,setInputState] = useState("");
     }
 
     async function topicClick(name){
-    //   const myHeaders = new Headers({
     const topicString = JSON.stringify(topicState);
     const present = topicString.includes(name)
     const header = present?{deeperMethod:"makeActive"}:{deeperMethod:"Create"}
-    console.log(header);
-
       const response = await fetch("/api/Calls/topicHandler",{
         method:"POST",
         body:JSON.stringify({topic_name:name,user: session.user.name}),
@@ -84,9 +81,6 @@ const [inputState,setInputState] = useState("");
   <Col>
 {chosenTopics}
   </Col>
-
-
-
   </Row>
 <Row className={styles.rowvoteelements}>
   <Col>     <Link href="/voting/main" passHref><Button className={styles.voteButton} size="lg">Vote!</Button></Link> </Col>
