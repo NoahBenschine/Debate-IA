@@ -9,7 +9,6 @@ if (req.method =="GET") {
   var topics = []
   if ( req.headers.deepermethod == "voteRequest"){
    topics = await getAllActiveTopics();
-  const topics2 = await getAllTopics();
 }else{
      topics = await getAllTopics();
 }
@@ -25,7 +24,7 @@ const user_id = await user(body.user)
  }
     const topics = await getAllTopics();
 
-  res.send(topics);
+  res.send("Topic is active");
 }
 
 

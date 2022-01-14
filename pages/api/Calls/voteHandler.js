@@ -8,7 +8,8 @@ const {getAllTopics,getTopic,getTopicName, turnOffActives} = require("../topic.j
 export default async function voteHandler(req,res){
 
       const voteList = {}
-  const debate_id = await debate.getDebate();
+  const debate = await debate.getDebate();
+  const debate_id = debate.id
   if (req.headers.votemethod =="CreateVote"){
     const body = JSON.parse(req.body);
 

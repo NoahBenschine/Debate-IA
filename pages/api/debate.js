@@ -15,7 +15,7 @@ const date = getDate();
         date: date
       },
     })
-    return currentDebate.id;
+    return currentDebate;
 }
 async function getAllDebates(){
  const currentDebate = await prisma.debate.findMany({
