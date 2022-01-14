@@ -5,10 +5,7 @@ import { useSession, signIn, signOut,getSession, SessionProvider} from "next-aut
 import styles from "../styles/Home.module.css";
 
 export default function HomeScreen(props){
-  const {data:session} = useSession();
-
-
-
+  
   return(
     <div className={styles.container}>
 <Head>
@@ -32,14 +29,6 @@ export default function HomeScreen(props){
     <h2> Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
     <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: 'http://localhost:3000/choosing/main'}) }>Go to Google</button>
-
-         {session && (
-                <div>
-                  <p>Signed in as {session.user.email}</p>
-                  <p>Name {session.user.name}</p>
-                  <img src={session.user.image} alt={session.user.name} />
-                </div>
-              )}
     </main>
     </Col>
 
@@ -51,5 +40,4 @@ export default function HomeScreen(props){
 </div>
   )
 
-// }
 }
