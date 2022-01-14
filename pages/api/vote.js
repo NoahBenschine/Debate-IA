@@ -1,23 +1,4 @@
-
-const date = require("./date.js");
 const prisma = require("./prismaClient");
-const debate = require("./debate.js");
-const user = require("./user.js");
-const Topic = require("./topic.js");
-
-
-var fnName = async function() {
-  const user_id = await user();
-  const debate_id = await debate.getDebate();
-  const topic = await Topic.getTopic("prisons");
-  console.log(await getVote(topic.id));
-  // voteInsert(topic.id,user_id,debate_id);
-}
-
-if (typeof require !== 'undefined' && require.main === module) {
-    fnName();
-}
-
 
 async function getVotesByTopic(topic_id){
  const votes = await prisma.vote.findMany({

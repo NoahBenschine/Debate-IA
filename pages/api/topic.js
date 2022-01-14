@@ -1,17 +1,4 @@
-const date = require("./date.js");
 const prisma = require("./prismaClient");
-const debate = require("./debate.js");
-const user = require("./user.js");
-
-
-export default async function topicHandler(req,res){
-
-const topics = await getAllTopics();
-console.log("These are the topics"+topics);
-res.send(topics);
-
-}
-
 
 
 async function getTopic(name){
@@ -106,10 +93,4 @@ return updateVote
   })
 }
 
-
-// module.exports = {
-//     getTopic: getTopic,
-//     topicInsert: topicInsert,
-//     deleteTopic: deleteTopic
-// };
 export {getAllTopics,getTopicName, getTopic,topicInsert,deleteTopic,selectTopic,getAllActiveTopics, turnOffActives}

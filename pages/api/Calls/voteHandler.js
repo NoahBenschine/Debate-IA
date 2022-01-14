@@ -7,8 +7,6 @@ const {getAllTopics,getTopic,getTopicName, turnOffActives} = require("../topic.j
 
 export default async function voteHandler(req,res){
 
-
-
       const voteList = {}
   const debate_id = await debate.getDebate();
   if (req.headers.votemethod =="CreateVote"){
@@ -42,10 +40,4 @@ const topics = await getAllTopics();
 const test = await turnOffActives(parseInt(winningTopic))
 res.send({name:topic_name,numVotes:Math.max(...valArr)});
 }
-
-}
-
-
-function findWinner(){
-
 }
