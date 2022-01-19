@@ -1,6 +1,6 @@
 
 const getDate = require("./date.js");
-const prisma = require("./prismaClient");
+const prisma = require("../prismaClient");
 
 
 let currentD = "";
@@ -33,4 +33,4 @@ async function debateInsert(name){
   })
 }
 
-export  {getDebate,debateInsert}
+export  {getDebate,debateInsert,getAllDebates}

@@ -4,39 +4,48 @@ import styles from "../../styles/Transcript.module.css";
 import {signIn, signOut,getSession, useSession} from "next-auth/react";
 export default function Side(props){
 const [sides, setSides] = useState();
-
+const [pro, setPro] = useState();
+const [con, setCon] = useState();
   const { data: session } = useSession()
     const fetchtest = async () => {
       const response = fetch("/api/test")
       const data = await response
     }
-    function createLi(){
-       const names= []
+    console.log(pro);
+        console.log(con);
+    function createLi(sides){
+       const pros= []
+       const cons = []
        sides.forEach(function(element){
      if (element.side == props.side){
-       names.push(<li>{element.user.name}</li>)
+       if (element.side == "Pro"){
+         pros.push(<li>{element.user.name}</li>)
+       }else{
+        cons.push(<li>{element.user.name}</li>)
+       }
     }
-
     })
-    return names;
+
+    setPro(pros);
+    setCon(cons);
+
     }
   const postData =  async() => {
-    const response = await fetch("/api/Calls/SideChoosing",{
+    const response = await fetch("/api/db/Calls/SideChoosing",{
         method:"POST",
         body:JSON.stringify({side:props.side,user:session.user.name}),
       });
   const sideObject = response.json();
 
   sideObject.then(function(resu){
-    console.log(resu);
-         setSides(resu);
+    createLi(resu);
        });
 }
 
   return(
     <div className={styles.list_container}>
     <ul className={styles.list}>
-   {sides &&createLi()}
+   {props.side=="Pro"?pro:con}
     </ul>
     <Button onClick={postData} className={styles.joinbutton} size="lg">Join {props.side}</Button>
     </div>

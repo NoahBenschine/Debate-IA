@@ -1,4 +1,4 @@
-import { prisma } from './db'
+const prisma = require("../prismaClient");
 const  {getDebate,debateInsert} = require("../src/debate.js");
 const {getUserId,getAllUserIds} = require("../src/user.js");
 const {getVoteByUser, getVoteIdByUD,getVotesByTopic,getVotesByDebate,voteInsert,changeVote,findOrUpdate} = require("../src/vote.js")
