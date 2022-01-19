@@ -31,24 +31,29 @@ const [inputState,setInputState] = useState("");
     }
 
     function createTopic(topic_name){
-    setChosenTopics(previousArr => [...previousArr, <VoteElement topic={topic_name}/>]);
+    var present = true;
+    chosenTopics.forEach((element)=>{
+      console.log(element);
+      if (element.props != undefined && element.props.topic == topic_name){
+    present = false;
+      }
+    })
+     present&&setChosenTopics(previousArr => [...previousArr, <VoteElement topic={topic_name}/>]);
     }
 
-    async function topicClick(name){
-    const topicString = JSON.stringify(topicState);
-    const present = topicString.includes(name)
-    const header = present?{deeperMethod:"makeActive"}:{deeperMethod:"Create"}
-      const response = await fetch("/api/Calls/topicHandler",{
-        method:"POST",
-        body:JSON.stringify({topic_name:name,user: session.user.name}),
-        headers: header
-      })
-      const agreement = response.json();
-      agreement.then((result) =>{
-          createTopic(name)
+async function topicClick(name){
+  const response = await fetch("/api/Calls/topicHandler",{
+    method:"POST",
+    body:JSON.stringify({topic_name:name,user: session.user.name}),
+  })
+  const agreement = response.text();
+  agreement.then((result) =>{
         console.log(result);
-      })
-  }
+      createTopic(name)
+
+  })
+}
+
   return(
     <div className={styles.container}>
     <Head>
