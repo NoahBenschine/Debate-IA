@@ -1,5 +1,5 @@
 const prisma = require("../prismaClient");
-const debate = require("../debate.js");
+const  {getDebate,debateInsert} = require("../debate.js");
 const {getUserId} = {getUserId,getAllUserIds}require("../user.js");
 const {getVoteByUser, getVoteIdByUD,getVotesByTopic,getVotesByDebate,voteInsert,changeVote,findOrUpdate} = require("../vote.js")
 const {getAllTopics,getTopic,getTopicName, turnOffActives} = require("../topic.js")

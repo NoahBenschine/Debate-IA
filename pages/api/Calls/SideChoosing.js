@@ -1,26 +1,23 @@
 const prisma = require("../prismaClient");
-const debate = require("../debate.js");
+const {getDebate} = require("../debate.js");
 const {getUserId} = require("../user.js");
 const {topicInsert, getTopic} = require("../topic.js");
-const {sideInsert,getSide,changeSide} = require("../side.js")
+const {sideUpsert,getSides,getSide} = require("../side.js")
 
 
 
 export default async function sideHandler(req,res){
     const  body = JSON.parse(req.body);
   const user_id = await getUserId(body.user);
-  const debate = await debate.getDebate();
+  const debate = await getDebate();
   const debate_id = debate.id;
  const topic_id = await getTopic(debate.topic_name);
- const side = await getSide(debate_id)
-if (side.length == 0){
- console.log(await sideInsert(topic_id,user_id,debate_id,body.side));
-}else{
-  console.log(await changeSide(body.side,user_id));
-}
+ const side = await getSide(user_id,debate_id)
 
 
- console.log(await getSide(debate_id))
- res.send(await getSide(debate_id));
+ await sideUpsert(topic_id,user_id,debate_id,body.side,side.id)
+
+ console.log(await getSides(debate_id))
+ res.send(await getSides(debate_id));
 await prisma.$disconnect()
 }

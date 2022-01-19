@@ -2,38 +2,55 @@
 const prisma = require("./prismaClient");
 
 
+async function deleteAllSides(){
 
-async function sideInsert(topic_id,user_id,debate_id,side){
-  const side_object = await prisma.sides.create({
-    data: {
-      topic_id: topic_id,
-      owner_id: user_id,
-      debate_id: debate_id,
-      side: side
+}
+async function sideUpsert(topic_id,user_id,debate_id,side,side_id){
+  const side_object = await prisma.sides.upsert({
+    where: {
+      id:side_id
     },
+    update: {
+      side:side,
+    },
+    create: {
+          topic_id: topic_id,
+          owner_id: user_id,
+          debate_id: debate_id,
+          side: side
+        },
   })
   return side_object;
 }
 
-async function changeSide(newside,user_id){
-  const updateSide = await prisma.sides.updateMany({
-  where: {
+async function getSide(user_id,debate_id){
+const side = await prisma.sides.findFirst({
+  where:{
+    debate_id:debate_id,
      owner_id:user_id,
-  },
-  data: {
-    side:newside,
-  },
+  }
 })
-return updateSide;
+return side;
 }
 
-async function getSide(debate_id){
+async function getSides(debate_id){
  const sides = await prisma.sides.findMany({
      where: {
        debate_id:debate_id
      },
+     select: {
+        id:true,
+        side:true,
+        user: {
+          select: {
+            id:true,
+            name:true
+          },
+        },
+      },
+
    })
    return sides;
 }
 
-export {getSide, sideInsert,changeSide}
+export {getSide, sideUpsert,getSides}

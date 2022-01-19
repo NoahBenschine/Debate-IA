@@ -14,7 +14,7 @@ const [sides, setSides] = useState();
        const names= []
        sides.forEach(function(element){
      if (element.side == props.side){
-       names.push(<li>{element.owner_id}</li>)
+       names.push(<li>{element.user.name}</li>)
     }
 
     })

@@ -33,7 +33,4 @@ async function debateInsert(name){
   })
 }
 
-module.exports = {
-  getDebate: getDebate,
-  debateInsert: debateInsert
-}
+export  {getDebate,debateInsert}
