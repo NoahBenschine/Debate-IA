@@ -9,22 +9,25 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { getSession, useSession } from "next-auth/react";
 import TopicElement from "./TopicElement.js";
 
+function getTopics(id) {
+    const fetcher = (...args) => fetch(...args).then(res => res.json())
+  const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
+
+  return {
+    topics: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
+
 export default function Main() {
   const [inputState, setInputState] = useState("");
   const [topicState, setTopicState] = useState([]);
   const [chosenTopics, setChosenTopics] = useState([]);
   const { data: session } = useSession();
-  const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-  function getTopics(id) {
-    const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
 
-    return {
-      topics: data,
-      isLoading: !error && !data,
-      isError: error
-    }
-  }
+
   const response = getTopics("topicHandler");
   if (response.topics != undefined && topicState.length == 0) {
     setTopicState(Object.values(response.topics));
