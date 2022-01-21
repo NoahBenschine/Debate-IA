@@ -2,12 +2,13 @@
 const {getDebate,getAllDebates,debateInsert} = require("/src/debate.js");
 const {getUserId} = require("/src/user.js");
 const {topicInsert, getTopic} = require("/src/topic.js");
-const {sideUpsert,getSides,getSide} = require("/src/side.js")
+const {sideUpsert,getSides,getSide,deleteAllSides} = require("/src/side.js")
 
 
 
 export default async function sideHandler(req,res){
   const  body = JSON.parse(req.body);
+  // deleteAllSides();
   const user_id = await getUserId(body.user);
   const debate = await getDebate();
   const debates = await getAllDebates();

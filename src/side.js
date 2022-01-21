@@ -2,7 +2,9 @@ import prisma from "./prismaClient"
 
 
 async function deleteAllSides(){
+const deleted_sides = await prisma.sides.deleteMany({
 
+})
 }
 async function sideUpsert(topic_id,user_id,debate_id,side,side_id){
   const side_object = await prisma.sides.upsert({
@@ -52,4 +54,4 @@ async function getSides(debate_id){
    return sides;
 }
 
-export {getSide, sideUpsert,getSides}
+export {getSide, sideUpsert,getSides,deleteAllSides}
