@@ -6,20 +6,23 @@ import MostVotes from "./MostVotes";
 import TextField from '@mui/material/TextField';
 import styles from "../../styles/Vote.module.css";
 import useSWR from 'swr'
+
+
+
+function connectDB(id, token) {
+  const fetcher = (...args) => fetch(...args).then(res => res.json())
+  const { data, error } = useSWR([`/api/db/Calls/${id}`, token], fetcher)
+
+  return {
+    response: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
 export default function Main() {
   const [voteState, setVoteState] = useState([]);
   const [winDisplay, setWinDisplay] = useState();
-  const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-  function connectDB(id, token) {
-    const { data, error } = useSWR([`/api/db/Calls/${id}`, token], fetcher)
-
-    return {
-      response: data,
-      isLoading: !error && !data,
-      isError: error
-    }
-  }
   const { response, isLoading, isError } = connectDB("topicHandler", { headers: { deeperMethod: "voteRequest" } });
   console.log(response);
   if (response != undefined && voteState.length == 0) {
