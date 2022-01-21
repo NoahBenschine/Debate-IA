@@ -2,19 +2,20 @@ import { Button, Container, Row, Col } from 'react-bootstrap';
 import Head from "next/head"
 import styles from "../../styles/Topic.module.css";
 import useSWR from 'swr'
-import React,{useState} from "react"
+import React, { useState } from "react"
 import Link from "next/link"
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import {getSession, useSession}  from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import TopicElement from "./TopicElement.js";
 
-export default function Main(){
-  const [inputState,setInputState] = useState("");
-  const [topicState,setTopicState] = useState([]);
-  const [chosenTopics,setChosenTopics] = useState([]);
-  const {data:session} = useSession();
+export default function Main() {
+  const [inputState, setInputState] = useState("");
+  const [topicState, setTopicState] = useState([]);
+  const [chosenTopics, setChosenTopics] = useState([]);
+  const { data: session } = useSession();
   const fetcher = (...args) => fetch(...args).then(res => res.json())
+
   function getTopics(id) {
     const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
 
@@ -30,49 +31,50 @@ export default function Main(){
     console.log(topicState);
   }
 
-  function createTopic(topic_name){
+  function createTopic(topic_name) {
     var present = true;
-    chosenTopics.forEach((element)=>{
+    chosenTopics.forEach((element) => {
       console.log(element);
-      if (element.props != undefined && element.props.topic == topic_name){
+      if (element.props != undefined && element.props.topic == topic_name) {
         present = false;
       }
     })
-    present&&setChosenTopics(previousArr => [...previousArr, <TopicElement click={deleteTopic} topic={topic_name}/>]);
-  }
+    present && setChosenTopics(previousArr => [...previousArr, < TopicElement click = { deleteTopic } topic = { topic_name }
+          />]);
+        }
 
-  async function topicClick(name){
-    if (name != ""){
-      const response = await fetch("/api/db/Calls/topicHandler",{
-        method:"POST",
-        body:JSON.stringify({topic_name:name,user: session.user.name}),
-      })
-      const agreement = response.text();
-      agreement.then((result) =>{
-        console.log(result);
-        createTopic(name)
+        async function topicClick(name) {
+          if (name != "") {
+            const response = await fetch("/api/db/Calls/topicHandler", {
+              method: "POST",
+              body: JSON.stringify({ topic_name: name, user: session.user.name }),
+            })
+            const agreement = response.text();
+            agreement.then((result) => {
+              console.log(result);
+              createTopic(name)
 
-      })
-    }else{
-      alert("Entry cannot be left empty" )
-    }
-  }
-  async function deleteTopic(topic_name){
-    const response = await fetch("/api/db/Calls/topicHandler",{
-      method:"POST",
-      body:JSON.stringify({topic_name:topic_name,user: session.user.name}),
-      headers:{deeperMethod:"ActiveOff"}
-    })
-    const agreement = response.json();
-    agreement.then((result) =>{
-      console.log(result);
-      const active_topics = [];
-      result.forEach((element)=>{
-        active_topics.push(<TopicElement click={deleteTopic} topic={element.name}/>)
-      })
-      setChosenTopics(active_topics);
-    })
-  }
+            })
+          } else {
+            alert("Entry cannot be left empty")
+          }
+        }
+        async function deleteTopic(topic_name) {
+            const response = await fetch("/api/db/Calls/topicHandler", {
+              method: "POST",
+              body: JSON.stringify({ topic_name: topic_name, user: session.user.name }),
+              headers: { deeperMethod: "ActiveOff" }
+            })
+            const agreement = response.json();
+            agreement.then((result) => {
+                console.log(result);
+                const active_topics = [];
+                result.forEach((element) => {
+                    active_topics.push( < TopicElement click = { deleteTopic } topic = { element.name }
+                      />)
+                    }) setChosenTopics(active_topics);
+                })
+            }
   return(
     <div className={styles.container}>
     <Head>

@@ -1,5 +1,5 @@
-import React,{useState} from "react"
-import { Button} from 'react-bootstrap';
+import React, { useState } from "react"
+import { Button } from 'react-bootstrap';
 
 import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
@@ -7,46 +7,46 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { FixedSizeList } from 'react-window';
 import styles from "../../styles/Transcript.module.css";
-import {signIn, signOut,getSession, useSession} from "next-auth/react";
-export default function Side(props){
-const [sides, setSides] = useState();
-const [pro, setPro] = useState([]);
-const [con, setCon] = useState([]);
+import { signIn, signOut, getSession, useSession } from "next-auth/react";
+export default function Side(props) {
+  const [sides, setSides] = useState();
+  const [pro, setPro] = useState([]);
+  const [con, setCon] = useState([]);
   const { data: session } = useSession()
 
-    console.log(props.side)
-    function createLi(sides){
+  console.log(props.side)
 
-       const pros= []
-       const cons = []
-       sides.forEach(function(element){
-     if (element.side == props.side){
-       if (element.side == "Pro"){
-         pros.push(element.user.name)
-       }else{
-        cons.push(element.user.name)
-       }
-    }
+  function createLi(sides) {
+
+    const pros = []
+    const cons = []
+    sides.forEach(function(element) {
+      if (element.side == props.side) {
+        if (element.side == "Pro") {
+          pros.push(element.user.name)
+        } else {
+          cons.push(element.user.name)
+        }
+      }
     })
     console.log(pros);
-        console.log(cons);
+    console.log(cons);
     setPro(pros);
     setCon(cons);
-    }
+  }
 
 
+  const postData = async () => {
+    const response = await fetch("/api/db/Calls/SideChoosing", {
+      method: "POST",
+      body: JSON.stringify({ side: props.side, user: session.user.name }),
+    });
+    const sideObject = response.json();
 
-  const postData =  async() => {
-    const response = await fetch("/api/db/Calls/SideChoosing",{
-        method:"POST",
-        body:JSON.stringify({side:props.side,user:session.user.name}),
-      });
-  const sideObject = response.json();
-
-  sideObject.then(function(resu){
-    createLi(resu);
-       });
-}
+    sideObject.then(function(resu) {
+      createLi(resu);
+    });
+  }
 
   return(
     <div className={styles.list_container}>
