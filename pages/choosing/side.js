@@ -58,7 +58,7 @@ export default function Side(props) {
      </li>
    ))}
 
- { props.side=="Pro"&&con.map((item,index) => (
+ { props.side=="Con"&&con.map((item,index) => (
      <li key={index}>{item} </li>
        ))}}
 

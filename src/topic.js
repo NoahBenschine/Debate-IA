@@ -1,5 +1,4 @@
-const prisma = require("./prismaClient");
-
+import prisma from "./prismaClient"
 
 async function getTopic(name){
  const topic = await prisma.topic.findFirst({
