@@ -7,7 +7,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { FixedSizeList } from 'react-window';
 import styles from "../../styles/Transcript.module.css";
-import { signIn, signOut, getSession, useSession } from "next-auth/react";
+import {getSession, useSession } from "next-auth/react";
 export default function Side(props) {
   const [sides, setSides] = useState();
   const [pro, setPro] = useState([]);
@@ -53,13 +53,12 @@ export default function Side(props) {
 
     <ul className={styles.list}>
     {console.log(pro.toString()+"This is con"+con.toString())}
-   { pro.map((item,index) => (
-     <li key={index}>
-     {item}
+   {props.side=="Pro"&&pro.map((item,index) => (
+     <li key={index}>     {item}
      </li>
    ))}
- }
- {   con.map((item,index) => (
+
+ { props.side=="Pro"&&con.map((item,index) => (
      <li key={index}>{item} </li>
        ))}}
 

@@ -1,6 +1,7 @@
 const prisma = require("./prismaClient");
 
-async function getUserId(user_name) {
+async function getUserId(user_name){
+  console.log(prisma)
     const user = await prisma.users.findFirst({
         where: {
             name: user_name
