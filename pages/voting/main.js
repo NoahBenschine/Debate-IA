@@ -1,7 +1,7 @@
 import React,{useState} from "react"
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import Head from "next/head";
-import VoteElement from "./voteelement.js";
+import VoteElement from "./voteElement.js";
 import MostVotes from "./MostVotes";
 import TextField from '@mui/material/TextField';
 import styles from "../../styles/Vote.module.css";
@@ -9,10 +9,9 @@ import useSWR from 'swr'
 export default function Main(){
 const [voteState,setVoteState] = useState([]);
 const [winDisplay,setWinDisplay] = useState();
-
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 function connectDB(id,token) {
-    const { data, error } = useSWR([`/api/Calls/${id}`,token], fetcher)
+    const { data, error } = useSWR([`/api/db/Calls/${id}`,token], fetcher)
 
     return {
       response: data,
@@ -34,7 +33,7 @@ function connectDB(id,token) {
   }
 
   async function voteWinner(){
-    const response = await fetch("/api/Calls/voteHandler",{
+    const response = await fetch("/api/db/Calls/voteHandler",{
       method:"GET",
       headers:{voteMethod:"selectWinner"}
     })

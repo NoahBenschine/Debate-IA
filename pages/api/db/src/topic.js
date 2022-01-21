@@ -62,7 +62,17 @@ async function turnOffActives(winner){
   return activeTopic;
 }
 
-
+async function turnOffTopic(name){
+  const deactivated_topic = await prisma.topic.update({
+    where:{
+      name:name
+    },
+    data:{
+      active:false
+    }
+  })
+  return deactivated_topic;
+}
 
 
  async function topicUpsert(name,owner_id,active_type){
@@ -92,4 +102,4 @@ async function turnOffActives(winner){
   })
 }
 
-export {getAllTopics,getTopicName, getTopic,topicUpsert,deleteTopic,getAllActiveTopics, turnOffActives}
+export {getAllTopics,getTopicName, getTopic,topicUpsert,deleteTopic,getAllActiveTopics, turnOffActives, turnOffTopic}

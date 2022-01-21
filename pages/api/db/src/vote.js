@@ -51,26 +51,13 @@ async function findOrUpdate(user_id,topic_id,debate_id,vote_id){
   return upsertVote;
 }
 
-async function changeVote(user_id,topic_id){
-  const updateVote = await prisma.vote.update({
-  where: {
-     owner_id:user_id,
-  },
-  data: {
-    topic_id:topic_id,
-  },
-})
+
+async function deleteAllVotes(){
+ const votes = await prisma.vote.deleteMany({
+
+ })
 }
 
 
-async function voteInsert(topic_id,user_id,debate_id){
-  const vote_object = await prisma.vote.create({
-    data: {
-      topic_id: topic_id,
-      owner_id: user_id,
-      debate_id: debate_id
-    },
-  })
-}
 
-export {getVoteByUser,getVoteIdByUD,getVotesByTopic,getVotesByDebate,voteInsert,changeVote,findOrUpdate}
+export {getVoteByUser,getVoteIdByUD,getVotesByTopic,getVotesByDebate,deleteAllVotes,findOrUpdate}
