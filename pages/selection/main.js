@@ -42,7 +42,7 @@ export default function Main() {
         present = false;
       }
     })
-    present && setChosenTopics(previousArr => [...previousArr, < TopicElement click = { deleteTopic } topic = { topic_name }
+    present && setChosenTopics(previousArr => [...previousArr, < TopicElement key={previousArr.length} click = { deleteTopic } topic = { topic_name }
           />]);
         }
 
