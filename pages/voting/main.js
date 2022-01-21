@@ -31,7 +31,8 @@ export default function Main() {
     topics.forEach((element, index) => {
         voteArray.push( < VoteElement key = { index } topic = { element.name }
           />)
-        }) setVoteState(voteArray);
+        })
+        setVoteState(voteArray);
     }
 
     async function voteWinner() {

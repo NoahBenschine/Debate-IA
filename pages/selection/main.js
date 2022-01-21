@@ -72,7 +72,8 @@ export default function Main() {
                 result.forEach((element) => {
                     active_topics.push( < TopicElement click = { deleteTopic } topic = { element.name }
                       />)
-                    }) setChosenTopics(active_topics);
+                    })
+                    setChosenTopics(active_topics);
                 })
             }
   return(
