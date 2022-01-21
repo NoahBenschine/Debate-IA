@@ -1,8 +1,8 @@
 
-const {getDebate,getAllDebates} = require("../src/debate.js");
-const {getUserId} = require("../src/user.js");
-const {topicInsert, getTopic} = require("../src/topic.js");
-const {sideUpsert,getSides,getSide} = require("../src/side.js")
+const {getDebate,getAllDebates} = require("/src/debate.js");
+const {getUserId} = require("/src/user.js");
+const {topicInsert, getTopic} = require("/src/topic.js");
+const {sideUpsert,getSides,getSide} = require("/src/side.js")
 
 
 

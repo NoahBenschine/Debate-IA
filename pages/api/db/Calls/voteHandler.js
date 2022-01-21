@@ -1,8 +1,7 @@
-const prisma = require("../prismaClient");
-const  {getDebate,debateInsert} = require("../src/debate.js");
-const {getUserId,getAllUserIds} = require("../src/user.js");
-const {getVoteByUser, getVoteIdByUD,getVotesByTopic,getVotesByDebate,voteInsert,changeVote,findOrUpdate,deleteAllVotes} = require("../src/vote.js")
-const {getAllTopics,getTopic,getTopicName, turnOffActives} = require("../src/topic.js")
+const  {getDebate,debateInsert} = require("/src/debate.js");
+const {getUserId,getAllUserIds} = require("/src/user.js");
+const {getVoteByUser, getVoteIdByUD,getVotesByTopic,getVotesByDebate,voteInsert,changeVote,findOrUpdate,deleteAllVotes} = require("/src/vote.js")
+const {getAllTopics,getTopic,getTopicName, turnOffActives} = require("/src/topic.js")
 
 export default async function voteHandler(req,res){
 

@@ -1,7 +1,4 @@
-
-import { prisma } from './db'
-
-
+const prisma = require("./prismaClient");
 
 async function getUserId(user_name){
  const user = await prisma.users.findFirst({
