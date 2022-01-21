@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import Head from "next/head";
-import VoteElement from "./voteElement.js";
+import VoteElement from "./VoteElement.js";
 import MostVotes from "./MostVotes";
 import TextField from '@mui/material/TextField';
 import styles from "../../styles/Vote.module.css";
