@@ -9,7 +9,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { getSession, useSession } from "next-auth/react";
 import TopicElement from "./TopicElement.js";
 
-function getTopics(id) {
+function useTopics(id) {
     const fetcher = (...args) => fetch(...args).then(res => res.json())
   const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
 
@@ -28,7 +28,7 @@ export default function Main() {
 
 
 
-  const response = getTopics("topicHandler");
+  const response = useTopics("topicHandler");
   if (response.topics != undefined && topicState.length == 0) {
     setTopicState(Object.values(response.topics));
     console.log(topicState);

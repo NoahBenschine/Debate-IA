@@ -9,7 +9,7 @@ import useSWR from 'swr'
 
 
 
-function connectDB(id, token) {
+function useDB(id, token) {
   const fetcher = (...args) => fetch(...args).then(res => res.json())
   const { data, error } = useSWR([`/api/db/Calls/${id}`, token], fetcher)
 
@@ -23,7 +23,7 @@ export default function Main() {
   const [voteState, setVoteState] = useState([]);
   const [winDisplay, setWinDisplay] = useState();
 
-  const { response, isLoading, isError } = connectDB("topicHandler", { headers: { deeperMethod: "voteRequest" } });
+  const { response, isLoading, isError } = useDB("topicHandler", { headers: { deeperMethod: "voteRequest" } });
   console.log(response);
   if (response != undefined && voteState.length == 0) {
     createVotes(response);
