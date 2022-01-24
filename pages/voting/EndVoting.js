@@ -1,4 +1,4 @@
-import React, { useStat,useEffect} from "react"
+import React, { useState,useEffect} from "react"
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import styles from "../../styles/Vote.module.css";
 import { useSession } from "next-auth/react";
