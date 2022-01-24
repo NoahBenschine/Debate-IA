@@ -30,6 +30,7 @@ export default function HomeScreen(props){
     <Col lg={6}>
     <main className={styles.main}>
     <h3>{process.env.nextauth_url}</h3>
+    <h4>{process.env.NEXT_PUBLIC_VERCEL_URL}</h4>
     <h2>Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
     <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: process.env.nextauth_url+"/choosing/main"}) }>Go to Google</button>
