@@ -49,6 +49,6 @@ console.log(numVotes);
 console.log(usersClicked);
 }
   return(
-    <Button onClick={handleClick}>End Voting</Button>
+    <Button onClick={handleClick}>End Voting Test</Button>
   );
 }
