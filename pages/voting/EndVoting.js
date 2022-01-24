@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useStat,useEffect} from "react"
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import styles from "../../styles/Vote.module.css";
 import { useSession } from "next-auth/react";
@@ -7,9 +7,32 @@ export default function EndVoting(){
   const {data:session} = useSession();
 const [numVotes,setNumVotes] = useState(0)
 const [usersClicked,setUsersClicked] = useState([])
+  const [name, setName] = useState("");
 function getAllUsers(){
 
 }
+
+
+  const onStorageUpdate = (e) => {
+    const { key, newValue } = e;
+    if (key === "name") {
+      setName(newValue);
+    }
+  };
+
+  const handleChange = (e) => {
+    setName(e.target.value);
+    localStorage.setItem("name", e.target.value);
+  };
+
+  useEffect(() => {
+    setName(localStorage.getItem("name") || "");
+    window.addEventListener("storage", onStorageUpdate);
+    return () => {
+      window.removeEventListener("storage", onStorageUpdate);
+    };
+  }, []);
+
 
 function handleClick(){
   let present = false;
@@ -26,6 +49,8 @@ console.log(numVotes);
 console.log(usersClicked);
 }
   return(
+     <input value={name} onChange={handleChange}><input>
+
     <Button onClick={handleClick}>End Voting </Button>
   )
 }
