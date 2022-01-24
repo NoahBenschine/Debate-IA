@@ -5,7 +5,10 @@ import { useSession, signIn, signOut,getSession, SessionProvider} from "next-aut
 import styles from "../styles/Home.module.css";
 
 export default function HomeScreen(props){
-  
+  console.log(process.env.REACT_APP_NEXTAUTH_URL+"/choosing/main");
+  console.log(process.env.nextauth_url);
+  console.log(process.env.REACT_APP_nextauth_url);
+  console.log(process.env.DATABASE_URL);
   return(
     <div className={styles.container}>
 <Head>
@@ -26,9 +29,10 @@ export default function HomeScreen(props){
 
     <Col lg={6}>
     <main className={styles.main}>
-    <h2> Debate Club</h2>
+    <h3>{process.env.nextauth_url}</h3>
+    <h2>Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
-    <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: 'http://localhost:3000/choosing/main'}) }>Go to Google</button>
+    <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: process.env.nextauth_url+"/choosing/main"}) }>Go to Google</button>
     </main>
     </Col>
 

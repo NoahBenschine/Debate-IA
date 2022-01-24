@@ -6,7 +6,7 @@ import MostVotes from "./MostVotes";
 import TextField from '@mui/material/TextField';
 import styles from "../../styles/Vote.module.css";
 import useSWR from 'swr'
-
+import EndVoting from "./EndVoting.js"
 
 
 function useDB(id, token) {
@@ -67,7 +67,7 @@ export default function Main() {
   <Container fluid>
   <Row className={styles.rowvote}>
   <Col><Button onClick={voteWinner}>Choose Winner</Button></Col>
-  <Col></Col>
+  <Col><EndVoting /></Col>
   <Col>{winDisplay} </Col>
 
   </Row>
