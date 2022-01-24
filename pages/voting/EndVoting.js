@@ -49,7 +49,7 @@ console.log(numVotes);
 console.log(usersClicked);
 }
   return(
-     <input value={name} onChange={handleChange}><input>
+     <input value={name} onChange={handleChange}></input>
 
     <Button onClick={handleClick}>End Voting </Button>
   )
