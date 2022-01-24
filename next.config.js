@@ -1,7 +1,7 @@
 
 module.exports = {
   env: {
-    nextauth_url: 'http://localhost:3000',
+    nextauth_url: process.env.REACT_APP_NEXTAUTH_URL,
   },
   reactStrictMode: true,
 }
