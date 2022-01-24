@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.css";
 
 export default function HomeScreen(props){
   console.log(process.env.REACT_APP_NEXTAUTH_URL+"/choosing/main");
-  console.log(process.env.nextauth_url);
+
   console.log(process.env.REACT_APP_nextauth_url);
   console.log(process.env.DATABASE_URL);
   return(
@@ -33,7 +33,9 @@ export default function HomeScreen(props){
     <h4>{process.env.NEXT_PUBLIC_VERCEL_URL}</h4>
     <h2>Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
-    <button className={styles.signin} onClick={() => signIn("google",{ callbackUrl: process.env.nextauth_url+"/choosing/main"}) }>Go to Google</button>
+    <button className={styles.signin} onClick={() => {
+       console.log(process.env.nextauth_url)
+      signIn("google",{ callbackUrl: process.env.nextauth_url+"/choosing/main"})} }>Go to Google</button>
     </main>
     </Col>
 
