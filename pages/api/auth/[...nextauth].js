@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "/src/prismaClient"
-
+import {getAdminByUser,adminInsert} from "/src/admin.js"
 export default async function auth(req, res){
   return await NextAuth(req, res, {
  adapter: PrismaAdapter(prisma),
@@ -24,6 +24,18 @@ export default async function auth(req, res){
         // updateAge: 24 * 60 * 60, // 24 hours
       },
       callbacks: {
+        async signIn({ user, account, profile, email, credentials }) {
+          const admin = await getAdminByUser(user.id);
+          console.log();
+          if(admin == null && email == "tgetman@pvcsd.org"){
+            adminInsert(user.id);
+            return "/admin/workspace";
+          }else if(admin != null){
+              return "/admin/workspace";
+          }else{
+            return true;
+          }
+ }
 
 }
 

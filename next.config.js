@@ -1,7 +1,7 @@
 
 module.exports = {
   env: {
-    nextauth_url: process.env.REACT_APP_NEXTAUTH_URL,
+    nextauth_url: process.env.NEXTAUTH_URL,
   },
   reactStrictMode: true,
 }
