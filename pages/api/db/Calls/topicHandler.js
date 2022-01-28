@@ -1,11 +1,19 @@
-const {getUserId} = require("/src/user.js");
+const {getUserId,getAllSessions,getAllUserIds,getSessionsByDate} = require("/src/user.js");
 const {getAllTopics, getTopic,topicUpsert,deleteTopic,getAllActiveTopics, turnOffTopic} = require("/src/topic.js")
-
+const getDate = require("/src/date.js");
 export default async function topicHandler(req,res){
 if (req.method =="GET") {
   var topics = []
   if ( req.headers.deepermethod == "voteRequest"){
-   topics = await getAllActiveTopics();
+  //  topics = await getAllActiveTopics();
+   const users = await getAllSessions();
+  // const actual_users = await getAllUserIds();
+  const date = new Date(2021-12-22)
+  const sessions = await getSessionsByDate(date);
+    // console.log(users)
+    // console.log(getDate());
+    console.log(sessions);
+   // console.log(actual_users)
 }else{
      topics = await getAllTopics();
 }

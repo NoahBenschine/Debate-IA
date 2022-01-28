@@ -22,10 +22,12 @@ function getDate(){
   let seconds = date_ob.getSeconds();
      const s = year + "-" + month + "-" + date;
      const d = new Date(s);
+       console.log(year + "-" + month + "-" + date);
+       console.log(date);
 return (d);
 
   // prints date in YYYY-MM-DD format
-  // console.log(year + "-" + month + "-" + date);
+
   //
   // // prints date & time in YYYY-MM-DD HH:MM:SS format
   // console.log(year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
