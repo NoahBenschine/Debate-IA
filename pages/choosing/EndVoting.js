@@ -5,11 +5,17 @@ import { useSession } from "next-auth/react";
 
 export default function EndVoting(){
   const {data:session} = useSession();
+const [numVotes,setNumVotes] = useState(0)
 const [usersClicked,setUsersClicked] = useState([])
   const [name, setName] = useState("");
 
+  console.log( usersClicked)
+  console.log(typeof usersClicked)
+  console.log(usersClicked[0])
   const onStorageUpdate = (e) => {
     const { key, newValue } = e;
+    console.log(key);
+    console.log(newValue);
     if (key === "usersClicked") {
       setUsersClicked((prevState)=>[...prevState,newValue]);
     }
@@ -17,8 +23,7 @@ const [usersClicked,setUsersClicked] = useState([])
 
 
   useEffect(() => {
-    console.log("useEffect went off")
-    setUsersClicked(localStorage.getItem("usersClicked").split(","));
+    setUsersClicked(localStorage.getItem("usersClicked").split(",") || []);
     window.addEventListener("storage", onStorageUpdate);
     return () => {
       window.removeEventListener("storage", onStorageUpdate);
@@ -34,17 +39,14 @@ function handleClick(){
       present = true;
     }
   })
-  if (!present){
-    const pushval = []
-    if ( localStorage.getItem("usersClicked")==""|| null){
-      pushval.push(session.user.name)
-    }else{
-      pushval.push(...localStorage.getItem("usersClicked").split(","),session.user.name)
-    }
-    arr.push(...pushval)
+  if (!present)
+    arr.push(localStorage.getItem("usersClicked"),session.user.name)
     setUsersClicked((prevState)=>[...prevState,session.user.name])
+    setNumVotes((prevState)=>prevState+=1);
     localStorage.setItem("usersClicked",arr)
-    }
+
+console.log(numVotes);
+console.log(usersClicked);
 }
   return(
     <Button onClick={handleClick}>End Voting Test</Button>

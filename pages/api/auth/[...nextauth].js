@@ -24,18 +24,18 @@ export default async function auth(req, res){
         // updateAge: 24 * 60 * 60, // 24 hours
       },
       callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
-          const admin = await getAdminByUser(user.id);
-          console.log();
-          if(admin == null && email == "tgetman@pvcsd.org"){
-            adminInsert(user.id);
-            return "/admin/workspace";
-          }else if(admin != null){
-              return "/admin/workspace";
-          }else{
-            return true;
-          }
- }
+ //        async signIn({ user, account, profile, email, credentials }) {
+ //          const admin = await getAdminByUser(user.id);
+ //          console.log();
+ //          if(admin == null && email == "tgetman@pvcsd.org"){
+ //            adminInsert(user.id);
+ //            return "/admin/workspace";
+ //          }else if(admin != null){
+ //              return "/admin/workspace";
+ //          }else{
+ //            return true;
+ //          }
+ // }
 
 }
 
