@@ -18,12 +18,13 @@ export default async function auth(req, res){
         // Seconds - How long until an idle session expires and is no longer valid.
          maxAge: 60*60, // 30 days
 
-        // Seconds - Throttle how frequently to write to database to extend a session.
+        // Seconds - Throttle how frequently to write to database to extend a session
         // Use it to limit write operations. Set to 0 to always update the database.
         // Note: This option is ignored if using JSON Web Tokens
         // updateAge: 24 * 60 * 60, // 24 hours
       },
       callbacks: {
+<<<<<<< HEAD
         async signIn({ user, account, profile, email, credentials }) {
           const admin = await getAdminByUser(user.id);
           console.log();
@@ -36,6 +37,20 @@ export default async function auth(req, res){
             return true;
           }
  }
+=======
+ //        async signIn({ user, account, profile, email, credentials }) {
+ //          const admin = await getAdminByUser(user.id);
+ //          console.log();
+ //          if(admin == null && email == "tgetman@pvcsd.org"){
+ //            adminInsert(user.id);
+ //            return "/admin/workspace";
+ //          }else if(admin != null){
+ //              return "/admin/workspace";
+ //          }else{
+ //            return true;
+ //          }
+ // }
+>>>>>>> 8522df115807221b140eb7153aed678bdd810e56
 
 }
 
