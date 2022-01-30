@@ -79,6 +79,7 @@ console.log(input);
          <TextField id="outlined-basic" type="datetime-local" label="Outlined" variant="outlined" value={input.setTime} name="setTime" onChange={handleChange} onKeyPress={(e)=>{
 
            if (e.key === "Enter"){
+             console.log("enter was pressed");
               setTime(input.setTime);
            }
          }}/>
@@ -140,7 +141,7 @@ console.log(input);
     })
   }
 
-  async function changeDebateTime(new_time){
+  async function setTime(new_time){
     const response = await fetch("/api/db/Calls/adminHandler", {
       method: "POST",
       body: JSON.stringify({time:new_time}),

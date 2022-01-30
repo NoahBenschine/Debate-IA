@@ -1,5 +1,5 @@
 
-const getDate = require("./date.js");
+import {getDate} from "./date.js"
 import prisma from "./prismaClient"
 
 let currentD = "";
@@ -22,7 +22,24 @@ async function changeCurrentDebate(topic_name){
     })
   return currentDebate;
 }
- async function getDebate(){
+
+async function changeFutureDebate(id,topic_name,new_date){
+  const futureDebate = await prisma.debate.upsert({
+      where: {
+        id:id
+      },
+      update:{
+     topic_name:topic_name
+   },
+   create:{
+     date:new_date,
+     topic_name:topic_name
+   }
+    })
+  return futureDebate;
+}
+
+ async function getCurrentDebate(){
   const currentDebate = await prisma.debate.findFirst({
       where: {
         date: date
@@ -30,6 +47,16 @@ async function changeCurrentDebate(topic_name){
     })
     return currentDebate;
 }
+
+async function getDebateByTopic_Name(topic_name){
+ const debate = await prisma.debate.findMany({
+     where: {
+       topic_name: topic_name
+     },
+   })
+   return debate;
+}
+
 async function getAllDebates(){
  const currentDebate = await prisma.debate.findMany({
 
@@ -44,13 +71,13 @@ async function deleteAllDebates(){
    return currentDebate;
 }
 
-async function debateInsert(name){
+async function debateInsert(name,new_date){
   const debate_object = await prisma.debate.create({
     data: {
       topic_name: name,
-      date: date,
+      date: new_date,
     },
   })
 }
 
-export  {getDebate,debateInsert,getAllDebates,changeCurrentDebate,deleteAllDebates}
+export  {getCurrentDebate,debateInsert,getAllDebates,changeCurrentDebate,deleteAllDebates,changeFutureDebate,getDebateByTopic_Name}

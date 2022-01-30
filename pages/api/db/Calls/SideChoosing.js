@@ -1,5 +1,5 @@
 
-const {getDebate,getAllDebates,debateInsert} = require("/src/debate.js");
+const {getDebate,getAllDebates} = require("/src/debate.js");
 const {getUserId} = require("/src/user.js");
 const {topicInsert, getTopic} = require("/src/topic.js");
 const {sideUpsert,getSides,getSide,deleteAllSides} = require("/src/side.js")

@@ -1,8 +1,8 @@
-const  {getDebate,debateInsert} = require("/src/debate.js");
+const  {getCurrentDebate,debateInsert,getDebateByTopic_Name,changeFutureDebate} = require("/src/debate.js");
 const {getUserId,getAllUserIds} = require("/src/user.js");
 const {getVoteByUser, getVoteIdByUD,getVotesByTopic,getVotesByDebate,voteInsert,changeVote,findOrUpdate,deleteAllVotes} = require("/src/vote.js")
 const {getAllTopics,getTopic,getTopicName, turnOffActives} = require("/src/topic.js")
-
+import {getDate} from "/src/date.js"
 export default async function voteHandler(req,res){
 
   const voteList = {}
@@ -36,6 +36,8 @@ export default async function voteHandler(req,res){
     const winningTopic = keyArr[valArr.indexOf(Math.max(...valArr))]
     const topic_name = await getTopicName(parseInt(winningTopic));
     const topics = await getAllTopics();
+    const debate_id = await getDebateByTopic_Name("ToBeChanged");
+    changeFutureDebate(debate_id,topic_name,getDate());
     console.log(winningTopic+"This is winning otpic");
     console.log(topics);
 
