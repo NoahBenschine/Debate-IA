@@ -8,7 +8,9 @@ async function getUserId(user_name){
             name: user_name
         },
     })
+    if (user){
     return user.id;
+  }
 }
 
 async function getAllUserIds(user_name) {

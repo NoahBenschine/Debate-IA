@@ -7,7 +7,21 @@ let currentD = "";
 
 const date = getDate();
 
-
+async function changeCurrentDebate(topic_name){
+  const currentDebate = await prisma.debate.upsert({
+      where: {
+        date: date
+      },
+      update:{
+     topic_name:topic_name
+   },
+   create:{
+     date:date,
+     topic_name:topic_name
+   }
+    })
+  return currentDebate;
+}
  async function getDebate(){
   const currentDebate = await prisma.debate.findFirst({
       where: {
@@ -23,6 +37,13 @@ async function getAllDebates(){
    return currentDebate;
 }
 
+async function deleteAllDebates(){
+ const currentDebate = await prisma.debate.deleteMany({
+
+   })
+   return currentDebate;
+}
+
 async function debateInsert(name){
   const debate_object = await prisma.debate.create({
     data: {
@@ -32,4 +53,4 @@ async function debateInsert(name){
   })
 }
 
-export  {getDebate,debateInsert,getAllDebates}
+export  {getDebate,debateInsert,getAllDebates,changeCurrentDebate,deleteAllDebates}

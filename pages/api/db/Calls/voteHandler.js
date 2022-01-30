@@ -21,7 +21,7 @@ export default async function voteHandler(req,res){
     res.send(result);
   }else if(req.headers.votemethod=="selectWinner"){
     const currentVotes = await getVotesByDebate(debate_id)
-
+//error is happening when no votes have happened
     currentVotes.forEach((element,index)=>{
       const id = element.topic_id
       if (voteList.hasOwnProperty(id)){

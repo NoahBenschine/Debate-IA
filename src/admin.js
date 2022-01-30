@@ -28,5 +28,4 @@ async function getAdminByUser(user_id){
 }
 
 
-
 export {getAllAdmins,getAdminByUser,adminInsert};

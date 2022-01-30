@@ -29,9 +29,9 @@ export default async function auth(req, res){
           console.log();
           if(admin == null && email == "tgetman@pvcsd.org"){
             adminInsert(user.id);
-            return "/admin/workspace";
+              return "/admin/ControlPanel";
           }else if(admin != null){
-              return "/admin/workspace";
+              return "/admin/ControlPanel";
           }else{
             return true;
           }
