@@ -10,6 +10,15 @@ async function getAllAdmins(){
    return admins;
 }
 
+
+async function deleteAllAdmins(){
+ const admins = await prisma.admin.deleteMany({
+
+   })
+   return admins;
+}
+
+
 async function adminInsert(user_id){
   const admin = await prisma.admin.create({
     data:{

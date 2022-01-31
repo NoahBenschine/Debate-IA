@@ -25,8 +25,9 @@ export default function Main() {
 
   const { response, isLoading, isError } = useDB("topicHandler", { headers: { deeperMethod: "voteRequest" } });
   console.log(response);
+  console.log(voteState);
   if (response != undefined && voteState.length == 0) {
-    createVotes(response);
+    createVotes(response.active_topics);
   }
 
   function createVotes(topics) {
@@ -67,7 +68,7 @@ export default function Main() {
   <Container fluid>
   <Row className={styles.rowvote}>
   <Col><Button onClick={voteWinner}>Choose Winner</Button></Col>
-  <Col><EndVoting /></Col>
+  <Col><EndVoting winFunction={voteWinner} activeUsers={response&&response.active_users}/></Col>
   <Col>{winDisplay} </Col>
 
   </Row>

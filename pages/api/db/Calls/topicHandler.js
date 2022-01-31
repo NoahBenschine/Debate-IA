@@ -1,23 +1,31 @@
 const {getUserId,getAllSessions,getAllUserIds,getSessionsByDate} = require("/src/user.js");
 const {getAllTopics, getTopic,topicUpsert,deleteTopic,getAllActiveTopics, turnOffTopic} = require("/src/topic.js")
 const getDate = require("/src/date.js");
+import {getCurrentDebate} from "/src/debate.js"
+const {sideUpsert,getSides,getSide,deleteAllSides} = require("/src/side.js")
 export default async function topicHandler(req,res){
 if (req.method =="GET") {
   var topics = []
   if ( req.headers.deepermethod == "voteRequest"){
-  //  topics = await getAllActiveTopics();
-   const users = await getAllSessions();
+  const topics = await getAllActiveTopics();
+    const debate = await getCurrentDebate();
+    const debate_id = debate.id;
+     const active_users = await getSides(debate_id);
+   // const users = await getAllSessions();
   // const actual_users = await getAllUserIds();
-  const date = new Date(2021-12-22)
-  const sessions = await getSessionsByDate(date);
+
     // console.log(users)
     // console.log(getDate());
-    console.log(sessions);
+    // console.log(sessions);
+    // const date = new Date(2021-12-22)
+    // const sessions = await getSessionsByDate(date);
    // console.log(actual_users)
+        res.send({active_topics:topics,active_users:active_users});
 }else{
      topics = await getAllTopics();
+       res.send(topics);
 }
-  res.send(topics);
+
 }else{
   const body = JSON.parse(req.body);
 const user_id = await getUserId(body.user)

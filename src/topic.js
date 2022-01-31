@@ -6,7 +6,7 @@ async function getTopic(name){
        name:name
      },
    })
-   return topic.id;
+   return topic;
 }
 
 async function getTopicName(topic_id){

@@ -6,7 +6,7 @@ import Link from "next/link"
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import styles from "../../styles/Transcript.module.css";
+import styles from "../../styles/Admin.module.css";
 import {getSession, useSession } from "next-auth/react";
 import $ from 'jquery';
 export default function Main(){
@@ -53,30 +53,28 @@ console.log(input);
     />
     </Head>
 
-       <Box
+       <Box className={styles.Box}
+       sx={{color:"#fff"}}
          component="form"
-         sx={{
-           '& > :not(style)': { m: 1, width: '25ch' },
-         }}
          noValidate
          autoComplete="off"
        >
        <Button onClick={voteWinner}variant="contained" size="large">
-       Large
+       End Voting
        </Button>
-         <TextField  id="outlined-basic add_admin" label="Outlined" value={input.changeTopic} variant="outlined" name="changeTopic" onChange={handleChange} onKeyPress={(e)=>{
+         <TextField  className={styles.box_tf} id="outlined-basic" label="Outlined" value={input.changeTopic} variant="outlined" name="changeTopic" onChange={handleChange} onKeyPress={(e)=>{
 
            if (e.key === "Enter"){
               changeCurrentDebate(input.changeTopic);
            }
          }} />
-         <TextField id="outlined-basic" label="Outlined" variant="outlined" value={input.addAdmin} name="addAdmin" onChange={handleChange} onKeyPress={(e)=>{
+         <TextField  className={styles.box_tf}  id="outlined-basic" label="Outlined" variant="outlined" value={input.addAdmin} name="addAdmin" onChange={handleChange} onKeyPress={(e)=>{
 
            if (e.key === "Enter"){
               addAdmin(input.addAdmin);
            }
          }} />
-         <TextField id="outlined-basic" type="datetime-local" label="Outlined" variant="outlined" value={input.setTime} name="setTime" onChange={handleChange} onKeyPress={(e)=>{
+         <TextField   className={styles.box_tf}  id="outlined-basic" type="datetime-local" label="Outlined" variant="outlined" value={input.setTime} name="setTime" onChange={handleChange} onKeyPress={(e)=>{
 
            if (e.key === "Enter"){
              console.log("enter was pressed");

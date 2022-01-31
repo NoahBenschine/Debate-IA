@@ -74,3 +74,19 @@ form.create_vote input, form.create_vote textarea {
   align-self: flex-end;
   top: 2%;
 }
+.TopicElement{
+  position: relative;
+  background-color: #ced4da;
+  border-radius: 15%;
+  width: 150px;
+  height: 100px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.deleteElement{
+  position: relative;
+  top:20%;
+  left:70%;
+  background-color: #ced4da;
+  cursor: pointer;
+}
