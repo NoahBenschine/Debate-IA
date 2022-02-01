@@ -30,7 +30,7 @@ export default function HomeScreen(props){
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
     <button className={styles.signin} onClick={() => {
        console.log(process.env.nextauth_url)
-      signIn("google",{ callbackUrl: process.env.nextauth_url.toString()+"/choosing/main"})} }>Go to Google</button>
+      signIn("google",{ callbackUrl: process.env.NEXTAUTH_URL.toString()+"/choosing/main"})} }>Go to Google</button>
     </main>
     </Col>
 
