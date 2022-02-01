@@ -5,7 +5,7 @@ import { useSession, signIn, signOut,getSession, SessionProvider} from "next-aut
 import styles from "../styles/Home.module.css";
 
 export default function HomeScreen(props){
-  console.log(process.env.nextauth_url+"/choosing/main");
+  console.log(process.env.NEXTAUTH_URL+"/choosing/main");
   return(
     <div className={styles.container}>
 <Head>
@@ -29,7 +29,8 @@ export default function HomeScreen(props){
     <h2>Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
     <button className={styles.signin} onClick={() => {
-       console.log(process.env.nextauth_url)
+       console.log(process.env.NEXTAUTH_URL)
+          console.log(process.env.NEXTAUTH_URL.toString());
       signIn("google",{ callbackUrl: process.env.NEXTAUTH_URL.toString()+"/choosing/main"})} }>Go to Google</button>
     </main>
     </Col>
