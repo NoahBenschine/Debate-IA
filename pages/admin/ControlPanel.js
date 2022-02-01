@@ -83,7 +83,7 @@ console.log(input);
          }}/>
        </Box>
 
-
+   <Link href="/choosing/main" passHref><Button className={styles.voteButton} size="lg">Choose Side!</Button></Link>
 
    </div>
   )

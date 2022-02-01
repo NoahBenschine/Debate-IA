@@ -11,10 +11,10 @@ const {data:session} = useSession();
 
 
 return(
-  <div class={styles.TopicElement}>
+  <div className={styles.TopicElement}>
   <p>{props.topic}</p>
 
-  <Fab class={styles.deleteElement} onClick={()=>props.click(props.topic)} size="small" color="secondary" aria-label="add">
+  <Fab className={styles.deleteElement} onClick={()=>props.click(props.topic)} size="small" color="secondary" aria-label="add">
   <DeleteIcon />
 </Fab>
   </div>

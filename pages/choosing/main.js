@@ -1,17 +1,55 @@
-import React,{useState} from "react"
+import React,{useState,useEffect} from "react"
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import Head from "next/head"
 import Link from "next/link"
 import Side from "./side.js"
 import styles from "../../styles/Transcript.module.css";
 import {getSession, useSession } from "next-auth/react";
+import useSWR from 'swr'
+
+function useTopics(id) {
+    const fetcher = (...args) => fetch(...args).then(res => res.json())
+  const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher,10000)
+ const sideElements = checkTable(data);
+  return {
+    sides: data,
+    sideE:sideElements,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
+
+function checkTable(sides){
+  const pros = []
+  const cons = []
+  if(sides){
+    sides.forEach(function(element) {
+        if (element.side == "Pro") {
+          pros.push(<li>{element.user.name}</li>)
+        } else {
+          cons.push(<li>{element.user.name}</li>)
+        }
+    })
+  }
+
+  return {pro:pros,con:cons}
+}
+
 export default function Main(){
 
   const [sides, setSides] = useState();
   const [pro, setPro] = useState([]);
   const [con, setCon] = useState([]);
   const { data: session } = useSession()
+const response = useTopics("SideChoosing");
+console.log(response);
 
+useEffect(() => {
+  console.log(response.sides);
+  if (response && response.sides){
+    createLi(response.sides);
+  }
+},[]);
 
   function createLi(sides) {
     console.log(sides);
@@ -28,10 +66,8 @@ export default function Main(){
     console.log(cons);
     setPro(pros);
     setCon(cons);
+
   }
-
-
-
 
   return(
      <div className={styles.container}>
