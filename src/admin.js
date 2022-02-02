@@ -28,12 +28,12 @@ async function adminInsert(user_id){
 
 }
 async function getAdminByUser(user_id){
- const admin = await prisma.admin.findUnique({
+ const admins = await prisma.admin.findUnique({
        where:{
          user_id:user_id
        }
    })
-   return admin;
+   return admins;
 }
 
 
