@@ -34,7 +34,7 @@ console.log(props.active_users);
     return () => {
       window.removeEventListener("storage", onStorageUpdate);
     };
-  }, []);
+  }, [response,onStorageUpdate]);
 
 
 function handleClick(){

@@ -24,18 +24,20 @@ export default async function auth(req, res){
         // updateAge: 24 * 60 * 60, // 24 hours
       },
       callbacks: {
- //        async signIn({ user, account, profile, email, credentials }) {
- //          const admin = await getAdminByUser(user.id);
- //          console.log(admin);
- //          if(admin == null && email == "tgetman@pvcsd.org"){
- //            adminInsert(user.id);
- //              return "/admin/ControlPanel";
- //          }else if(admin != null){
- //              return "/admin/ControlPanel";
- //          }else{
- //            return true;
- //          }
- // }
+        async signIn({ user, account, profile, email, credentials }) {
+
+                    const isAllowedToSignIn = true
+             if (isAllowedToSignIn) {
+               return true
+             } else {
+               // Return false to display a default error message
+               return false
+               // Or you can return a URL to redirect to:
+               // return '/unauthorized'
+             }
+              
+
+ }
 
 }
 
