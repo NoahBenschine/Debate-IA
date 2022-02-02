@@ -49,7 +49,7 @@ useEffect(() => {
   if (response && response.sides){
     createLi(response.sides);
   }
-},[]);
+},[response]);
 
   function createLi(sides) {
     console.log(sides);

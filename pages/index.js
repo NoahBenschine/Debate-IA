@@ -5,7 +5,7 @@ import { useSession, signIn, signOut,getSession, SessionProvider} from "next-aut
 import styles from "../styles/Home.module.css";
 
 export default function HomeScreen(props){
-  console.log(process.env.NEXTAUTH_URL+"/choosing/main");\
+  console.log(process.env.NEXTAUTH_URL+"/choosing/main");
     console.log(process.env.NEXTAUTH_URL.toString()+"/choosing/main");
       console.log(typeof process.env.NEXTAUTH_URL+"/choosing/main");
   return(
