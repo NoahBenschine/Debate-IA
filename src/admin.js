@@ -28,6 +28,8 @@ async function adminInsert(user_id){
 
 }
 async function getAdminByUser(user_id){
+  console.log(prisma);
+  console.log(prisma.admin);
  const admins = await prisma.admin.findUnique({
        where:{
          user_id:user_id
