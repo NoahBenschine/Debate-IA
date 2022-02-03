@@ -1,4 +1,4 @@
-import prisma from "./prismaClient"
+const prisma = require("./prismaClient");
 
 async function getUserId(user_name){
   console.log(prisma.users)
