@@ -1,8 +1,8 @@
 
-const {getCurrentDebate,getAllDebates} = require("/src/debate.js");
-const {getUserId} = require("/src/user.js");
-const {topicInsert, getTopic,getAllTopics} = require("/src/topic.js");
-const {sideUpsert,getSides,getSide,deleteAllSides} = require("/src/side.js")
+import{getCurrentDebate,getAllDebates}  from "/src/debate.js";
+import {getUserId}  from "/src/user.js";
+import {topicInsert, getTopic,getAllTopics} from "/src/topic.js";
+import  {sideUpsert,getSides,getSide,deleteAllSides} from "/src/side.js";
 
 
 
@@ -19,7 +19,6 @@ export default async function sideHandler(req,res){
     const side = await getSide(user_id,debate_id)
     let side_id = -1;
     if(side){side_id = side.id}
-    console.log(side_id)
     await sideUpsert(topic.id,user_id,debate_id,body.side,side_id)
         res.send(await getSides(debate_id));
   }else{

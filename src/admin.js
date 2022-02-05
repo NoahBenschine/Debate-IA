@@ -1,4 +1,4 @@
-const prisma = require("./prismaClient");
+import prisma from "./prismaClient";
 
 
 

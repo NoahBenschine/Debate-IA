@@ -1,4 +1,5 @@
-const prisma = require("./prismaClient");
+
+import prisma from "./prismaClient";
 
 
 async function deleteAllSides(){
