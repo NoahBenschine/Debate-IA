@@ -1,8 +1,8 @@
 
-const {getCurrentDebate,getAllDebates} = require("/src/debate.js");
-const {getUserId} = require("/src/user.js");
-const {topicInsert, getTopic,getAllTopics} = require("/src/topic.js");
-const {sideUpsert,getSides,getSide,deleteAllSides} = require("/src/side.js")
+import{getCurrentDebate,getAllDebates}  from "/src/debate.js";
+import {getUserId}  from "/src/user.js";
+import {topicInsert, getTopic,getAllTopics} from "/src/topic.js";
+import  {sideUpsert,getSides,getSide,deleteAllSides} from "/src/side.js";
 
 
 

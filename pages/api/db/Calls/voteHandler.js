@@ -1,7 +1,7 @@
-const  {getCurrentDebate,debateInsert,getDebateByTopic_Name,changeFutureDebate} = require("/src/debate.js");
-const {getUserId,getAllUserIds} = require("/src/user.js");
-const {getVoteByUser, getVoteIdByUD,getVotesByTopic,getVotesByDebate,voteInsert,changeVote,findOrUpdate,deleteAllVotes} = require("/src/vote.js")
-const {getAllTopics,getTopic,getTopicName, turnOffActives} = require("/src/topic.js")
+import  {getCurrentDebate,debateInsert,getDebateByTopic_Name,changeFutureDebate} from "/src/debate.js";
+import {getUserId,getAllUserIds} from "/src/user.js";
+import {getVoteByUser, getVoteIdByUD,getVotesByTopic,getVotesByDebate,voteInsert,changeVote,findOrUpdate,deleteAllVotes} from "/src/vote.js";
+import {getAllTopics,getTopic,getTopicName, turnOffActives} from "/src/topic.js";
 import {getDate} from "/src/date.js"
 export default async function voteHandler(req,res){
 

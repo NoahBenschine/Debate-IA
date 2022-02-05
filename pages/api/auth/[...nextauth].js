@@ -35,10 +35,8 @@ export default async function auth(req, res){
           }else{
             return true;
           }
- }
-
-
-
+        }
+}
         // other options (pages, callbacks, session, ...etc)
   })
 }

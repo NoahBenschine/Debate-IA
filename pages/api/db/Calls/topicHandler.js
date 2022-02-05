@@ -1,8 +1,8 @@
-const {getUserId,getAllSessions,getAllUserIds,getSessionsByDate} = require("/src/user.js");
-const {getAllTopics, getTopic,topicUpsert,deleteTopic,getAllActiveTopics, turnOffTopic} = require("/src/topic.js")
-const getDate = require("/src/date.js");
+import {getUserId,getAllSessions,getAllUserIds,getSessionsByDate} from "/src/user.js";
+import {getAllTopics, getTopic,topicUpsert,deleteTopic,getAllActiveTopics, turnOffTopic} from "/src/topic.js";
+import {getDate} from "/src/date.js";
 import {getCurrentDebate} from "/src/debate.js"
-const {sideUpsert,getSides,getSide,deleteAllSides} = require("/src/side.js")
+import {sideUpsert,getSides,getSide,deleteAllSides} from "/src/side.js";
 export default async function topicHandler(req,res){
 if (req.method =="GET") {
   var topics = []
