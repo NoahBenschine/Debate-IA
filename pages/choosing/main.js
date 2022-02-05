@@ -17,7 +17,6 @@ function useTopics(id) {
     isError: error
   }
 }
-
 export default function Main(){
 
   const [sides, setSides] = useState();
@@ -85,3 +84,19 @@ console.log(response);
    </div>
   )
 }
+
+// function checkTable(sides){
+//   const pros = []
+//   const cons = []
+//   if(sides){
+//     sides.forEach(function(element) {
+//         if (element.side == "Pro") {
+//           pros.push(<li>{element.user.name}</li>)
+//         } else {
+//           cons.push(<li>{element.user.name}</li>)
+//         }
+//     })
+//   }
+//
+//   return {pro:pros,con:cons}
+// }

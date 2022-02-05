@@ -19,7 +19,6 @@ export default async function sideHandler(req,res){
     const side = await getSide(user_id,debate_id)
     let side_id = -1;
     if(side){side_id = side.id}
-    console.log(side_id)
     await sideUpsert(topic.id,user_id,debate_id,body.side,side_id)
         res.send(await getSides(debate_id));
   }else{

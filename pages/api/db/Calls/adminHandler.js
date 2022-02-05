@@ -9,14 +9,13 @@ console.log(req.headers);
 console.log(req.body);
 if(req.headers.adminmethod == "changeDebate"){
   // deleteAllDebates();
-console.log(body.topic_name);
+
 await changeCurrentDebate(body.topic_name);
    console.log(await getAllDebates());
 res.send("topic updated");
 }else if(req.headers.adminmethod == "addAdmin"){
   const user_id = await getUserId(body.name);
  if(user_id) {
-   console.log(user_id);
  await adminInsert(user_id);
   res.send("Admin Added")
 }else{

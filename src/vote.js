@@ -1,4 +1,4 @@
-import prisma from "./prismaClient"
+import prisma from "./prismaClient";
 async function getVotesByTopic(topic_id){
  const votes = await prisma.vote.findMany({
      where: {

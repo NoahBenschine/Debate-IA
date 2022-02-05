@@ -1,6 +1,6 @@
 
 import {getDate} from "./date.js"
-import prisma from "./prismaClient"
+import prisma from "./prismaClient";
 
 let currentD = "";
 

@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import prisma from "./prismaClient"
+=======
+import prisma from "./prismaClient";
+>>>>>>> Stashed changes
 
 
 async function deleteAllSides(){
