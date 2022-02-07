@@ -2,7 +2,7 @@ import { Button, Container, Row, Col } from 'react-bootstrap';
 import Head from "next/head"
 import styles from "../../styles/Topic.module.css";
 import useSWR from 'swr'
-import React, { useState } from "react"
+import React, { useState,useEffect } from "react"
 import Link from "next/link"
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -11,7 +11,7 @@ import TopicElement from "./TopicElement.js";
 
 function useTopics(id) {
     const fetcher = (...args) => fetch(...args).then(res => res.json())
-  const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
+  const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher,10000)
 
   return {
     topics: data,
@@ -44,6 +44,13 @@ export default function Main() {
     })
     present && setChosenTopics(previousArr => [...previousArr, < TopicElement key={previousArr.length} click = { deleteTopic } topic = { topic_name }
           />]);
+          const pushval = [];
+          if(localStorage.getItem("Active_Topics") !="" && localStorage.getItem("Active_Topics") !=null && present){
+            pushval.push(localStorage.getItem("Active_Topics").split(","),topic_name)
+          }else if(present){
+              pushval.push(topic_name)
+          }
+          localStorage.setItem("Active_Topics",pushval);
         }
 
         async function topicClick(name) {
@@ -56,7 +63,7 @@ export default function Main() {
             agreement.then((result) => {
               console.log(result);
               createTopic(name)
-
+              console.log(localStorage.getItem("Active_Topics"));
             })
           } else {
             alert("Entry cannot be left empty")
@@ -72,13 +79,66 @@ export default function Main() {
             agreement.then((result) => {
                 console.log(result);
                 const active_topics = [];
+                const active_names = [];
                 result.forEach((element) => {
                     active_topics.push( < TopicElement click = { deleteTopic } topic = { element.name }
+
                       />)
+                  active_names.push(element.name);
                     })
+                    localStorage.setItem("Active_Topics",active_names);
                     setChosenTopics(active_topics);
                 })
             }
+
+function localUpdate(names){
+  const active_topics = [];
+  console.log(typeof names);
+  if(typeof names != "string" ){
+    console.log(names);
+    names.forEach((element) => {
+      if(element!= ""){
+                active_topics.push( < TopicElement click = { deleteTopic } topic = {element}  />)
+}
+          setChosenTopics(active_topics);
+        });
+  }
+
+    }
+
+
+
+
+            const onStorageUpdate = (e) => {
+              const { key, newValue} = e;
+              if(key ==="Active_Topics" ){
+                console.log(newValue);
+                    localUpdate(newValue.split(','));
+              }
+            }
+
+
+
+            useEffect(() => {
+            let names = "";
+            if(localStorage.getItem("Active_Topics")){
+              names=localStorage.getItem("Active_Topics").split(",")
+            }
+            if(typeof names != "string"){
+              localUpdate(names);
+            }
+
+              window.addEventListener("storage", onStorageUpdate);
+              return () => {
+                window.removeEventListener("storage", onStorageUpdate);
+              };
+            }, []);
+
+
+
+
+
+
   return(
     <div className={styles.container}>
     <Head>

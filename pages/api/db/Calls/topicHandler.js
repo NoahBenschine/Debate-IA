@@ -23,6 +23,7 @@ if (req.method =="GET") {
         res.send({active_topics:topics,active_users:active_users});
 }else{
      topics = await getAllTopics();
+
        res.send(topics);
 }
 
@@ -37,8 +38,9 @@ const user_id = await getUserId(body.user)
     res.send(active_topics);
   }else{
     const topic_object = await topicUpsert(body.topic_name, user_id,true);
+    const active_topics = await getAllActiveTopics();
     console.log(topic_object+"this is the otpic object")
-      res.send("Topic is active");
+      res.send(active_topics);
   }
 
 

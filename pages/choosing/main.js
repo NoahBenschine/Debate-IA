@@ -49,25 +49,12 @@ const onStorageUpdate = (e) => {
     })
     setPro(pros);
     setCon(cons);
-
-     // setPro(JSON.parse(newValue));
   }
 }
-//   if (key === "Pros" || key ==="Cons") {
-//     setPro(JSON.parse(newValue));
-//         setCon(JSON.parse(newValue));
-// }
 
 
 
 useEffect(() => {
-  // console.log("useEffect went off")
-  // console.log(localStorage.getItem("Pros"))
-  //   console.log(localStorage.getItem("Con"))
-  // console.log(JSON.parse(localStorage.getItem("Pros")));
-  // console.log(Object.values(JSON.parse(localStorage.getItem("Pros"))));
-  // const pros = JSON.parse(localStorage.getItem("Pros"));
-  // const cons = JSON.parse(localStorage.getItem("Cons"));
   const pros = []
   const cons = []
   const sides = JSON.parse(localStorage.getItem("Sides"));
@@ -83,15 +70,6 @@ useEffect(() => {
     setPro(pros);
     setCon(cons);
   }
-
-
-  // localStorage.getItem("Pros")&&pros.forEach((element) =>{
-  //
-  //     pros.push(<li>{element.user.name}</li>)
-  //
-  // })
-  // setPro(JSON.parse(localStorage.getItem("Pros")));
-  // localStorage.getItem("Cons")&&setCon(JSON.parse(localStorage.getItem("Cons")));
   window.addEventListener("storage", onStorageUpdate);
   return () => {
     window.removeEventListener("storage", onStorageUpdate);
@@ -111,37 +89,11 @@ useEffect(() => {
           cons.push(<li>{element.user.name}</li>)
         }
     })
-    // console.log(pros);
-    // console.log(cons);
     localStorage.setItem("Sides",JSON.stringify(sides));
-    // localStorage.setItem("Pros",JSON.stringify(pros))
-    // localStorage.setItem("Cons",JSON.stringify(cons));
-    // console.log(JSON.parse(localStorage.getItem("Pros"))[0])
-    // console.log(Object.values(JSON.parse(localStorage.getItem("Pros"))));
-    //   console.log(JSON.parse(localStorage.getItem("Cons")))
     setPro(pros);
     setCon(cons);
 
   }
-
-  // function createLi(sides) {
-  //   console.log(sides);
-  //   const pros = []
-  //   const cons = []
-  //   sides.forEach(function(element) {
-  //       if (element.side == "Pro") {
-  //         pros.push(<li>{element.user.name}</li>)
-  //       } else {
-  //         cons.push(<li>{element.user.name}</li>)
-  //       }
-  //   })
-  //   console.log(pros);
-  //   console.log(cons);
-  //   setPro(pros);
-  //   setCon(cons);
-  //
-  // }
-
   return(
      <div className={styles.container}>
     <Head>

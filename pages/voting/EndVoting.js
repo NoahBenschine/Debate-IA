@@ -16,8 +16,7 @@ const [usersClicked,setUsersClicked] = useState([])
 
     }
   };
-console.log(usersClicked);
-console.log(props.active_users);
+
   if(usersClicked.length >= props.activeUsers.length){
      console.log("Enough People");
      console.log(props.winFunction);
