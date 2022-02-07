@@ -47,11 +47,10 @@ model vote {
 }
 
 model admin {
-  id        Int     @id @default(autoincrement())
-  user_id   String  @unique
-  user      users   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  id      Int    @id @default(autoincrement())
+  user_id String @unique
+  user    users  @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
-
 
 model account {
   id                 String  @id @default(cuid())
@@ -88,11 +87,11 @@ model users {
   emailVerified DateTime?
   image         String?
   accounts      account[]
+  admin         admin?
   sessions      session[]
   sides         sides[]
   topics        topic[]
   votes         vote[]
-  admin         admin?
 }
 
 model verificationToken {
