@@ -33,7 +33,7 @@ export default async function auth(req, res){
           }else if(admin != null){
               return "/admin/ControlPanel";
           }else{
-            return "/adS/ControlPanel";
+            return "/choosing/main";
           }
         }
 }
