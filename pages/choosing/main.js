@@ -9,10 +9,10 @@ import useSWR from 'swr'
 
 function useTopics(id) {
     const fetcher = (...args) => fetch(...args).then(res => res.json())
-  const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher,10000)
+  const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
  // const sideElements = checkTable(data);
   return {
-    sides: data,
+    session: data,
     isLoading: !error && !data,
     isError: error
   }
@@ -27,8 +27,8 @@ export default function Main(){
 const response = useTopics("SideChoosing");
 
 
-
-
+console.log(response);
+console.log(response.session);
 
 console.log(session);
 const onStorageUpdate = (e) => {
@@ -110,10 +110,10 @@ useEffect(() => {
   <Container fluid>
    <Row>
    <Col className={styles.Col} lg={6}>
-     <Side elements={pro} create={createLi} side="Pro"/>
+     <Side elements={pro} create={createLi} user={response.session}  side="Pro"/>
    </Col>
    <Col className={styles.Col} lg={6}>
-   <Side elements={con}  create={createLi} side="Con"/>
+   <Side elements={con}  create={createLi} user={response.session} side="Con"/>
    <Link href="/selection/main" passHref><Button className={styles.voteButton} size="lg">Choose Topic!</Button></Link>
    </Col>
    </Row>
