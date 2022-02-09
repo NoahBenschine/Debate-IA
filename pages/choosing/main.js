@@ -30,6 +30,7 @@ const response = useTopics("SideChoosing");
 
 
 
+console.log(useSession());
 
 const onStorageUpdate = (e) => {
   const { key, newValue } = e;
@@ -59,7 +60,7 @@ useEffect(() => {
   const cons = []
   const sides = JSON.parse(localStorage.getItem("Sides"));
   console.log(sides);
-  if(sides[0] != ""){
+  if(sides != null && sides[0] != ""){
     sides.forEach(function(element) {
         if (element.side == "Pro") {
           pros.push(<li>{element.user.name}</li>)

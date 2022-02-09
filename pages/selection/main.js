@@ -11,7 +11,7 @@ import TopicElement from "./TopicElement.js";
 
 function useTopics(id) {
     const fetcher = (...args) => fetch(...args).then(res => res.json())
-  const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher,10000)
+  const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
 
   return {
     topics: data,
@@ -27,7 +27,7 @@ export default function Main() {
   const { data: session } = useSession();
 
 
-
+console.log(session);
   const response = useTopics("topicHandler");
   if (response.topics != undefined && topicState.length == 0) {
     setTopicState(Object.values(response.topics));
@@ -111,10 +111,11 @@ function localUpdate(names){
 
             const onStorageUpdate = (e) => {
               const { key, newValue} = e;
-              if(key ==="Active_Topics" ){
-                console.log(newValue);
-                    localUpdate(newValue.split(','));
-              }
+              console.log(key);
+              // if(key ==="Active_Topics" ){
+              //   console.log(newValue);
+              //       localUpdate(newValue.split(','));
+              // }
             }
 
 
