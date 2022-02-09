@@ -25,17 +25,16 @@ export default async function auth(req, res){
       },
       callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
-          // const admin = await getAdminByUser(user.id);
-          // console.log(admin);
-          // if(admin == null && email == "tgetman@pvcsd.org"){
-          //   adminInsert(user.id);
-          //     return "/admin/ControlPanel";
-          // }else if(admin != null){
-          //     return "/admin/ControlPanel";
-          // }else{
-          //   return "/choosing/main";
-          // }
-          return "/choosing/main";
+          const admin = await getAdminByUser(user.id);
+          console.log(admin);
+          if(admin == null && email == "tgetman@pvcsd.org"){
+            adminInsert(user.id);
+              return "/admin/ControlPanel";
+          }else if(admin != null){
+              return "/admin/ControlPanel";
+          }else{
+            return "/choosing/main";
+          }
         }
 }
         // other options (pages, callbacks, session, ...etc)

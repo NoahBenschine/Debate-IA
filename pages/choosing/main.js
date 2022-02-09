@@ -30,8 +30,7 @@ const response = useTopics("SideChoosing");
 
 
 
-console.log(useSession());
-
+console.log(session);
 const onStorageUpdate = (e) => {
   const { key, newValue } = e;
   console.log(e);
