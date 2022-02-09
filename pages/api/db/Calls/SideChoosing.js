@@ -23,8 +23,8 @@ export default async function sideHandler(req,res){
         res.send(await getSides(debate_id));
   }else{
       const session = await getSession({ req })
-      console.log(session);
-      /* ... */
+      // console.log(session);
+      // /* ... */
       res.send(session);
   }
 

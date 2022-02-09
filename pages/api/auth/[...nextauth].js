@@ -17,7 +17,7 @@ export default async function auth(req, res){
     session: {
         // Seconds - How long until an idle session expires and is no longer valid.
          maxAge: 60*60, // 30 days
-
+          strategy: "database"
         // Seconds - Throttle how frequently to write to database to extend a session
         // Use it to limit write operations. Set to 0 to always update the database.
         // Note: This option is ignored if using JSON Web Tokens
@@ -38,7 +38,17 @@ export default async function auth(req, res){
           }else{
             return "/choosing/main";
           }
-        }
+        },
+        async session({ session, token, user }) {
+    // Send properties to the client, like an access_token from a provider.
+    console.log(session);
+    // console.log(token);
+    // console.log(user);
+    //     console.log(session+"this is the session");
+    // session.accessToken = token.accessToken
+
+    return session
+  }
 }
         // other options (pages, callbacks, session, ...etc)
   })
