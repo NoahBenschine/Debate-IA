@@ -40,15 +40,7 @@ export default async function auth(req, res){
             return "/choosing/main";
           }
         },
-        async session({ session, token, user }) {
-    // Send properties to the client, like an access_token from a provider.
-    // console.log(token);
-    // console.log(user);
-    //     console.log(session+"this is the session");
-    // session.accessToken = token.accessToken
 
-    return session
-  }
 }
         // other options (pages, callbacks, session, ...etc)
   })
