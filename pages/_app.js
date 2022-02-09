@@ -6,7 +6,7 @@ function MyApp
   Component,
   pageProps: { session, ...pageProps },
 }) {
-console.log(session);
+console.log(session+"this is the sessiono from app");
 return (
   <SessionProvider session={session}>
     <Component {...pageProps} />

@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "/src/prismaClient"
 import {getAdminByUser,adminInsert} from "/src/admin.js"
+
 export default async function auth(req, res){
   return await NextAuth(req, res, {
  adapter: PrismaAdapter(prisma),
@@ -41,7 +42,6 @@ export default async function auth(req, res){
         },
         async session({ session, token, user }) {
     // Send properties to the client, like an access_token from a provider.
-    console.log(session);
     // console.log(token);
     // console.log(user);
     //     console.log(session+"this is the session");

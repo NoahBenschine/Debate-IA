@@ -4,7 +4,7 @@ import {getUserId}  from "/src/user.js";
 import {topicInsert, getTopic,getAllTopics} from "/src/topic.js";
 import  {sideUpsert,getSides,getSide,deleteAllSides} from "/src/side.js";
 import { getSession } from "next-auth/react"
-
+import {getAllSessions} from "/src/user.js";
 
 export default async function sideHandler(req,res){
 
@@ -23,6 +23,8 @@ export default async function sideHandler(req,res){
         res.send(await getSides(debate_id));
   }else{
       const session = await getSession({ req })
+      console.log(await getAllSessions());
+      console.log(session);
       // console.log(session);
       // /* ... */
       res.send(session);
