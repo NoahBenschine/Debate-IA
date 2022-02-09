@@ -7,16 +7,16 @@ import styles from "../../styles/Transcript.module.css";
 import {getSession, useSession } from "next-auth/react";
 import useSWR from 'swr'
 
-function useTopics(id) {
-    const fetcher = (...args) => fetch(...args).then(res => res.json())
-  const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
- // const sideElements = checkTable(data);
-  return {
-    session: data,
-    isLoading: !error && !data,
-    isError: error
-  }
-}
+// function useTopics(id) {
+//     const fetcher = (...args) => fetch(...args).then(res => res.json())
+//   const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
+//  // const sideElements = checkTable(data);
+//   return {
+//     session: data,
+//     isLoading: !error && !data,
+//     isError: error
+//   }
+// }
 export default function Main(){
 
   const [sides, setSides] = useState();
@@ -24,11 +24,11 @@ export default function Main(){
   const [con, setCon] = useState([]);
   const { data: session,status } = useSession();
 
-const response = useTopics("SideChoosing");
-
-
-console.log(response);
-console.log(response.session);
+// const response = useTopics("SideChoosing");
+//
+//
+// console.log(response);
+// console.log(response.session);
 
 console.log(session);
 const onStorageUpdate = (e) => {
@@ -110,10 +110,10 @@ useEffect(() => {
   <Container fluid>
    <Row>
    <Col className={styles.Col} lg={6}>
-     <Side elements={pro} create={createLi} user={response.session}  side="Pro"/>
+     <Side elements={pro} create={createLi} side="Pro"/>
    </Col>
    <Col className={styles.Col} lg={6}>
-   <Side elements={con}  create={createLi} user={response.session} side="Con"/>
+   <Side elements={con}  create={createLi} side="Con"/>
    <Link href="/selection/main" passHref><Button className={styles.voteButton} size="lg">Choose Topic!</Button></Link>
    </Col>
    </Row>

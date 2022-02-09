@@ -13,7 +13,7 @@ export default function Side(props) {
   const postData = async () => {
     const response = await fetch("/api/db/Calls/SideChoosing", {
       method: "POST",
-      body: JSON.stringify({ side: props.side, user: props.user.name}),
+      body: JSON.stringify({ side: props.side, user: session.user.name }),
     });
     const sideObject = response.json();
 
