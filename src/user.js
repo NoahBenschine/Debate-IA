@@ -20,6 +20,7 @@ async function getAllSessions() {
     const session = await prisma.session.findMany({})
     return session;
 }
+
 async function getSessionsByDate(date) {
     const sessions = await prisma.session.findMany({
       where:{

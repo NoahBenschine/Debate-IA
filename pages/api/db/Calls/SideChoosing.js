@@ -8,10 +8,14 @@ import {getAllSessions} from "/src/user.js";
 
 export default async function sideHandler(req,res){
 
-  const debate = await getCurrentDebate();
-  const debate_id = debate.id;
+  const debate = await getCurrentDebate
+    let debate_id = "";
+  if(debate){
+    debate_id = debate.id;
+  }
 
-  if(req.method == "POST"){
+
+  if(req.method == "POST" && debate != null){
     const  body = JSON.parse(req.body);
     // deleteAllSides();
     const user_id = await getUserId(body.user);
@@ -23,7 +27,7 @@ export default async function sideHandler(req,res){
         res.send(await getSides(debate_id));
   }else{
       const session = await getSession({ req });
-      // console.log(await getAllSessions());
+       console.log(await getAllSessions());
       console.log(session+"this is the session from side");
       // console.log(session);
       // /* ... */
