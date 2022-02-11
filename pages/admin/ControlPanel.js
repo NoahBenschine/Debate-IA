@@ -11,6 +11,25 @@ import {getSession, useSession } from "next-auth/react";
 import $ from 'jquery';
 export default function Main(){
 const [input,setInputStates] = useState({changeTopic:"",addAdmin:"",setTime:""})
+  const { data: session} = useSession();
+  console.log(session);
+
+
+
+
+  async function changeCurrentDebate(new_topic){
+    const response = await fetch("/api/db/Calls/adminHandler", {
+      method: "POST",
+      body: JSON.stringify({topic_name:new_topic,user:session.user.name}),
+      headers: { adminMethod: "changeDebate" }
+    })
+    const agreement = response.text();
+    agreement.then((result) => {
+      console.log(result)
+    })
+  }
+
+
 
 function handleChange(event){
   console.log(event.target);
@@ -115,17 +134,6 @@ console.log(input);
     })
   }
 
-  async function changeCurrentDebate(new_topic){
-    const response = await fetch("/api/db/Calls/adminHandler", {
-      method: "POST",
-      body: JSON.stringify({topic_name:new_topic}),
-      headers: { adminMethod: "changeDebate" }
-    })
-    const agreement = response.text();
-    agreement.then((result) => {
-      console.log(result)
-    })
-  }
 
   async function addAdmin(new_admin){
     const response = await fetch("/api/db/Calls/adminHandler", {

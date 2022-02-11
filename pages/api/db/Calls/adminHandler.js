@@ -9,7 +9,8 @@ console.log(req.headers);
 console.log(req.body);
 if(req.headers.adminmethod == "changeDebate"){
   // deleteAllDebates();
-
+    const user_id = await getUserId(body.user);
+await topicUpsert(body.topic_name,user_id,true);
 await changeCurrentDebate(body.topic_name);
    console.log(await getAllDebates());
 res.send("topic updated");

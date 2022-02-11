@@ -7,16 +7,16 @@ import styles from "../../styles/Transcript.module.css";
 import {getSession, useSession } from "next-auth/react";
 import useSWR from 'swr'
 
-function useTopics(id) {
-    const fetcher = (...args) => fetch(...args).then(res => res.json())
-  const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
- // const sideElements = checkTable(data);
-  return {
-    session: data,
-    isLoading: !error && !data,
-    isError: error
-  }
-}
+// function useTopics(id) {
+//     const fetcher = (...args) => fetch(...args).then(res => res.json())
+//   const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
+//  // const sideElements = checkTable(data);
+//   return {
+//     session: data,
+//     isLoading: !error && !data,
+//     isError: error
+//   }
+// }
 export default function Main(){
 
   const [sides, setSides] = useState();
@@ -24,28 +24,25 @@ export default function Main(){
   const [con, setCon] = useState([]);
   const { data: session,status } = useSession();
 
-const response = useTopics("SideChoosing");
+// const response = useTopics("SideChoosing");
 
 
-console.log(response);
-console.log(response.session);
+// console.log(response);
+// console.log(response.session);
 
 console.log(session);
 const onStorageUpdate = (e) => {
   const { key, newValue } = e;
-  console.log(e);
-  console.log(key+"this is the key")
-  console.log(localStorage);
   if(key ==="Sides"){
     console.log(newValue);
     const pros = []
     const cons = []
       const sides = JSON.parse(newValue);
-    sides.forEach(function(element) {
+    sides.forEach(function(element,index) {
         if (element.side == "Pro") {
-          pros.push(<li>{element.user.name}</li>)
+          pros.push(<li key={index}>{element.user.name}</li>)
         } else {
-          cons.push(<li>{element.user.name}</li>)
+          cons.push(<li key={index} >{element.user.name}</li>)
         }
     })
     setPro(pros);
@@ -61,11 +58,11 @@ useEffect(() => {
   const sides = JSON.parse(localStorage.getItem("Sides"));
   console.log(sides);
   if(sides != null && sides[0] != ""){
-    sides.forEach(function(element) {
+    sides.forEach(function(element,index) {
         if (element.side == "Pro") {
-          pros.push(<li>{element.user.name}</li>)
+          pros.push(<li key={index}>{element.user.name}</li>)
         } else {
-          cons.push(<li>{element.user.name}</li>)
+          cons.push(<li key={index} >{element.user.name}</li>)
         }
     })
     setPro(pros);
@@ -85,14 +82,14 @@ useEffect(() => {
     console.log(sides);
     const pros = []
     const cons = []
-    sides.forEach(function(element) {
+    sides.forEach(function(element,index) {
         if (element.side == "Pro") {
-          pros.push(<li>{element.user.name}</li>)
+          pros.push(<li key={index}>{element.user.name}</li>)
         } else {
-          cons.push(<li>{element.user.name}</li>)
+          cons.push(<li key={index} >{element.user.name}</li>)
         }
     })
-    // localStorage.setItem("Sides",JSON.stringify(sides));
+    localStorage.setItem("Sides",JSON.stringify(sides));
     setPro(pros);
     setCon(cons);
 

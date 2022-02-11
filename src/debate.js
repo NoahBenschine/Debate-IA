@@ -49,7 +49,7 @@ async function changeFutureDebate(id,topic_name,new_date){
 }
 
 async function getDebateByTopic_Name(topic_name){
- const debate = await prisma.debate.findMany({
+ const debate = await prisma.debate.findFirst({
      where: {
        topic_name: topic_name
      },

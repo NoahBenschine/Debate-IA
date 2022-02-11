@@ -8,28 +8,34 @@ import {getAllSessions} from "/src/user.js";
 
 export default async function sideHandler(req,res){
 
-  const debate = await getCurrentDebate
-    let debate_id = "";
-  if(debate){
-    debate_id = debate.id;
-  }
+  const debate = await getCurrentDebate();
+  let debate_id = ""
+if(debate){
+    console.log(debate);
+ debate_id = debate.id;
 
+}
 
-  if(req.method == "POST" && debate != null){
+  if(req.method == "POST" && debate_id != ""){
     const  body = JSON.parse(req.body);
     // deleteAllSides();
     const user_id = await getUserId(body.user);
     const topic = await getTopic(debate.topic_name);
     const side = await getSide(user_id,debate_id)
     let side_id = -1;
+    console.log(topic);
     if(side){side_id = side.id}
     await sideUpsert(topic.id,user_id,debate_id,body.side,side_id)
         res.send(await getSides(debate_id));
   }else{
-      const session = await getSession({ req });
+    if(debate_id = ""){
+      res.send("No current scheduled, please ask admin to add a debate");
+    }else{
+          res.end();
+    }
       // console.log(session);
       // /* ... */
-      res.send(sessio);
+
   }
 
 }
