@@ -27,6 +27,7 @@ export default function Main(){
 // const response = useTopics("SideChoosing");
 //
 //
+
 // console.log(response);
 // console.log(response.session);
 
@@ -80,6 +81,8 @@ export default function Main(){
 
 
   function createLi(sides) {
+    console.log(localStorage);
+
     console.log(sides);
     const pros = []
     const cons = []
