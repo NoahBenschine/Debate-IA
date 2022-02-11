@@ -19,13 +19,11 @@ export default function EndVoting(props){
 const [usersClicked,setUsersClicked] = useState([])
   const [name, setName] = useState("");
   const { response, isLoading, isError } = useDB("topicHandler", { headers: { deeperMethod: "voteRequest" } });
+  console.log(response);
   const onStorageUpdate = (e) => {
     const { key, newValue } = e;
     if (key === "usersClicked") {
       setUsersClicked((prevState)=>[...prevState,newValue]);
-      if(props.activeUsers){
-
-    }
   };
 }
 
