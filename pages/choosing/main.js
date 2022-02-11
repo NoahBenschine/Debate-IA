@@ -50,7 +50,6 @@ const onStorageUpdate = (e) => {
     })
     setPro(pros);
     setCon(cons);
-    localStorage.clear();
   }
 }
 
