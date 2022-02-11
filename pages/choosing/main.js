@@ -7,16 +7,16 @@ import styles from "../../styles/Transcript.module.css";
 import {getSession, useSession } from "next-auth/react";
 import useSWR from 'swr'
 
-// function useTopics(id) {
-//     const fetcher = (...args) => fetch(...args).then(res => res.json())
-//   const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
-//  // const sideElements = checkTable(data);
-//   return {
-//     session: data,
-//     isLoading: !error && !data,
-//     isError: error
-//   }
-// }
+function useTopics(id) {
+    const fetcher = (...args) => fetch(...args).then(res => res.json())
+  const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
+ // const sideElements = checkTable(data);
+  return {
+    session: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
 export default function Main(){
 
   const [sides, setSides] = useState();
@@ -24,11 +24,11 @@ export default function Main(){
   const [con, setCon] = useState([]);
   const { data: session,status } = useSession();
 
-// const response = useTopics("SideChoosing");
-//
-//
-// console.log(response);
-// console.log(response.session);
+const response = useTopics("SideChoosing");
+
+
+console.log(response);
+console.log(response.session);
 
 console.log(session);
 const onStorageUpdate = (e) => {
