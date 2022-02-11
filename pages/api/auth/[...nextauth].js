@@ -32,22 +32,21 @@ export default async function auth(req, res){
           console.log(token);
       return session
     },
-  //       async signIn({ user, account, profile, email, credentials }) {
-  // console.log("signIn was called");
-  //
-  //
-  //         const admin = await getAdminByUser(user.id);
-  //         console.log(admin);
-  //           console.log(await getAllSessions());
-  //         if(admin == null && email == "tgetman@pvcsd.org"){
-  //           adminInsert(user.id);
-  //             return "/admin/ControlPanel";
-  //         }else if(admin != null){
-  //             return "/admin/ControlPanel";
-  //         }else{
-  //           return "/choosing/main";
-  //         }
-  //       },
+        async signIn({ user, account, profile, email, credentials }) {
+  console.log("signIn was called");
+
+
+          const admin = await getAdminByUser(user.id);
+          console.log(admin);
+          if(admin == null && email == "tgetman@pvcsd.org"){
+            adminInsert(user.id);
+              return "/admin/ControlPanel";
+          }else if(admin != null){
+              return "/admin/ControlPanel";
+          }else{
+            return true;
+          }
+        },
 
 }
         // other options (pages, callbacks, session, ...etc)

@@ -27,11 +27,9 @@ export default async function sideHandler(req,res){
         res.send(await getSides(debate_id));
   }else{
       const session = await getSession({ req });
-       console.log(await getAllSessions());
-      console.log(session+"this is the session from side");
       // console.log(session);
       // /* ... */
-      res.send(session);
+      res.send(sessio);
   }
 
 }

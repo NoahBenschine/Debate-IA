@@ -46,12 +46,3 @@ export default function HomeScreen(props){
   )
 
 }
-export async function getServerSideProps(ctx) {
-  // console.log(ctx)
-  console.log(ctx.sent)
-  const session = await getSession(ctx)
-  console.log(session)
-  return {
-    props: { session },
-  }
-}
