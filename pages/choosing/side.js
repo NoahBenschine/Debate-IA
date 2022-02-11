@@ -11,6 +11,8 @@ import {getSession, useSession } from "next-auth/react";
 export default function Side(props) {
   const { data: session } = useSession()
   const postData = async () => {
+    console.log(localStorage);
+   console.log(props);
     const response = await fetch("/api/db/Calls/SideChoosing", {
       method: "POST",
       body: JSON.stringify({ side: props.side, user: session.user.name }),

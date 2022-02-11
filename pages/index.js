@@ -8,6 +8,7 @@ export default function HomeScreen(props){
   console.log(process.env.NEXTAUTH_URL+"/choosing/main");
     console.log(process.env.NEXTAUTH_URL.toString()+"/choosing/main");
       console.log(typeof process.env.NEXTAUTH_URL+"/choosing/main");
+      // console.log(session);
   return(
     <div className={styles.container}>
 <Head>
@@ -20,7 +21,6 @@ export default function HomeScreen(props){
   crossOrigin="anonymous"
 />
 </Head>
-
 <Container className={styles.container} fluid>
 
   {/* Stack the columns on mobile by making one full-width and the other half-width */}
@@ -45,4 +45,13 @@ export default function HomeScreen(props){
 </div>
   )
 
+}
+export async function getServerSideProps(ctx) {
+  // console.log(ctx)
+  console.log(ctx.sent)
+  const session = await getSession(ctx)
+  console.log(session)
+  return {
+    props: { session },
+  }
 }

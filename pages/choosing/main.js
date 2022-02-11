@@ -80,6 +80,8 @@ useEffect(() => {
 
 
   function createLi(sides) {
+    console.log(localStorage);
+
     console.log(sides);
     const pros = []
     const cons = []
@@ -90,7 +92,7 @@ useEffect(() => {
           cons.push(<li>{element.user.name}</li>)
         }
     })
-    localStorage.setItem("Sides",JSON.stringify(sides));
+    // localStorage.setItem("Sides",JSON.stringify(sides));
     setPro(pros);
     setCon(cons);
 
