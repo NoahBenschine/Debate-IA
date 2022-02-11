@@ -35,6 +35,7 @@ const onStorageUpdate = (e) => {
   const { key, newValue } = e;
   console.log(e);
   console.log(key+"this is the key")
+  console.log(localStorage);
   if(key ==="Sides"){
     console.log(newValue);
     const pros = []
@@ -49,6 +50,7 @@ const onStorageUpdate = (e) => {
     })
     setPro(pros);
     setCon(cons);
+    localStorage.clear();
   }
 }
 

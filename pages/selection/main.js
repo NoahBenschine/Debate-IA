@@ -112,10 +112,11 @@ function localUpdate(names){
             const onStorageUpdate = (e) => {
               const { key, newValue} = e;
               console.log(key);
-              // if(key ==="Active_Topics" ){
-              //   console.log(newValue);
-              //       localUpdate(newValue.split(','));
-              // }
+              // localStorage.clear();
+              if(key ==="Active_Topics" ){
+                console.log(newValue);
+                    localUpdate(newValue.split(','));
+              }
             }
 
 
