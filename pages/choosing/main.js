@@ -30,52 +30,52 @@ export default function Main(){
 // console.log(response);
 // console.log(response.session);
 
-console.log(session);
-const onStorageUpdate = (e) => {
-  const { key, newValue } = e;
-  console.log(e);
-  console.log(key+"this is the key")
-  console.log(localStorage);
-  if(key ==="Sides"){
-    console.log(newValue);
-    const pros = []
-    const cons = []
-      const sides = JSON.parse(newValue);
-    sides.forEach(function(element) {
-        if (element.side == "Pro") {
-          pros.push(<li>{element.user.name}</li>)
-        } else {
-          cons.push(<li>{element.user.name}</li>)
-        }
-    })
-    setPro(pros);
-    setCon(cons);
-  }
-}
+// console.log(session);
+// const onStorageUpdate = (e) => {
+//   const { key, newValue } = e;
+//   console.log(e);
+//   console.log(key+"this is the key")
+//   console.log(localStorage);
+//   if(key ==="Sides"){
+//     console.log(newValue);
+//     const pros = []
+//     const cons = []
+//       const sides = JSON.parse(newValue);
+//     sides.forEach(function(element) {
+//         if (element.side == "Pro") {
+//           pros.push(<li>{element.user.name}</li>)
+//         } else {
+//           cons.push(<li>{element.user.name}</li>)
+//         }
+//     })
+//     setPro(pros);
+//     setCon(cons);
+//   }
+// }
 
 
-
-useEffect(() => {
-  const pros = []
-  const cons = []
-  const sides = JSON.parse(localStorage.getItem("Sides"));
-  console.log(sides);
-  if(sides != null && sides[0] != ""){
-    sides.forEach(function(element) {
-        if (element.side == "Pro") {
-          pros.push(<li>{element.user.name}</li>)
-        } else {
-          cons.push(<li>{element.user.name}</li>)
-        }
-    })
-    setPro(pros);
-    setCon(cons);
-  }
-  window.addEventListener("storage", onStorageUpdate);
-  return () => {
-    window.removeEventListener("storage", onStorageUpdate);
-  };
-}, []);
+//
+// useEffect(() => {
+//   const pros = []
+//   const cons = []
+//   const sides = JSON.parse(localStorage.getItem("Sides"));
+//   console.log(sides);
+//   if(sides != null && sides[0] != ""){
+//     sides.forEach(function(element) {
+//         if (element.side == "Pro") {
+//           pros.push(<li>{element.user.name}</li>)
+//         } else {
+//           cons.push(<li>{element.user.name}</li>)
+//         }
+//     })
+//     setPro(pros);
+//     setCon(cons);
+//   }
+//   window.addEventListener("storage", onStorageUpdate);
+//   return () => {
+//     window.removeEventListener("storage", onStorageUpdate);
+//   };
+// }, []);
 
 
 
@@ -90,7 +90,7 @@ useEffect(() => {
           cons.push(<li>{element.user.name}</li>)
         }
     })
-    localStorage.setItem("Sides",JSON.stringify(sides));
+    // localStorage.setItem("Sides",JSON.stringify(sides));
     setPro(pros);
     setCon(cons);
 

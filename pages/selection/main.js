@@ -44,13 +44,13 @@ console.log(session);
     })
     present && setChosenTopics(previousArr => [...previousArr, < TopicElement key={previousArr.length} click = { deleteTopic } topic = { topic_name }
           />]);
-          const pushval = [];
-          if(localStorage.getItem("Active_Topics") !="" && localStorage.getItem("Active_Topics") !=null && present){
-            pushval.push(localStorage.getItem("Active_Topics").split(","),topic_name)
-          }else if(present){
-              pushval.push(topic_name)
-          }
-          localStorage.setItem("Active_Topics",pushval);
+          // const pushval = [];
+          // if(localStorage.getItem("Active_Topics") !="" && localStorage.getItem("Active_Topics") !=null && present){
+          //   pushval.push(localStorage.getItem("Active_Topics").split(","),topic_name)
+          // }else if(present){
+          //     pushval.push(topic_name)
+          // }
+          // localStorage.setItem("Active_Topics",pushval);
         }
 
         async function topicClick(name) {
@@ -86,56 +86,56 @@ console.log(session);
                       />)
                   active_names.push(element.name);
                     })
-                    localStorage.setItem("Active_Topics",active_names);
+                    // localStorage.setItem("Active_Topics",active_names);
                     setChosenTopics(active_topics);
                 })
             }
 
-function localUpdate(names){
-  const active_topics = [];
-  console.log(typeof names);
-  if(typeof names != "string" ){
-    console.log(names);
-    names.forEach((element) => {
-      if(element!= ""){
-                active_topics.push( < TopicElement click = { deleteTopic } topic = {element}  />)
-}
-          setChosenTopics(active_topics);
-        });
-  }
-
-    }
-
-
-
-
-            const onStorageUpdate = (e) => {
-              const { key, newValue} = e;
-              console.log(key);
-              if(key ==="Active_Topics" ){
-                console.log(newValue);
-                    localUpdate(newValue.split(','));
-              }
-            }
-
-
-
-            useEffect(() => {
-            let names = "";
-            if(localStorage.getItem("Active_Topics")){
-              names=localStorage.getItem("Active_Topics").split(",")
-            }
-            if(typeof names != "string"){
-              localUpdate(names);
-            }
-
-              window.addEventListener("storage", onStorageUpdate);
-              return () => {
-                window.removeEventListener("storage", onStorageUpdate);
-              };
-            }, []);
-
-
+// function localUpdate(names){
+//   const active_topics = [];
+//   console.log(typeof names);
+//   if(typeof names != "string" ){
+//     console.log(names);
+//     names.forEach((element) => {
+//       if(element!= ""){
+//                 active_topics.push( < TopicElement click = { deleteTopic } topic = {element}  />)
+// }
+//           setChosenTopics(active_topics);
+//         });
+//   }
+//
+//     }
+//
+//
+//
+//
+//             const onStorageUpdate = (e) => {
+//               const { key, newValue} = e;
+//               console.log(key);
+//               if(key ==="Active_Topics" ){
+//                 console.log(newValue);
+//                     localUpdate(newValue.split(','));
+//               }
+//             }
+//
+//
+//
+//             useEffect(() => {
+//             let names = "";
+//             if(localStorage.getItem("Active_Topics")){
+//               names=localStorage.getItem("Active_Topics").split(",")
+//             }
+//             if(typeof names != "string"){
+//               localUpdate(names);
+//             }
+//
+//               window.addEventListener("storage", onStorageUpdate);
+//               return () => {
+//                 window.removeEventListener("storage", onStorageUpdate);
+//               };
+//             }, []);
+//
+//
 
 
 
