@@ -3,7 +3,7 @@
 .container{
   min-height:  100vh;
 background-color: #221e24;
-  background-image: url("https://www.transparenttextures.com/patterns/back-pattern.png");
+  background-image: url("public/cubes.png");
   display: flex;
   flex-direction: column;
   justify-content: center;

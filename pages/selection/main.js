@@ -1,4 +1,4 @@
-import { Button, Container, Row, Col } from 'react-bootstrap';
+
 import Head from "next/head"
 import styles from "../../styles/Topic.module.css";
 import useSWR from 'swr'
@@ -8,7 +8,11 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { getSession, useSession } from "next-auth/react";
 import TopicElement from "./TopicElement.js";
-
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 function useTopics(id) {
     const fetcher = (...args) => fetch(...args).then(res => res.json())
   const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
@@ -140,9 +144,8 @@ function localUpdate(names){
 
 
 
-
   return(
-    <div className={styles.container}>
+  <div className={styles.container}>
     <Head>
     <title>Voting</title>
     <meta name="viewport" content="initial-scale=1, width=device-width"  />
@@ -154,32 +157,31 @@ function localUpdate(names){
     />
     </Head>
 
-    <Container fluid>
-    <Row className={styles.rowvote}>
+    <Grid container sx={{height:1}} spacing={2}>
+      <Grid item  sx={{height:.4}}xs={12}>
+        <Autocomplete
+        className={styles.Autocomplete}
+        disablePortal
+        freeSolo
+        onInputChange={(event,value) =>{setInputState(value)}}
+        options={topicState}
+        getOptionLabel={topicState => topicState.name}
+        id="combo-box-demo"
+        sx={{ width: 300 ,
 
-    <Col>
-    <Autocomplete
-    disablePortal
-    freeSolo
-    onInputChange={(event,value) =>{setInputState(value)}}
-    options={topicState}
-    getOptionLabel={topicState => topicState.name}
-    id="combo-box-demo"
-    sx={{ width: 300 }}
-    renderInput={(params) => (<TextField {...params} name="Topic" />)}
-    />
-    <Button onClick={()=>(topicClick(inputState))}>Choose Topic</Button>
-    </Col>
-    <Col>
+        }}
+        renderInput={(params) => (<TextField {...params} name="Topic" />)}
+        />
+        <Button className={styles.createTopic}variant="contained" onClick={()=>(topicClick(inputState))}>Choose Topic</Button>
+
+    <Link  href="/voting/main" passHref><Button className={styles.voteButton} variant="contained"size="lg">Vote!</Button></Link>
+      </Grid>
+      <Grid item  sx={{height:.6}}xs={12}>
+      <div className={styles.topicContainer}>
     {chosenTopics}
-    </Col>
-    </Row>
-    <Row className={styles.rowvoteelements}>
-    <Col>     <Link href="/voting/main" passHref><Button className={styles.voteButton} size="lg">Vote!</Button></Link> </Col>
-
-    </Row>
-
-    </Container>
     </div>
+      </Grid>
+    </Grid>
+</div>
   )
 }

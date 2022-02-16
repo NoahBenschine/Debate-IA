@@ -2,8 +2,11 @@
 
 .container{
   min-height:  100vh;
-background-color: #221e24;
-  background-image: url("https://www.transparenttextures.com/patterns/back-pattern.png");
+  background-color: #221e24;
+/* background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); */
+
+background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,10 +74,45 @@ form.create_vote input, form.create_vote textarea {
   resize: none;
 }
  .voteButton{
-  align-self: flex-end;
-  top: 2%;
+  font-family:Arial, Helvetica, sans-serif;
+  text-transform: none;
+   font-size: 1.8em;
+  color: #fff;
+  background-color: #f5ba13;
+  position: absolute;
+  top: 0%;
+  right:0%;
+  margin: 1px 1px 0 0;
+  width: 7%;
+  height:7%;
 }
-.TopicElement{
+
+.createTopic{
+  font-family:Arial, Helvetica, sans-serif;
+  text-transform: none;
+  color: #fff;
+  position: absolute;
+  left:18.65%;
+  background-color: #f5ba13;
+
+}
+.topicContainer{
+  border-width: 2px;
+  border-style:solid;
+  border-color: #134ef5;
+}
+
+.Autocomplete{
+  background-color: #eee;
+  border: 3px solid black;
+  margin: 3px;;
+  position: absolute;
+  top:0%;
+  left:0%;
+  dislay: inline-block;
+}
+
+/* .TopicElement{
   position: relative;
   background-color: #ced4da;
   border-radius: 15%;
@@ -82,6 +120,17 @@ form.create_vote input, form.create_vote textarea {
   height: 100px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   cursor: pointer;
+} */
+
+
+.TopicElement {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  width: 240px;
+  margin: 16px;
+  float: left;
 }
 .deleteElement{
   position: relative;
