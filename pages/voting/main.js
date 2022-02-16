@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { Button, Container, Row, Col } from 'react-bootstrap';
 import Head from "next/head";
 import VoteElement from "./VoteElement.js";
 import MostVotes from "./MostVotes";
@@ -7,8 +6,8 @@ import TextField from '@mui/material/TextField';
 import styles from "../../styles/Vote.module.css";
 import useSWR from 'swr'
 import EndVoting from "./EndVoting.js"
-
-
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 function useDB(id, token) {
   const fetcher = (...args) => fetch(...args).then(res => res.json())
   const { data, error } = useSWR([`/api/db/Calls/${id}`, token], fetcher)
@@ -65,19 +64,23 @@ export default function Main() {
     />
     </Head>
 
-  <Container fluid>
-  <Row className={styles.rowvote}>
-  <Col><Button onClick={voteWinner}>Choose Winner</Button></Col>
-  <Col><EndVoting winFunction={voteWinner} activeUsers={response&&response.active_users}/></Col>
-  <Col>{winDisplay} </Col>
 
-  </Row>
-<Row className={styles.rowvoteelements}>
-  <Col>  <div>{voteState}</div> </Col>
 
-</Row>
+  <Grid container sx={{height:1}} spacing={2}>
+    <Grid item  sx={{height:.4,}}xs={12}>
+<Button  className={styles.createTopic} onClick={voteWinner}>Choose Winner</Button>
+{winDisplay}
+<EndVoting inFunction={voteWinner} activeUsers={response&&response.active_users}/>
+    </Grid>
+    <Grid item  sx={{height:.6}}xs={12}>
+    <div className={styles.voteContainer}>
+{voteState}
+  </div>
+    </Grid>
+  </Grid>
 
-  </Container>
+
+
    </div>
   )
 }

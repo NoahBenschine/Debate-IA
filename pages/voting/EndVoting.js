@@ -77,6 +77,6 @@ function handleClick(){
     }
 }
   return(
-    <Button onClick={handleClick}>End Voting Test</Button>
+    <Button className={styles.createTopic} wonClick={handleClick}>End Voting Test</Button>
   );
 }

@@ -158,7 +158,7 @@ function localUpdate(names){
     </Head>
 
     <Grid container sx={{height:1}} spacing={2}>
-      <Grid item  sx={{height:.4}}xs={12}>
+      <Grid item  sx={{height:.4,}}xs={12}>
         <Autocomplete
         className={styles.Autocomplete}
         disablePortal
@@ -172,7 +172,7 @@ function localUpdate(names){
         }}
         renderInput={(params) => (<TextField {...params} name="Topic" />)}
         />
-        <Button className={styles.createTopic}variant="contained" onClick={()=>(topicClick(inputState))}>Choose Topic</Button>
+        <Button className={styles.createTopic} variant="contained" onClick={()=>(topicClick(inputState))}>Choose Topic</Button>
 
     <Link  href="/voting/main" passHref><Button className={styles.voteButton} variant="contained"size="lg">Vote!</Button></Link>
       </Grid>

@@ -1,5 +1,5 @@
 import React from "react"
-import { Button} from 'react-bootstrap';
+import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -14,9 +14,9 @@ return(
   <div className={styles.TopicElement}>
   <p>{props.topic}</p>
 
-  <Fab className={styles.deleteElement} onClick={()=>props.click(props.topic)} size="small" color="secondary" aria-label="add">
+  <Button  onClick={()=>props.click(props.topic)} size="small" color="secondary" aria-label="add">
   <DeleteIcon />
-</Fab>
+</Button>
   </div>
 )
 }
