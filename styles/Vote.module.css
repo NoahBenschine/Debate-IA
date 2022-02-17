@@ -50,9 +50,11 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
   border-width: medium;
   width:300px;
   height:100px;
-    margin: .5% 0 0 51.5%;
-    padding: .25em;
+  padding: .25em;
   display:inline-block;
+  position: absolute;
+  left:45%;
+  top:0%;
 }
 /* vote display */
 
@@ -101,13 +103,19 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
  height:7%;
 }
 
-.createTopic{
- font-family:Arial, Helvetica, sans-serif;
- text-transform: none;
- color: #fff;
- background-color: #f5ba13;
+.EndVoting{
+ font-family: 'Josefin Sans', sans-serif;
+ font-weight: 600;
+  text-transform: none;
+   font-size: 1.3em;
+  color: #fff;
+  background-color: #f5ba13;
+  position: absolute;
+  width: 7%;
+  height:7%;
  position: absolute;
- left:18.65%;
+left:48%;
+top:0%;
 
 }
 .voteContainer{

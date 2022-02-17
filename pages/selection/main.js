@@ -24,11 +24,20 @@ function useTopics(id) {
   }
 }
 
-export default function Main() {
+export default function Main(props) {
   const [inputState, setInputState] = useState("");
   const [topicState, setTopicState] = useState([]);
   const [chosenTopics, setChosenTopics] = useState([]);
   const { data: session } = useSession();
+
+  let admin = false;
+  if(session!= null){
+    props.data.forEach((element) =>{
+      if (element.user.name == session.user.name){
+        admin =true;
+      }
+    })
+  }
 
 
 console.log(session);
@@ -175,6 +184,7 @@ function localUpdate(names){
         <Button className={styles.createTopic} variant="contained" onClick={()=>(topicClick(inputState))}>Choose Topic</Button>
 
     <Link  href="/voting/main" passHref><Button className={styles.voteButton} variant="contained"size="lg">Vote!</Button></Link>
+      {admin&& <Link href="/admin/ControlPanel" passHref><Button  size="lg">Admin Panel</Button></Link>}
       </Grid>
       <Grid item  sx={{height:.6}}xs={12}>
       <div className={styles.topicContainer}>
@@ -184,4 +194,14 @@ function localUpdate(names){
     </Grid>
 </div>
   )
+}
+
+export async function getServerSideProps(context) {
+    const res = await fetch(process.env.NEXTAUTH_URL+"/api/db/Calls/adminHandler", {
+      method: "GET",
+    })
+  const data = await res.json()
+  console.log(data);
+  return { props: {data} }
+
 }

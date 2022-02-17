@@ -1,7 +1,9 @@
 .container{
   min-height:  100vh;
+
   background-color: #221e24;
-    background-image: url("https://www.transparenttextures.com/patterns/back-pattern.png");
+background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,7 +11,6 @@
   height: 100vh;
 
 }
-
 
 .bootstrap_container{
   height:100%;
@@ -43,7 +44,20 @@
   align-self: flex-end;
   top: 2%;
 }
-
+.topicButton{
+ font-family:Arial, Helvetica, sans-serif;
+ text-transform: none;
+  font-size: 1.8em;
+  font-weight: bold;
+ color: #fff;
+ background-color: #f5ba13;
+ position: absolute;
+ top: 0%;
+ right:0%;
+ margin: 1px 1px 0 0;
+ width: 7%;
+ height:7%;
+}
 
 .list_container{
 border-color: #FFFFFF;
@@ -54,7 +68,6 @@ border-color: #FFFFFF;
   width:40%;
   display:flex;
   flex-direction:column;
-
 }
 .list li{
     color:#FFFFFF;

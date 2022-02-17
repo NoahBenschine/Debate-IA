@@ -6,7 +6,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { FixedSizeList } from 'react-window';
-import styles from "../../styles/Transcript.module.css";
+import styles from "../../styles/Side.module.css";
 import {getSession, useSession } from "next-auth/react";
 export default function Side(props) {
   const { data: session } = useSession()

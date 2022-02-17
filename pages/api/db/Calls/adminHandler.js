@@ -4,6 +4,10 @@ import {getUserId} from "/src/user.js"
 import {changeCurrentDebate,deleteAllDebates,getAllDebates,debateInsert} from "/src/debate.js"
 import {getDate} from "/src/date.js"
 export default async function adminHandler(req,res){
+  if (req.method == "GET"){
+    console.log(await getAllAdmins());
+    res.send(await getAllAdmins());
+  }else{
 const body = JSON.parse(req.body);
 console.log(req.headers);
 console.log(req.body);
@@ -30,5 +34,5 @@ console.log(await getAllDebates());
   res.send("something's wrong")
 }
 
-
+}
 }

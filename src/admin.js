@@ -5,7 +5,15 @@ import prisma from "./prismaClient";
 
 async function getAllAdmins(){
  const admins = await prisma.admin.findMany({
-
+   select: {
+    id: true,
+    user_id: true,
+    user: {
+      select:{
+        name:true
+      },
+    },
+  },
    })
    return admins;
 }

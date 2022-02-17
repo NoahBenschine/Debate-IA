@@ -1,8 +1,10 @@
 import React,{useState}from "react"
-import { Button} from 'react-bootstrap';
+import Button from '@mui/material/Button';
 import Head from "next/head"
 import {getSession, useSession}  from "next-auth/react";
 import styles from "../../styles/Vote.module.css";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+
 export default function VoteElement(props){
 const [userClicks,setUserClicks] = useState([])
 const {data:session} = useSession();
@@ -28,8 +30,13 @@ const {data:session} = useSession();
  }
 
 return(
-  <div >
-  <Button  onClick={voteClick} className={styles.vote} size="lg">{props.topic}</Button>
-  </div>
+
+  <div className={styles.VoteElement}>
+  <p>{props.topic}</p>
+
+  <Button  onClick={voteClick} size="small" color="secondary" aria-label="add">
+  <ThumbUpIcon  />
+</Button>
+</div>
 )
 }

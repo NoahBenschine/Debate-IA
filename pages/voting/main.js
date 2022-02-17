@@ -2,12 +2,14 @@ import React, { useState } from "react"
 import Head from "next/head";
 import VoteElement from "./VoteElement.js";
 import MostVotes from "./MostVotes";
+import Link from "next/link"
 import TextField from '@mui/material/TextField';
 import styles from "../../styles/Vote.module.css";
 import useSWR from 'swr'
 import EndVoting from "./EndVoting.js"
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import { useSession } from "next-auth/react";
 function useDB(id, token) {
   const fetcher = (...args) => fetch(...args).then(res => res.json())
   const { data, error } = useSWR([`/api/db/Calls/${id}`, token], fetcher)
@@ -18,15 +20,23 @@ function useDB(id, token) {
     isError: error
   }
 }
-export default function Main() {
+export default function Main(props) {
   const [voteState, setVoteState] = useState([]);
   const [winDisplay, setWinDisplay] = useState();
-
+  const { data: session,status } = useSession();
   const { response, isLoading, isError } = useDB("topicHandler", { headers: { deeperMethod: "voteRequest" } });
   console.log(response);
   console.log(voteState);
   if (response != undefined && voteState.length == 0) {
     createVotes(response.active_topics);
+  }
+  let admin = false;
+  if(session!= null){
+    props.data.forEach((element) =>{
+      if (element.user.name == session.user.name){
+        admin =true;
+      }
+    })
   }
 
   function createVotes(topics) {
@@ -68,9 +78,8 @@ export default function Main() {
 
   <Grid container sx={{height:1}} spacing={2}>
     <Grid item  sx={{height:.4,}}xs={12}>
-<Button  className={styles.createTopic} onClick={voteWinner}>Choose Winner</Button>
-{winDisplay}
-<EndVoting inFunction={voteWinner} activeUsers={response&&response.active_users}/>
+    {winDisplay?winDisplay:<EndVoting winFunction={voteWinner}  activeUsers={response&&response.active_users}/>}
+  {admin&& <Link href="/admin/ControlPanel" passHref><Button  size="lg">Admin Panel</Button></Link>}
     </Grid>
     <Grid item  sx={{height:.6}}xs={12}>
     <div className={styles.voteContainer}>
@@ -83,4 +92,14 @@ export default function Main() {
 
    </div>
   )
+}
+
+export async function getServerSideProps(context) {
+    const res = await fetch(process.env.NEXTAUTH_URL+"/api/db/Calls/adminHandler", {
+      method: "GET",
+    })
+  const data = await res.json()
+  console.log(data);
+  return { props: {data} }
+
 }

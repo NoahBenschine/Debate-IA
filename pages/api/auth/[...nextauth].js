@@ -27,26 +27,41 @@ export default async function auth(req, res){
       callbacks: {
         async session({ session, user, token }) {
           console.log("session was called");
-          console.log(session);
-          console.log(user);
-          console.log(token);
+          const admin_bool = await getAdminByUser(user.id);
+          console.log(typeof session);
+            const session2 = session;
+            const session3 = Object.defineProperty(session,"admin",{value:true});
+          if (admin_bool != null) {
+              // Object.defineProperty(session,"admin",{value:true});
+                      // Object.defineProperty(token,admin,{value:true});
+          }else{
+              // Object.defineProperty(session,"admin",{value:false});
+                    // Object.defineProperty(token,admin,{value:false});
+
+          }
+          // console.log(session);
+          // console.log(user);
+          console.log(session2);
+          console.log(session3);
+
       return session
     },
-        async signIn({ user, account, profile, email, credentials }) {
-  console.log("signIn was called");
+  //       async signIn({ user, account, profile, email, credentials }) {
+  // console.log("signIn was called");
+  //
+  //
+  //         const admin = await getAdminByUser(user.id);
+  //         console.log(admin);
+  //         if(admin == null && email == "tgetman@pvcsd.org"){
+  //           adminInsert(user.id);
+  //             return true;
+  //         }else if(admin != null){
+  //             return true "/admin/ControlPanel";
+  //         }else{
+  //           return true;
+  //         }
+  //       },
 
-
-          const admin = await getAdminByUser(user.id);
-          console.log(admin);
-          if(admin == null && email == "tgetman@pvcsd.org"){
-            adminInsert(user.id);
-              return "/admin/ControlPanel";
-          }else if(admin != null){
-              return "/admin/ControlPanel";
-          }else{
-            return true;
-          }
-        },
 
 }
         // other options (pages, callbacks, session, ...etc)

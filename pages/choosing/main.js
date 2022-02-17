@@ -1,9 +1,11 @@
 import React,{useState,useEffect} from "react"
-import { Button, Container, Row, Col } from 'react-bootstrap';
+
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import Head from "next/head"
 import Link from "next/link"
 import Side from "./side.js"
-import styles from "../../styles/Transcript.module.css";
+import styles from "../../styles/Side.module.css";
 import {getSession, useSession } from "next-auth/react";
 import useSWR from 'swr'
 
@@ -17,7 +19,7 @@ import useSWR from 'swr'
 //     isError: error
 //   }
 // }
-export default function Main(){
+export default function Main(props){
 
   const [sides, setSides] = useState();
   const [pro, setPro] = useState([]);
@@ -25,8 +27,18 @@ export default function Main(){
   const { data: session,status } = useSession();
 
 // const response = useTopics("SideChoosing");
+let admin = false;
+if(session!= null){
+  props.data.forEach((element) =>{
+    if (element.user.name == session.user.name){
+      admin =true;
+    }
+  })
+}
 
 
+
+console.log(props);
 // console.log(response);
 // console.log(response.session);
 
@@ -106,34 +118,28 @@ useEffect(() => {
       crossOrigin="anonymous"
     />
     </Head>
+    <Grid container sx={{height:1}} spacing={2}>
+      <Grid item direction="row" sx={{width:.5,}}xs={6}>
+        {admin&& <Link href="/admin/ControlPanel" passHref><Button  size="lg">Admin Panel</Button></Link>}
+      <Side elements={pro} create={createLi} side="Pro"/>
+      </Grid>
+      <Grid item  sx={{width:.5}}xs={6}>
+     <Side elements={con}  create={createLi} side="Con"/>
+        <Link href="/selection/main" passHref><Button className={styles.voteButton} size="lg">Choose Topic!</Button></Link>
+      </Grid>
+    </Grid>
 
-  <Container fluid>
-   <Row>
-   <Col className={styles.Col} lg={6}>
-     <Side elements={pro} create={createLi} side="Pro"/>
-   </Col>
-   <Col className={styles.Col} lg={6}>
-   <Side elements={con}  create={createLi} side="Con"/>
-   <Link href="/selection/main" passHref><Button className={styles.voteButton} size="lg">Choose Topic!</Button></Link>
-   </Col>
-   </Row>
-  </Container>
    </div>
   )
 }
+export async function getServerSideProps(context) {
+    const res = await fetch(process.env.NEXTAUTH_URL+"/api/db/Calls/adminHandler", {
+      method: "GET",
+    })
+  const data = await res.json()
+  console.log(data);
+  const admins = {};
 
-// function checkTable(sides){
-//   const pros = []
-//   const cons = []
-//   if(sides){
-//     sides.forEach(function(element) {
-//         if (element.side == "Pro") {
-//           pros.push(<li>{element.user.name}</li>)
-//         } else {
-//           cons.push(<li>{element.user.name}</li>)
-//         }
-//     })
-//   }
-//
-//   return {pro:pros,con:cons}
-// }
+  return { props: {data} }
+
+}
