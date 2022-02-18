@@ -134,7 +134,7 @@ function renderConSides({ index, isScrolling, key, style }) {
      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
       crossOrigin="anonymous"
     />
-  <link rel="stylesheet" href="/api/styles/Side.module.css"  type = "text/css" />
+  <link rel="stylesheet" href="https://debate-ia-dev.vercel.app/_next/static/css/0f7b27d7c1c35c94468a.css"  type = "text/css" />
     </Head>
     <Grid container direction="row" sx={{height:1}} spacing={2}>
       <Grid container direction="row" item sx={{width:.5,justifyContent: 'center'}}xs={6}>
