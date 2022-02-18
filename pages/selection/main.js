@@ -164,7 +164,6 @@ function localUpdate(names){
     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
     crossOrigin="anonymous"
     />
-      <link rel="stylesheet" href="/api/styles/Topic.module.css"  type = "text/css" />
     </Head>
 
     <Grid container sx={{height:1}} spacing={2}>
