@@ -102,7 +102,7 @@ console.log(input);
              </Button>
         </Grid>
         <Grid container direction="row"lg={4} xs={4} sm={4} md={4} xl={4}  item spacing={1} >
-        <TextField  className={styles.box_tf} id="outlined-basic" label="Outlined"sx={{
+        <TextField  className={styles.box_tf} id="outlined-basic" label="Change Current Debate"sx={{
           "& .MuiInputLabel-root": {
             color: "white",
           },
@@ -124,7 +124,7 @@ console.log(input);
   color: "white",
 },
   marginLeft:"16%",
-        }} id="outlined-basic" label="Outlined" variant="outlined" value={input.addAdmin} name="addAdmin" onChange={handleChange} onKeyPress={(e)=>{
+}} id="outlined-basic" label="Add Admin" variant="outlined" value={input.addAdmin} name="addAdmin" onChange={handleChange} onKeyPress={(e)=>{
 
           if (e.key === "Enter"){
              addAdmin(input.addAdmin);
