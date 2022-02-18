@@ -183,7 +183,14 @@ function localUpdate(names){
         />
         <Button className={styles.createTopic} variant="contained" onClick={()=>(topicClick(inputState))}>Choose Topic</Button>
 
-    <Link  href="/voting/main" passHref><Button className={styles.voteButton} variant="contained"size="lg">Vote!</Button></Link>
+    <Link  href="/voting/main" passHref><Button className={styles.voteButton} sx={{
+      fontFamily: Helvetica,
+       fontSize: 24,
+       fontWeight: "bold",
+      color: "#fff",
+      backgroundColor: "#f5ba13"
+
+     }} variant="contained"size="lg">Vote!</Button></Link>
       {admin&& <Link href="/admin/ControlPanel" passHref><Button  size="lg">Admin Panel</Button></Link>}
       </Grid>
       <Grid item  sx={{height:.6}}xs={12}>

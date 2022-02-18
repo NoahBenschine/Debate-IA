@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react"
-
+import styled from '@emotion/styled';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import ListItem from '@mui/material/ListItem';
@@ -114,7 +114,14 @@ useEffect(() => {
       </Grid>
       <Grid item  container direction="row" sx={{width:.5,justifyContent: 'center' }}xs={6}>
           <Side elements={con} create={createLi} side="Con"/>
-        <Link href="/selection/main" passHref><Button className={styles.topicButton} variant="contained"  size="lg">Choose Topic!</Button></Link>
+        <Link href="/selection/main" passHref><Button className={styles.topicButton} sx={{
+          fontFamily: Helvetica,
+           fontSize: 24,
+           fontWeight: "bold",
+          color: "#fff",
+          backgroundColor: "#f5ba13"
+
+         }}variant="contained"  size="lg">Choose Topic!</Button></Link>
       </Grid>
     </Grid>
 

@@ -78,7 +78,7 @@ console.log(input);
          noValidate
          autoComplete="off"
        >
-       <Button onClick={voteWinner}variant="contained" size="large">
+       <Button onClick={voteWinner} className={styles.EndVoting} variant="contained" size="large">
        End Voting
        </Button>
          <TextField  className={styles.box_tf} id="outlined-basic" label="Outlined" value={input.changeTopic} variant="outlined" name="changeTopic" onChange={handleChange} onKeyPress={(e)=>{
@@ -102,7 +102,14 @@ console.log(input);
          }}/>
        </Box>
 
-   <Link href="/choosing/main" passHref><Button className={styles.voteButton} size="lg">Choose Side!</Button></Link>
+   <Link href="/choosing/main" passHref><Button className={styles.leaveAdminButton} sx={{
+     fontFamily: Helvetica,
+      fontSize: 24,
+      fontWeight: "bold",
+     color: "#fff",
+     backgroundColor: "#f5ba13"
+
+    }} size="lg">Choose Side!</Button></Link>
 
    </div>
   )
