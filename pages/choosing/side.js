@@ -20,7 +20,7 @@ export default function Side(props) {
     const sideObject = response.json();
 
     sideObject.then(function(resu) {
-      // console.log(resu);
+       console.log(resu);
       props.create(resu);
     });
   }

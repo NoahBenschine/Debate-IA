@@ -30,12 +30,6 @@ if(session!= null){
   })
 }
 
-
-
-console.log(props);
-// console.log(response);
-// console.log(response.session);
-
 console.log(session);
 const onStorageUpdate = (e) => {
   const { key, newValue } = e;
@@ -81,21 +75,6 @@ useEffect(() => {
   };
 }, []);
 
-function renderProSides({ index, isScrolling, key, style }) {
-      return (
-        <div key={key} style={style}>
-          <div>{pro[index].user.name}</div>
-        </div>
-      );
-}
-function renderConSides({ index, isScrolling, key, style }) {
-      return (
-        <div key={key} style={style}>
-          <div>{con[index].user.name}</div>
-        </div>
-      );
-}
-
 
   function createLi(sides) {
     console.log(localStorage);
@@ -114,8 +93,6 @@ function renderConSides({ index, isScrolling, key, style }) {
           // <ListItem  key={index} component="div" disablePadding>
           //     <ListItemText primary={element.user.name} />
           // </ListItem>
-
-
         }
     })
     localStorage.setItem("Sides",JSON.stringify(sides));
