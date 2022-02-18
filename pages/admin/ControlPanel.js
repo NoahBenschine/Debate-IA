@@ -78,6 +78,7 @@ console.log(input);
          noValidate
          autoComplete="off"
        >
+
        <Button onClick={voteWinner} className={styles.EndVoting} variant="contained" size="large">
        End Voting
        </Button>

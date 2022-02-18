@@ -19,13 +19,12 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
   height:10%;
 }
 .EndVoting{
- font-family: 'Josefin Sans', sans-serif;
+ font-family: "Josefin Sans";
  font-weight: 600;
   text-transform: none;
    font-size: 1.3em;
   color: #fff;
   background-color: #f5ba13;
-  position: absolute;
   width: 7%;
   height:7%;
  position: absolute;
