@@ -87,13 +87,13 @@ console.log(input);
               changeCurrentDebate(input.changeTopic);
            }
          }} />
-         <TextField  className={styles.box_tf}  id="outlined-basic" label="Outlined" variant="outlined" value={input.addAdmin} name="addAdmin" onChange={handleChange} onKeyPress={(e)=>{
+         <TextField  className={styles.box_tf} sx={{color:"#fff"}} color="secondary" id="outlined-basic" label="Outlined" variant="outlined" value={input.addAdmin} name="addAdmin" onChange={handleChange} onKeyPress={(e)=>{
 
            if (e.key === "Enter"){
               addAdmin(input.addAdmin);
            }
          }} />
-         <TextField   className={styles.box_tf}  id="outlined-basic" type="datetime-local" label="Outlined" variant="outlined" value={input.setTime} name="setTime" onChange={handleChange} onKeyPress={(e)=>{
+         <TextField   className={styles.box_tf} sx={{color:"#fff"}} id="outlined-basic" type="datetime-local" label="Outlined" variant="outlined" value={input.setTime} name="setTime" onChange={handleChange} onKeyPress={(e)=>{
 
            if (e.key === "Enter"){
              console.log("enter was pressed");
