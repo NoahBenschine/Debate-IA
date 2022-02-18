@@ -26,6 +26,7 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
   position: absolute;
   top: 0%;
   right:0%;
+  float:right;
   margin: 1px 1px 0 0;
   width: 7%;
   height:7%;

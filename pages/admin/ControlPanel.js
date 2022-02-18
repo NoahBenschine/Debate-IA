@@ -3,12 +3,17 @@ import React,{useState} from "react"
 import { Container, Row, Col } from 'react-bootstrap';
 import Head from "next/head"
 import Link from "next/link"
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import styles from "../../styles/Admin.module.css";
 import {getSession, useSession } from "next-auth/react";
 import $ from 'jquery';
+
+
+
+
 export default function Main(){
 const [input,setInputStates] = useState({changeTopic:"",addAdmin:"",setTime:""})
   const { data: session} = useSession();
@@ -59,6 +64,10 @@ function handleChange(event){
 console.log(input);
 }
 console.log(input);
+
+
+
+
   return(
      <div className={styles.container}>
     <Head>
@@ -72,36 +81,66 @@ console.log(input);
     />
     </Head>
 
-       <Box className={styles.Box}
-       sx={{color:"#fff",width:"100%"}}
-         component="form"
-         noValidate
-         autoComplete="off"
-       >
 
-       <Button onClick={voteWinner} className={styles.EndVoting} variant="contained" size="large">
-       End Voting
-       </Button>
-         <TextField  className={styles.box_tf} id="outlined-basic" label="Outlined" value={input.changeTopic} variant="outlined" name="changeTopic" onChange={handleChange} onKeyPress={(e)=>{
+    <Box sx={{ flexGrow: 1 ,width:"100%"}}>
+      <Grid container sx={{height:"100%"}} direction="column" spacing={1}>
+        <Grid container item direction="row" lg={4} xs={4} sm={4} md={4} xl={4}  spacing={3}>
+        <Button onClick={voteWinner} className={styles.EndVoting} variant="contained" size="large">
+             End Voting
+             </Button>
+        </Grid>
+        <Grid container direction="row"lg={4} xs={4} sm={4} md={4} xl={4}  item spacing={1} >
+        <TextField  className={styles.box_tf} id="outlined-basic" label="Outlined"sx={{
+"& .MuiInputLabel-root": {
+  color: "white",
+},
+"& .MuiInputBase-root": {
+  color: "white",
+}
+        }} value={input.changeTopic} variant="outlined" name="changeTopic" onChange={handleChange} onKeyPress={(e)=>{
 
-           if (e.key === "Enter"){
-              changeCurrentDebate(input.changeTopic);
-           }
-         }} />
-         <TextField  className={styles.box_tf} sx={{color:"#fff"}} color="secondary" id="outlined-basic" label="Outlined" variant="outlined" value={input.addAdmin} name="addAdmin" onChange={handleChange} onKeyPress={(e)=>{
+          if (e.key === "Enter"){
+             changeCurrentDebate(input.changeTopic);
+          }
+        }} />
+        <TextField  className={styles.box_tf} sx={{
+"& .MuiInputLabel-root": {
+  color: "white",
+},
+"& .MuiInputBase-root": {
+  color: "white",
+}
+        }} id="outlined-basic" label="Outlined" variant="outlined" value={input.addAdmin} name="addAdmin" onChange={handleChange} onKeyPress={(e)=>{
 
-           if (e.key === "Enter"){
-              addAdmin(input.addAdmin);
-           }
-         }} />
-         <TextField   className={styles.box_tf} sx={{color:"#fff"}} id="outlined-basic" type="datetime-local" label="Outlined" variant="outlined" value={input.setTime} name="setTime" onChange={handleChange} onKeyPress={(e)=>{
+          if (e.key === "Enter"){
+             addAdmin(input.addAdmin);
+          }
+        }} />
+        <TextField   className={styles.box_tf} sx={{
+"& .MuiInputLabel-root": {
+  color: "white",
+},
+"& .MuiInputBase-root": {
+  color: "white",
+}
+        }} id="outlined-basic" type="datetime-local"  variant="outlined" value={input.setTime} name="setTime" onChange={handleChange} onKeyPress={(e)=>{
 
-           if (e.key === "Enter"){
-             console.log("enter was pressed");
-              setTime(input.setTime);
-           }
-         }}/>
-       </Box>
+          if (e.key === "Enter"){
+            console.log("enter was pressed");
+             setTime(input.setTime);
+          }
+        }}/>
+        </Grid>
+        <Grid lg={4} xs={4} sm={4} md={4} xl={4} container item spacing={3}>
+
+        </Grid>
+      </Grid>
+    </Box>
+
+
+
+
+
 
    <Link href="/choosing/main" passHref><Button className={styles.leaveAdminButton} sx={{
      fontFamily: "Helvetica",

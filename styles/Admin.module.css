@@ -43,18 +43,20 @@ top:0%;
  position: absolute;
  top: 0%;
  right:0%;
+float:right;
  margin: 1px 1px 0 0;
  width: 7%;
  height:7%;
 }
 
-.Box > #outlined-basic{
+/* .Box > #outlined-basic{
   color:white;
   background-color:#fff;
   margin: 0 20px 0;
-}
+} */
 
 .box_tf{
   color:#fff;
-  margin:0 20px 0;
+  margin-left:16%;
+  /* justify-content: center; */
 }

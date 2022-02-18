@@ -8,6 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Head from "next/head"
 import Link from "next/link"
 import Side from "./side.js"
+import ChangePageB from "../ChangePageB.jsx";
 import { css } from '@emotion/react';
 import styles from "../../styles/Side.module.css";
 import {getSession, useSession } from "next-auth/react";
@@ -109,7 +110,7 @@ useEffect(() => {
     </Head>
     <Grid container direction="row" sx={{height:1}} spacing={2}>
       <Grid container direction="row" item sx={{width:.5,justifyContent: 'center'}}xs={6}>
-
+               <ChangePageB />
         {admin&& <Link href="/admin/ControlPanel" passHref><Button className={styles.adminButton} css={css`
           font-family:Helvetica;
           text-transform: none;
