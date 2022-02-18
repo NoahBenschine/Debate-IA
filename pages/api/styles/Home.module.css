@@ -1,0 +1,45 @@
+.container{
+  min-height:  100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+
+.main{
+  flex:1;
+  width: 60%;
+  align-items:flex-start;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 30%;
+  display:flex;
+}
+
+.TimeandDate{
+  margin: 40% 0 0 50%;
+font-size:20;
+font-weight: bold;
+font-family: "Times New Roman", Times, serif;
+
+}
+.imageholder{
+  position: "relative";
+      width: "50vw";
+      height: "100vw";
+      maxHeight: "100vh";
+      maxWidth: "50vw";
+}
+
+.signin{
+  margin: 30% 0 0 50%;
+  border-width: 0px;
+  border-radius: 2px;
+  width: 250px;
+  height: 55px;
+  color: "black";
+
+}
