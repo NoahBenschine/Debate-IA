@@ -85,31 +85,45 @@ console.log(input);
     <Box sx={{ flexGrow: 1 ,width:"100%"}}>
       <Grid container sx={{height:"100%"}} direction="column" spacing={1}>
         <Grid container item direction="row" lg={4} xs={4} sm={4} md={4} xl={4}  spacing={3}>
-        <Button onClick={voteWinner} className={styles.EndVoting} variant="contained" size="large">
+        <Button onClick={voteWinner} sx={{
+          fontFamily: "Helvetica",
+           fontSize: "1.5em",
+           fontWeight: "bold",
+          color: "#fff",
+          backgroundColor: "#f5ba13",
+          position:"absolute",
+          top:"0%",
+          left:"48%",
+          width: "7%",
+          height:"7%",
+
+        }} className={styles.EndVoting} variant="contained" size="large">
              End Voting
              </Button>
         </Grid>
         <Grid container direction="row"lg={4} xs={4} sm={4} md={4} xl={4}  item spacing={1} >
         <TextField  className={styles.box_tf} id="outlined-basic" label="Outlined"sx={{
-"& .MuiInputLabel-root": {
-  color: "white",
-},
-"& .MuiInputBase-root": {
-  color: "white",
-}
+          "& .MuiInputLabel-root": {
+            color: "white",
+          },
+          "& .MuiInputBase-root": {
+            color: "white",
+          },
+            marginLeft:"16%",
         }} value={input.changeTopic} variant="outlined" name="changeTopic" onChange={handleChange} onKeyPress={(e)=>{
 
           if (e.key === "Enter"){
              changeCurrentDebate(input.changeTopic);
           }
         }} />
-        <TextField  className={styles.box_tf} sx={{
+        <TextField   sx={{
 "& .MuiInputLabel-root": {
   color: "white",
 },
 "& .MuiInputBase-root": {
   color: "white",
-}
+},
+  marginLeft:"16%",
         }} id="outlined-basic" label="Outlined" variant="outlined" value={input.addAdmin} name="addAdmin" onChange={handleChange} onKeyPress={(e)=>{
 
           if (e.key === "Enter"){
@@ -117,12 +131,13 @@ console.log(input);
           }
         }} />
         <TextField   className={styles.box_tf} sx={{
-"& .MuiInputLabel-root": {
-  color: "white",
-},
-"& .MuiInputBase-root": {
-  color: "white",
-}
+          "& .MuiInputLabel-root": {
+            color: "white",
+          },
+          "& .MuiInputBase-root": {
+            color: "white",
+          },
+            marginLeft:"16%",
         }} id="outlined-basic" type="datetime-local"  variant="outlined" value={input.setTime} name="setTime" onChange={handleChange} onKeyPress={(e)=>{
 
           if (e.key === "Enter"){
@@ -144,10 +159,15 @@ console.log(input);
 
    <Link href="/choosing/main" passHref><Button className={styles.leaveAdminButton} sx={{
      fontFamily: "Helvetica",
-      fontSize: 24,
+      fontSize: "1.5em",
       fontWeight: "bold",
      color: "#fff",
-     backgroundColor: "#f5ba13"
+     backgroundColor: "#f5ba13",
+     position:"absolute",
+     top:"0%",
+     right:"0%",
+     width: "7%",
+     height:"7%",
 
     }} size="lg">Choose Side!</Button></Link>
 

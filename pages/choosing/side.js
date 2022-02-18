@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button } from 'react-bootstrap';
+import Button from '@mui/material/Button';
 
 import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
@@ -53,7 +53,11 @@ export default function Side(props) {
 />
 
 </Box>
-<Button onClick={postData} className={styles.joinbutton} size="lg">Join {props.side}</Button>
+<Button onClick={postData} variant="contained" sx={{
+  position:"absolute",
+  bottom: "20%",
+  marginLeft: "9em",
+}}size="lg">Join {props.side}</Button>
 </div>
   )
 

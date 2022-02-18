@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState,useEffect } from "react"
 import Head from "next/head";
 import VoteElement from "./VoteElement.js";
 import MostVotes from "./MostVotes";
@@ -25,11 +25,7 @@ export default function Main(props) {
   const [winDisplay, setWinDisplay] = useState();
   const { data: session,status } = useSession();
   const { response, isLoading, isError } = useDB("topicHandler", { headers: { deeperMethod: "voteRequest" } });
-  console.log(response);
-  console.log(voteState);
-  if (response != undefined && voteState.length == 0) {
-    createVotes(response.active_topics);
-  }
+
   let admin = false;
   if(session!= null){
     props.data.forEach((element) =>{
@@ -38,7 +34,12 @@ export default function Main(props) {
       }
     })
   }
+useEffect(()=>{
+  if (response){
+      createVotes(response.active_topics);
+  }
 
+},[response ])
   function createVotes(topics) {
     const voteArray = []
     topics.forEach((element, index) => {
@@ -79,7 +80,33 @@ export default function Main(props) {
   <Grid container sx={{height:1}} spacing={2}>
     <Grid item  sx={{height:.4,}}xs={12}>
     {winDisplay?winDisplay:<EndVoting winFunction={voteWinner}  activeUsers={response&&response.active_users}/>}
-  {admin&& <Link href="/admin/ControlPanel" passHref><Button  size="lg">Admin Panel</Button></Link>}
+    {winDisplay?winDisplay:<Button sx={{
+      fontFamily: "Helvetica",
+       fontSize: "1.2em",
+       fontWeight: "bold",
+      color: "#fff",
+      backgroundColor: "#f5ba13",
+      position:"absolute",
+      top:"0%",
+      left:"48%",
+      width: "7%",
+      height:"7%",
+
+    }} onClick={voteWinner}>Choose Winner</Button>}
+
+  {admin&& <Link href="/admin/ControlPanel" passHref><Button  sx={{
+    fontFamily: "Helvetica",
+     fontSize: "1.2em",
+     fontWeight: "bold",
+    color: "#fff",
+    backgroundColor: "#f5ba13",
+    position:"absolute",
+    top:"0%",
+    left:"0%",
+    width: "7%",
+    height:"7%",
+
+  }} size="lg">Admin Panel</Button></Link>}
     </Grid>
     <Grid item  sx={{height:.6}}xs={12}>
     <div className={styles.voteContainer}>

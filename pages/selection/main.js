@@ -181,17 +181,36 @@ function localUpdate(names){
         }}
         renderInput={(params) => (<TextField {...params} name="Topic" />)}
         />
-        <Button className={styles.createTopic} variant="contained" onClick={()=>(topicClick(inputState))}>Choose Topic</Button>
+        <Button className={styles.createTopic} sx={{
+        fontFamily: "Helvetica",
+          color: "#fff",
+          backgroundColor: "#f5ba13",
+          position:"absolute",
+          left:"18.65%"
 
-    <Link  href="/voting/main" passHref><Button className={styles.voteButton} sx={{
+        }} variant="contained" onClick={()=>(topicClick(inputState))}>Choose Topic</Button>
+
+    <Link  href="/voting/main" passHref><Button  sx={{
       fontFamily: "Helvetica",
-       fontSize: 24,
+       fontSize: "1.5em",
        fontWeight: "bold",
       color: "#fff",
-      backgroundColor: "#f5ba13"
+      backgroundColor: "#f5ba13",
+      position:"absolute",
+      top:"0%",
+      right:"0%",
+      width: "7%",
+      height:"7%",
 
      }} variant="contained"size="lg">Vote!</Button></Link>
-      {admin&& <Link href="/admin/ControlPanel" passHref><Button  size="lg">Admin Panel</Button></Link>}
+      {admin&& <Link href="/admin/ControlPanel" passHref><Button sx={{
+      fontFamily: "Helvetica",
+        color: "#fff",
+        backgroundColor: "#f5ba13",
+        position:"absolute",
+        left:"48%"
+
+      }} size="lg">Admin Panel</Button></Link>}
       </Grid>
       <Grid item  sx={{height:.6}}xs={12}>
       <div className={styles.topicContainer}>

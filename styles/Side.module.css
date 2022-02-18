@@ -46,19 +46,10 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
 }
 
 .topicButton{
- font-family:Arial, Helvetica, sans-serif;
- text-transform: none;
-  font-size: 1.5em;
-  font-weight: bold;
- color: #fff;
- background-color: #f5ba13;
- position: absolute;
- float:left;
- top: 0%;
- right:0%;
- margin: 1px 1px 0 0;
- width: 7%;
- height:7%;
+
+ float:right;
+ width: 15%;
+ height:9%;
 }
 
 .adminButton{

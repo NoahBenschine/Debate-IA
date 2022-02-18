@@ -1,6 +1,5 @@
 .container{
   min-height:  100vh;
-  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,7 +17,11 @@
   margin-right: 30%;
   display:flex;
 }
-
+.logo{
+  position:absolute;
+  top:0%;
+  left:0%;
+}
 .TimeandDate{
   margin: 40% 0 0 50%;
 font-size:20;

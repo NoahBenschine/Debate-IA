@@ -1,10 +1,6 @@
 import '../styles/globals.css';
 import { SessionProvider } from "next-auth/react";
-import '../styles/Topic.module.css'
-import '../styles/Home.module.css'
-import '../styles/Vote.module.css'
-import '../styles/Side.module.css'
-import '../styles/Admin.module.css'
+
 // import "../styles.css"
 function MyApp
 ({

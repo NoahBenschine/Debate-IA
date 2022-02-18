@@ -1,5 +1,5 @@
 import React, { useState,useEffect} from "react"
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import Button from '@mui/material/Button';
 import styles from "../../styles/Vote.module.css";
 import { useSession } from "next-auth/react";
 import useSWR from 'swr';
@@ -77,6 +77,17 @@ function handleClick(){
     }
 }
   return(
-    <Button className={styles.EndVoting} onClick={handleClick}>End Voting!</Button>
+    <Button  sx={{
+      fontFamily: "Helvetica",
+       fontSize: "1.4em",
+       fontWeight: "bold",
+      color: "#fff",
+      backgroundColor: "#f5ba13",
+      position:"absolute",
+      top:"0%",
+      right:"0%",
+      width: "7%",
+      height:"7%",
+    }} onClick={handleClick}>End Voting!</Button>
   );
 }

@@ -8,11 +8,13 @@ import ListItemText from '@mui/material/ListItemText';
 import Head from "next/head"
 import Link from "next/link"
 import Side from "./side.js"
-import ChangePageB from "../ChangePageB.jsx";
+import { positions } from '@mui/system';
 import { css } from '@emotion/react';
 import styles from "../../styles/Side.module.css";
 import {getSession, useSession } from "next-auth/react";
 import useSWR from 'swr'
+
+
 
 
 export default function Main(props){
@@ -110,39 +112,39 @@ useEffect(() => {
     </Head>
     <Grid container direction="row" sx={{height:1}} spacing={2}>
       <Grid container direction="row" item sx={{width:.5,justifyContent: 'center'}}xs={6}>
-               <ChangePageB />
-        {admin&& <Link href="/admin/ControlPanel" passHref><Button className={styles.adminButton} css={css`
-          font-family:Helvetica;
-          text-transform: none;
-           font-size: 1.5em;
-           font-weight: bold;
-          color: #fff;
-          background-color: #f5ba13;
-          position: absolute;
-          top: 0%;
-          left:0%;
-          margin: 1px 1px 0 0;
-          width: 7%;
-          height:7%;
-        `} variant="contained" size="lg">Admin Panel</Button></Link>}
+
+              {admin&& <Link href="/admin/ControlPanel" passHref><Button   sx={{
+                fontFamily: "Helvetica",
+                 fontSize: "1.2em",
+                 fontWeight: "bold",
+                color: "#fff",
+                backgroundColor: "#f5ba13",
+                position:"absolute",
+                top:"0%",
+                left:"0%",
+                width: "7%",
+                height:"7%",
+
+              }}variant="contained"  size="lg">Admin Panel</Button></Link>}
+
+
       <Side elements={pro}  create={createLi} side="Pro"/>
       </Grid>
       <Grid item  container direction="row" sx={{width:.5,justifyContent: 'center' }}xs={6}>
           <Side elements={con} create={createLi} side="Con"/>
-        <Link href="/selection/main" passHref><Button className={styles.topicButton} css={css`
-          font-family:Arial, Helvetica, sans-serif;
-          text-transform: none;
-           font-size: 1.5em;
-           font-weight: bold;
-          color: #fff;
-          background-color: #f5ba13;
-          position: absolute;
-          top: 0%;
-          right:0%;
-          margin: 1px 1px 0 0;
-          width: 7%;
-          height:7%;
-        `}variant="contained"  size="lg">Choose Topic!</Button></Link>
+        <Link href="/selection/main" passHref><Button   sx={{
+          fontFamily: "Helvetica",
+           fontSize: "1.2em",
+           fontWeight: "bold",
+          color: "#fff",
+          backgroundColor: "#f5ba13",
+          position:"absolute",
+          top:"0%",
+          right:"0%",
+          width: "7%",
+          height:"7%",
+
+         }}variant="contained"  size="lg">Choose Topic!</Button></Link>
       </Grid>
     </Grid>
 
@@ -160,3 +162,5 @@ export async function getServerSideProps(context) {
   return { props: {data} }
 
 }
+// // {admin&& <Link href="/admin/ControlPanel" passHref><ChangePageRB text="Choose Topic!"></ChangePageRB ></Link>}
+// // <Link href="/selection/main" passHref><ChangePageLB text="AdminPanel"></ChangePageLB ></Link>

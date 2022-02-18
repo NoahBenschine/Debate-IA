@@ -3,7 +3,8 @@ import Image from "next/image";
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useSession, signIn, signOut,getSession, SessionProvider} from "next-auth/react";
 import styles from "../styles/Home.module.css";
-
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 export default function HomeScreen(props){
   console.log(process.env.NEXTAUTH_URL+"/choosing/main");
     console.log(process.env.NEXTAUTH_URL.toString()+"/choosing/main");
@@ -21,27 +22,23 @@ export default function HomeScreen(props){
   crossOrigin="anonymous"
 />
 </Head>
-<Container className={styles.container} fluid>
+    <h2 className={styles.logo}>Debate Club</h2>
 
-  {/* Stack the columns on mobile by making one full-width and the other half-width */}
-  <Row>
+      <Box sx={{
+        justifyContent:"center",
+        position:"relative",
+        bottom:"15%",
+        right :"10%",
+        fontSize:25,
+        width:"50%"
+      }}>
 
-    <Col lg={6}>
-    <main className={styles.main}>
-    <h2>Debate Club</h2>
     <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
     <button className={styles.signin} onClick={() => {
        console.log(process.env.NEXTAUTH_URL)
           console.log(process.env.NEXTAUTH_URL.toString());
-      signIn("google",{ callbackUrl: process.env.NEXTAUTH_URL.toString()+"/choosing/main"})} }>Go to Google</button>
-    </main>
-    </Col>
-
-  </Row>
-
-  {/* Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop */}
-
-</Container>
+      signIn("google",{ callbackUrl: process.env.NEXTAUTH_URL.toString()+"/choosing/main"})} }>Login</button>
+     </Box>
 </div>
   )
 
