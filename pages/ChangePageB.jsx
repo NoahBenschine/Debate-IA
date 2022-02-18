@@ -9,7 +9,7 @@ const ChangePageButton = styled(Button)(({ theme }) => ({
   color: "#fff",
   backgroundColor: "#f5ba13",
   width: "7%",
-  height:"7%,
+  height:"7%",
 }));
 
 export default function ChangePageB() {
