@@ -37,7 +37,7 @@ export default function Side(props) {
 >
 
 <VirtualizedList
-  numItems={props.elements.length?props.elements.length:0}
+  numItems={props.elements?props.elements.length:0}
         itemHeight={40}
         windowHeight={500}
         renderItem={({ index, style }) => {

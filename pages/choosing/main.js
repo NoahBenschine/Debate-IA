@@ -139,10 +139,10 @@ function renderConSides({ index, isScrolling, key, style }) {
       <Grid container direction="row" item sx={{width:.5,justifyContent: 'center'}}xs={6}>
 
         {admin&& <Link href="/admin/ControlPanel" passHref><Button className={styles.adminButton} variant="contained" size="lg">Admin Panel</Button></Link>}
-      <Side elements={pro} listLength={pro.length} create={createLi} side="Pro"/>
+      <Side elements={pro}  create={createLi} side="Pro"/>
       </Grid>
       <Grid item  container direction="row" sx={{width:.5,justifyContent: 'center' }}xs={6}>
-          <Side elements={con} listLength={con.length} create={createLi} side="Con"/>
+          <Side elements={con} create={createLi} side="Con"/>
         <Link href="/selection/main" passHref><Button className={styles.topicButton} variant="contained"  size="lg">Choose Topic!</Button></Link>
       </Grid>
     </Grid>
