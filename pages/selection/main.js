@@ -184,7 +184,7 @@ function localUpdate(names){
         <Button className={styles.createTopic} variant="contained" onClick={()=>(topicClick(inputState))}>Choose Topic</Button>
 
     <Link  href="/voting/main" passHref><Button className={styles.voteButton} sx={{
-      fontFamily: Helvetica,
+      fontFamily: "Helvetica",
        fontSize: 24,
        fontWeight: "bold",
       color: "#fff",

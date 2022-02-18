@@ -103,7 +103,7 @@ console.log(input);
        </Box>
 
    <Link href="/choosing/main" passHref><Button className={styles.leaveAdminButton} sx={{
-     fontFamily: Helvetica,
+     fontFamily: "Helvetica",
       fontSize: 24,
       fontWeight: "bold",
      color: "#fff",

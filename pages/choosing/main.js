@@ -115,7 +115,7 @@ useEffect(() => {
       <Grid item  container direction="row" sx={{width:.5,justifyContent: 'center' }}xs={6}>
           <Side elements={con} create={createLi} side="Con"/>
         <Link href="/selection/main" passHref><Button className={styles.topicButton} sx={{
-          fontFamily: Helvetica,
+          fontFamily: "Helvetica",
            fontSize: 24,
            fontWeight: "bold",
           color: "#fff",
