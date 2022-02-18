@@ -47,7 +47,7 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
 .topicButton{
  font-family:Arial, Helvetica, sans-serif;
  text-transform: none;
-  font-size: 1.8em;
+  font-size: 1.5em;
   font-weight: bold;
  color: #fff;
  background-color: #f5ba13;
@@ -59,21 +59,36 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
  height:7%;
 }
 
+.adminButton{
+ font-family:Arial, Helvetica, sans-serif;
+ text-transform: none;
+  font-size: 1.5em;
+  font-weight: bold;
+ color: #fff;
+ background-color: #f5ba13;
+ position: absolute;
+ top: 0%;
+ left:0%;
+ margin: 1px 1px 0 0;
+ width: 7%;
+ height:7%;
+}
+
 .list_container{
-border-color: #FFFFFF;
-  margin-top: 10px;
-  border-style: solid;
-  border-width: medium;
-  height:55%;
-  width:40%;
-  display:flex;
-  flex-direction:column;
+  position:relative;
+  top:20%;
+  left:5%;
+  background-color: #000;
+  color:#fff;
+}
+.side_container{
+
 }
 .list li{
     color:#FFFFFF;
 }
 .joinbutton{
-  margin-top: 125%;
-  width:50%;
-  align-self: center;
+  position:absolute;
+  bottom: 20%;
+  margin-left: 7em;
 }

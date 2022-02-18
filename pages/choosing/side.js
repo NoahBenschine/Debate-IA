@@ -3,11 +3,11 @@ import { Button } from 'react-bootstrap';
 
 import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { FixedSizeList } from 'react-window';
+import VirtualizedList from "./VirtualizedList.jsx"
 import styles from "../../styles/Side.module.css";
 import {getSession, useSession } from "next-auth/react";
+import { positions } from '@mui/system';
 export default function Side(props) {
   const { data: session } = useSession()
   const postData = async () => {
@@ -24,15 +24,52 @@ export default function Side(props) {
       props.create(resu);
     });
   }
+
+
+
+
+
   return(
-    <div className={styles.list_container}>
+<div>
+<Box className={styles.list_container}
+  sx={{ width: 360, height: 500, maxWidth: 360, border:2
+ }}
+>
 
-    <ul className={styles.list}>
-    {props.elements}
+<VirtualizedList
+  numItems={props.elements.length}
+        itemHeight={40}
+        windowHeight={500}
+        renderItem={({ index, style }) => {
+          const i = props.elements[index];
+          console.log(i);
+              console.log(props);
+          return (
+            <ListItem style={style} key={index} component="div" disablePadding>
+            <ListItemText primary={i.user.name} />
+             </ListItem>
+          );
+        }}
+/>
 
-    </ul>
+</Box>
 <Button onClick={postData} className={styles.joinbutton} size="lg">Join {props.side}</Button>
-    </div>
+</div>
   )
 
 }
+// <div key={index} className="item" style={style}>
+//   <label>
+//     {i.user.name}
+//   </label>
+// </div>
+// <FixedSizeList
+// height={500}
+// width={360}
+// itemSize={46}
+// itemCount={200}
+// overscanCount={5}
+// component="ul"
+// >
+// {props.elements}
+// </FixedSizeList>

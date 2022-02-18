@@ -2,6 +2,9 @@ import React,{useState,useEffect} from "react"
 
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 import Head from "next/head"
 import Link from "next/link"
 import Side from "./side.js"
@@ -9,16 +12,7 @@ import styles from "../../styles/Side.module.css";
 import {getSession, useSession } from "next-auth/react";
 import useSWR from 'swr'
 
-// function useTopics(id) {
-//     const fetcher = (...args) => fetch(...args).then(res => res.json())
-//   const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
-//  // const sideElements = checkTable(data);
-//   return {
-//     session: data,
-//     isLoading: !error && !data,
-//     isError: error
-//   }
-// }
+
 export default function Main(props){
 
   const [sides, setSides] = useState();
@@ -52,9 +46,9 @@ const onStorageUpdate = (e) => {
       const sides = JSON.parse(newValue);
     sides.forEach(function(element,index) {
         if (element.side == "Pro") {
-          pros.push(<li key={index}>{element.user.name}</li>)
+          pros.push(element)
         } else {
-          cons.push(<li key={index} >{element.user.name}</li>)
+          cons.push(element)
         }
     })
     setPro(pros);
@@ -72,9 +66,10 @@ useEffect(() => {
   if(sides != null && sides[0] != ""){
     sides.forEach(function(element,index) {
         if (element.side == "Pro") {
-          pros.push(<li key={index}>{element.user.name}</li>)
+
+          pros.push(element)
         } else {
-          cons.push(<li key={index} >{element.user.name}</li>)
+          cons.push(element)
         }
     })
     setPro(pros);
@@ -86,6 +81,20 @@ useEffect(() => {
   };
 }, []);
 
+function renderProSides({ index, isScrolling, key, style }) {
+      return (
+        <div key={key} style={style}>
+          <div>{pro[index].user.name}</div>
+        </div>
+      );
+}
+function renderConSides({ index, isScrolling, key, style }) {
+      return (
+        <div key={key} style={style}>
+          <div>{con[index].user.name}</div>
+        </div>
+      );
+}
 
 
   function createLi(sides) {
@@ -96,9 +105,17 @@ useEffect(() => {
     const cons = []
     sides.forEach(function(element,index) {
         if (element.side == "Pro") {
-          pros.push(<li key={index}>{element.user.name}</li>)
+          // pros.push(<li key={index}>{element.user.name}</li>)
+          pros.push(element)
         } else {
-          cons.push(<li key={index} >{element.user.name}</li>)
+          // cons.push(<li key={index} >{element.user.name}</li>)
+          cons.push(element)
+
+          // <ListItem  key={index} component="div" disablePadding>
+          //     <ListItemText primary={element.user.name} />
+          // </ListItem>
+
+
         }
     })
     localStorage.setItem("Sides",JSON.stringify(sides));
@@ -118,14 +135,15 @@ useEffect(() => {
       crossOrigin="anonymous"
     />
     </Head>
-    <Grid container sx={{height:1}} spacing={2}>
-      <Grid item direction="row" sx={{width:.5,}}xs={6}>
-        {admin&& <Link href="/admin/ControlPanel" passHref><Button  size="lg">Admin Panel</Button></Link>}
-      <Side elements={pro} create={createLi} side="Pro"/>
+    <Grid container direction="row" sx={{height:1}} spacing={2}>
+      <Grid container direction="row" item sx={{width:.5,justifyContent: 'center'}}xs={6}>
+
+        {admin&& <Link href="/admin/ControlPanel" passHref><Button className={styles.adminButton} variant="contained" size="lg">Admin Panel</Button></Link>}
+      <Side elements={pro} listLength={pro.length} create={createLi} side="Pro"/>
       </Grid>
-      <Grid item  sx={{width:.5}}xs={6}>
-     <Side elements={con}  create={createLi} side="Con"/>
-        <Link href="/selection/main" passHref><Button className={styles.voteButton} size="lg">Choose Topic!</Button></Link>
+      <Grid item  container direction="row" sx={{width:.5,justifyContent: 'center' }}xs={6}>
+          <Side elements={con} listLength={con.length} create={createLi} side="Con"/>
+        <Link href="/selection/main" passHref><Button className={styles.topicButton} variant="contained"  size="lg">Choose Topic!</Button></Link>
       </Grid>
     </Grid>
 
