@@ -73,7 +73,7 @@ console.log(input);
     </Head>
 
        <Box className={styles.Box}
-       sx={{color:"#fff"}}
+       sx={{color:"#fff",width:"100%"}}
          component="form"
          noValidate
          autoComplete="off"
