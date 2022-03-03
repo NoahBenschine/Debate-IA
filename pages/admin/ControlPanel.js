@@ -7,21 +7,36 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import VirtualizedList from "./VirtualizedList";
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import styles from "../../styles/Admin.module.css";
 import {getSession, useSession } from "next-auth/react";
+import useSWR from 'swr'
 import $ from 'jquery';
 
 
 
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+function useUser(id,token) {
+  const { data, error } = useSWR([`/api/db/Calls/${id}`,token], fetcher,{ refreshInterval: 10000 } )
 
+    return {
+      user: data,
+      isLoading: !error && !data,
+      isError: error
+
+    }
+}
 export default function Main(){
 const [input,setInputStates] = useState({changeTopic:"",addAdmin:"",setTime:""})
   const { data: session} = useSession();
   console.log(session);
 
 
-
-
+const {user,isLoading,isError} = useUser("adminHandler",{headers:{adminMethod:"getUsers"}})
+console.log(user);
+console.log(typeof user);
   async function changeCurrentDebate(new_topic){
     const response = await fetch("/api/db/Calls/adminHandler", {
       method: "POST",
@@ -147,7 +162,26 @@ console.log(input);
         }}/>
         </Grid>
         <Grid lg={4} xs={4} sm={4} md={4} xl={4} container item spacing={3}>
+        <Box className={styles.list_container}
+          sx={{ width: 360, height: 500, maxWidth: 360, border:2
+         }}
+        >
+     <VirtualizedList
+       numItems={user?user.length:0}
+             itemHeight={40}
+             windowHeight={500}
+             renderItem={({ index, style }) => {
+               const i = user[index];
+               console.log(i);
+               return (
+                 <ListItem style={style} key={index} component="div" disablePadding>
+                 <ListItemText primary={i.user.name} />
+                  </ListItem>
+               );
+           }}
+     />
 
+     </Box>
         </Grid>
       </Grid>
     </Box>

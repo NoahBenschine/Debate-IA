@@ -11,7 +11,7 @@ async function getUserId(user_name){
   }
 }
 
-async function getAllUserIds(user_name) {
+async function getAllUsers() {
     const user = await prisma.users.findMany({})
     return user;
 }
@@ -35,7 +35,7 @@ async function getSessionsByDate(date) {
 
 export {
     getUserId,
-    getAllUserIds,
+    getAllUsers,
     getAllSessions,
     getSessionsByDate
 };

@@ -56,7 +56,7 @@ useEffect(()=>{
         })
         const agreement = response.json();
         agreement.then((result) => {
-
+            setVoteState(result.active_topics);
             setWinDisplay( < MostVotes voteName = { result.name } numVotes = { result.numVotes }
               />)
               console.log(result)

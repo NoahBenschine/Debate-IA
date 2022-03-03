@@ -1,6 +1,6 @@
 import {topicUpsert} from "/src/topic.js"
 import {adminInsert,getAllAdmins} from "/src/admin.js"
-import {getUserId} from "/src/user.js"
+import {getUserId,getAllUserIds} from "/src/user.js"
 import {changeCurrentDebate,deleteAllDebates,getAllDebates,debateInsert} from "/src/debate.js"
 import {getDate} from "/src/date.js"
 export default async function adminHandler(req,res){
@@ -30,7 +30,11 @@ res.send("topic updated");
   const date = new Date(body.time);
  debateInsert("ToBeChanged",date);
 console.log(await getAllDebates());
-}else{
+}else if(req.headers.adminmethod == "getUsers"){
+  const users = await getAllUsers();
+  res.send(users);
+}
+else{
   res.send("something's wrong")
 }
 

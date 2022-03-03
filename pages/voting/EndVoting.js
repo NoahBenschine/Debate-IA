@@ -26,28 +26,26 @@ const [usersClicked,setUsersClicked] = useState([])
       setUsersClicked((prevState)=>[...prevState,newValue]);
   };
 }
+useEffect(()=>{
+checkUsers();
+},[usersClicked,response&&response.active_users.length])
 
+function checkUsers(){
+  if(response&&response.active_users.length/2 <= usersClicked.length){
+     setUsersClicked([]);
+    props.winFunction();
+    localStorage.clear();
+   }
+}
   useEffect(() => {
     console.log("useEffect went off")
+
     localStorage.getItem("usersClicked")&&setUsersClicked(localStorage.getItem("usersClicked").split(","));
     window.addEventListener("storage", onStorageUpdate);
     return () => {
       window.removeEventListener("storage", onStorageUpdate);
     };
   }, []);
-useEffect(()=>{
-  if(usersClicked.length >= response&&response.active_users.length){
-    console.log(usersClicked.length);
-    console.log(response);
-    console.log(response.active_users.length)
-     console.log("Enough People");
-     console.log(props.winFunction);
-     setUsersClicked([]);
-    props.winFunction();
-    localStorage.clear();
-      localStorage.getItem("usersClicked")
-   }
-},[usersClicked,response&&response.active_users.length])
 
 function handleClick(){
   const arr = [];
@@ -75,6 +73,7 @@ function handleClick(){
 
 
     }
+
 }
   return(
     <Button  sx={{

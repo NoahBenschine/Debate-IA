@@ -93,10 +93,6 @@ useEffect(() => {
         } else {
           // cons.push(<li key={index} >{element.user.name}</li>)
           cons.push(element)
-
-          // <ListItem  key={index} component="div" disablePadding>
-          //     <ListItemText primary={element.user.name} />
-          // </ListItem>
         }
     })
     localStorage.setItem("Sides",JSON.stringify(sides));

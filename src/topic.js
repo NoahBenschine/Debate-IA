@@ -35,23 +35,12 @@ async function getAllActiveTopics(){
    return topic;
 }
 
-async function turnOffActives(winner){
+async function turnOffAllActives(){
   const activeTopic = await prisma.topic.updateMany({
     where:{
-      AND: [
-            {
-              NOT: {
-                id:{
-                  equals:winner
-                }
-              },
-            },
-            {
-              active: {
-                equals: true,
-              },
-            },
-          ],
+      active: {
+            equals: true,
+        },
     },
     data:{
       active:false
@@ -101,4 +90,4 @@ async function turnOffTopic(name){
   })
 }
 
-export {getAllTopics,getTopicName, getTopic,topicUpsert,deleteTopic,getAllActiveTopics, turnOffActives, turnOffTopic}
+export {getAllTopics,getTopicName, getTopic,topicUpsert,deleteTopic,getAllActiveTopics, turnOffAllActives, turnOffTopic}

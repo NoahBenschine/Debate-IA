@@ -25,27 +25,27 @@ export default async function auth(req, res){
         // updateAge: 24 * 60 * 60, // 24 hours
       },
       callbacks: {
-        async session({ session, user, token }) {
-          console.log("session was called");
-          const admin_bool = await getAdminByUser(user.id);
-          console.log(typeof session);
-            const session2 = session;
-            const session3 = Object.defineProperty(session,"admin",{value:true});
-          if (admin_bool != null) {
-              // Object.defineProperty(session,"admin",{value:true});
-                      // Object.defineProperty(token,admin,{value:true});
-          }else{
-              // Object.defineProperty(session,"admin",{value:false});
-                    // Object.defineProperty(token,admin,{value:false});
-
-          }
-          // console.log(session);
-          // console.log(user);
-          console.log(session2);
-          console.log(session3);
-
-      return session
-    },
+    //     async session({ session, user, token }) {
+    //       console.log("session was called");
+    //       const admin_bool = await getAdminByUser(user.id);
+    //       console.log(typeof session);
+    //         const session2 = session;
+    //         const session3 = Object.defineProperty(session,"admin",{value:true});
+    //       if (admin_bool != null) {
+    //           // Object.defineProperty(session,"admin",{value:true});
+    //                   // Object.defineProperty(token,admin,{value:true});
+    //       }else{
+    //           // Object.defineProperty(session,"admin",{value:false});
+    //                 // Object.defineProperty(token,admin,{value:false});
+    //
+    //       }
+    //       // console.log(session);
+    //       // console.log(user);
+    //       console.log(session2);
+    //       console.log(session3);
+    //
+    //   return session
+    // },
   //       async signIn({ user, account, profile, email, credentials }) {
   // console.log("signIn was called");
   //

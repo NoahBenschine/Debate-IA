@@ -74,9 +74,7 @@ console.log(session);
             })
             const agreement = response.text();
             agreement.then((result) => {
-              console.log(result);
               createTopic(name)
-              console.log(localStorage.getItem("Active_Topics"));
             })
           } else {
             alert("Entry cannot be left empty")
@@ -90,7 +88,6 @@ console.log(session);
             })
             const agreement = response.json();
             agreement.then((result) => {
-                console.log(result);
                 const active_topics = [];
                 const active_names = [];
                 result.forEach((element) => {

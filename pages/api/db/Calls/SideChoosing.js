@@ -28,14 +28,7 @@ if(debate){
     await sideUpsert(topic.id,user_id,debate_id,body.side,side_id)
         res.send(await getSides(debate_id));
   }else{
-    if(debate_id = ""){
       res.send({error:"No current scheduled, please ask admin to add a debate"});
-    }else{
-          res.end();
-    }
-      // console.log(session);
-      // /* ... */
-
   }
 
 }
