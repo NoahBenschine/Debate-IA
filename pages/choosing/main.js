@@ -41,8 +41,8 @@ const onStorageUpdate = (e) => {
     console.log(newValue);
     const pros = []
     const cons = []
-      const sides = JSON.parse(newValue);
-    sides.forEach(function(element,index) {
+  const sides = JSON.parse(newValue);
+    sides&&sides.forEach(function(element,index) {
         if (element.side == "Pro") {
           pros.push(element)
         } else {
@@ -60,8 +60,8 @@ useEffect(() => {
   const pros = []
   const cons = []
   const sides = JSON.parse(localStorage.getItem("Sides"));
-  console.log(sides);
-  if(sides != null && sides[0] != ""){
+  console.log(typeof sides);
+  if(sides != null && sides[0] != "" && sides.error == null){
     sides.forEach(function(element,index) {
         if (element.side == "Pro") {
 
@@ -83,9 +83,10 @@ useEffect(() => {
   function createLi(sides) {
     console.log(localStorage);
 
-    console.log(sides);
+    console.log(sides.error);
     const pros = []
     const cons = []
+    if(sides != null && sides[0] != "" && sides.error == null){
     sides.forEach(function(element,index) {
         if (element.side == "Pro") {
           // pros.push(<li key={index}>{element.user.name}</li>)
@@ -95,6 +96,7 @@ useEffect(() => {
           cons.push(element)
         }
     })
+  }
     localStorage.setItem("Sides",JSON.stringify(sides));
     setPro(pros);
     setCon(cons);

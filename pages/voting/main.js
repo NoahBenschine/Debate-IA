@@ -80,24 +80,11 @@ useEffect(()=>{
   <Grid container sx={{height:1}} spacing={2}>
     <Grid item  sx={{height:.4,}}xs={12}>
     {winDisplay?winDisplay:<EndVoting winFunction={voteWinner}  activeUsers={response&&response.active_users}/>}
-    {winDisplay?winDisplay:<Button sx={{
-      fontFamily: "Helvetica",
-       fontSize: "1.2em",
-       fontWeight: "bold",
-      color: "#fff",
-      backgroundColor: "#f5ba13",
-      position:"absolute",
-      top:"0%",
-      left:"48%",
-      width: "7%",
-      height:"7%",
-
-    }} onClick={voteWinner}>Choose Winner</Button>}
-
   {admin&& <Link href="/admin/ControlPanel" passHref><Button  sx={{
     fontFamily: "Helvetica",
      fontSize: "1.2em",
      fontWeight: "bold",
+         textTransform: "none",
     color: "#fff",
     backgroundColor: "#f5ba13",
     position:"absolute",

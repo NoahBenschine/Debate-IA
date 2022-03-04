@@ -5,7 +5,22 @@ import { useSession, signIn, signOut,getSession, SessionProvider} from "next-aut
 import styles from "../styles/Home.module.css";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import useSWR from 'swr'
+
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+function useDebate(id,token) {
+  const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
+
+    return {
+      data: data,
+      isLoading: !error && !data,
+      isError: error
+
+    }
+}
 export default function HomeScreen(props){
+  const {data,isLoading,isError} = useDebate("debateHandler");
+  console.log(data)
   console.log(process.env.NEXTAUTH_URL+"/choosing/main");
     console.log(process.env.NEXTAUTH_URL.toString()+"/choosing/main");
       console.log(typeof process.env.NEXTAUTH_URL+"/choosing/main");
@@ -33,7 +48,7 @@ export default function HomeScreen(props){
         width:"50%"
       }}>
 
-    <h1 className={styles.TimeandDate}>Next Debate: Friday at 11:00</h1>
+    <h1 className={styles.TimeandDate}>Next Debate:{data&&data.date}<br></br>{data&&"Topic:"+data.topic_name}  </h1>
     <button className={styles.signin} onClick={() => {
        console.log(process.env.NEXTAUTH_URL)
           console.log(process.env.NEXTAUTH_URL.toString());

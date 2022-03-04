@@ -180,6 +180,7 @@ function localUpdate(names){
         />
         <Button className={styles.createTopic} sx={{
         fontFamily: "Helvetica",
+            textTransform: "none",
           color: "#fff",
           backgroundColor: "#f5ba13",
           position:"absolute",
@@ -190,6 +191,7 @@ function localUpdate(names){
     <Link  href="/voting/main" passHref><Button  sx={{
       fontFamily: "Helvetica",
        fontSize: "1.5em",
+        textTransform: "none",
        fontWeight: "bold",
       color: "#fff",
       backgroundColor: "#f5ba13",
@@ -202,6 +204,7 @@ function localUpdate(names){
      }} variant="contained"size="lg">Vote!</Button></Link>
       {admin&& <Link href="/admin/ControlPanel" passHref><Button sx={{
       fontFamily: "Helvetica",
+          textTransform: "none",
         color: "#fff",
         backgroundColor: "#f5ba13",
         position:"absolute",

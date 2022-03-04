@@ -9,7 +9,7 @@ datasource db {
 
 model debate {
   id         Int       @id @default(autoincrement())
-  date       DateTime? @db.Timestamptz(6)
+  date       DateTime? @unique @db.Timestamptz(6)
   topic_name String?   @db.VarChar(90)
   sides      sides[]
   vote       vote[]

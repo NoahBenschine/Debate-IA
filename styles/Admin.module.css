@@ -49,6 +49,12 @@ float:right;
  height:7%;
 }
 
+.list_container{
+  position:relative;
+  left:40%;
+  background-color: #000;
+  color:#fff;
+}
 /* .Box > #outlined-basic{
   color:white;
   background-color:#fff;

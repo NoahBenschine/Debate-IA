@@ -20,6 +20,7 @@ const [usersClicked,setUsersClicked] = useState([])
   const [name, setName] = useState("");
   const { response, isLoading, isError } = useDB("topicHandler", { headers: { deeperMethod: "voteRequest" } });
   console.log(response);
+  console.log(usersClicked);
   const onStorageUpdate = (e) => {
     const { key, newValue } = e;
     if (key === "usersClicked") {
@@ -32,9 +33,10 @@ checkUsers();
 
 function checkUsers(){
   if(response&&response.active_users.length/2 <= usersClicked.length){
-     setUsersClicked([]);
+
     props.winFunction();
     localStorage.clear();
+     // setUsersClicked([]);
    }
 }
   useEffect(() => {
@@ -76,10 +78,12 @@ function handleClick(){
 
 }
   return(
+      <div className={styles.EndVotingDiv}>
     <Button  sx={{
       fontFamily: "Helvetica",
        fontSize: "1.4em",
        fontWeight: "bold",
+      textTransform: "none",
       color: "#fff",
       backgroundColor: "#f5ba13",
       position:"absolute",
@@ -87,6 +91,10 @@ function handleClick(){
       right:"0%",
       width: "7%",
       height:"7%",
-    }} onClick={handleClick}>End Voting!</Button>
+    }} onClick={handleClick}>
+    End Voting!
+    </Button>
+  <p className={styles.EndVotingCount}>{usersClicked.length}/{response&&response.active_users.length/2}</p>
+</div>
   );
 }

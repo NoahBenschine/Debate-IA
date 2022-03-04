@@ -22,6 +22,17 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
   height:75vh;
 }
 
+.EndVotingDiv{
+  display:inline-block;
+}
+.EndVotingCount{
+  font-family: "Helvetica";
+ font-weight: bold;
+  color: #FFF;
+  position:absolute;
+  top:9%;
+  right:5%;
+}
 /* For vote elments*/
 .vote {
 

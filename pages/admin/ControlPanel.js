@@ -98,7 +98,7 @@ console.log(input);
 
 
     <Box sx={{ flexGrow: 1 ,width:"100%"}}>
-      <Grid container sx={{height:"100%"}} direction="column" spacing={1}>
+      <Grid container sx={{height:"100%"}} direction="column" >
         <Grid container item direction="row" lg={4} xs={4} sm={4} md={4} xl={4}  spacing={3}>
         <Button onClick={voteWinner} sx={{
           fontFamily: "Helvetica",
@@ -161,9 +161,9 @@ console.log(input);
           }
         }}/>
         </Grid>
-        <Grid lg={4} xs={4} sm={4} md={4} xl={4} container item spacing={3}>
+        <Grid lg={4} xs={4} sm={4} md={4} xl={4} sx={{width:"100%"}} container item direction="row">
         <Box className={styles.list_container}
-          sx={{ width: 360, height: 500, maxWidth: 360, border:2
+          sx={{ width: "100%", height: "100%", maxWidth: 360, border:2
          }}
         >
      <VirtualizedList
