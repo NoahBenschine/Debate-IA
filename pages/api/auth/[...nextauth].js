@@ -4,6 +4,8 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "/src/prismaClient"
 import {getAdminByUser,adminInsert} from "/src/admin.js"
 import {getAllSessions} from "/src/user.js"
+import {addUserToDebate,getAllDebates} from "/src/debate.js"
+import {getDate} from "/src/date.js"
 export default async function auth(req, res){
   return await NextAuth(req, res, {
  adapter: PrismaAdapter(prisma),
@@ -25,42 +27,14 @@ export default async function auth(req, res){
         // updateAge: 24 * 60 * 60, // 24 hours
       },
       callbacks: {
-    //     async session({ session, user, token }) {
-    //       console.log("session was called");
-    //       const admin_bool = await getAdminByUser(user.id);
-    //       console.log(typeof session);
-    //         const session2 = session;
-    //         const session3 = Object.defineProperty(session,"admin",{value:true});
-    //       if (admin_bool != null) {
-    //           // Object.defineProperty(session,"admin",{value:true});
-    //                   // Object.defineProperty(token,admin,{value:true});
-    //       }else{
-    //           // Object.defineProperty(session,"admin",{value:false});
-    //                 // Object.defineProperty(token,admin,{value:false});
-    //
-    //       }
-    //       // console.log(session);
-    //       // console.log(user);
-    //       console.log(session2);
-    //       console.log(session3);
-    //
-    //   return session
-    // },
-  //       async signIn({ user, account, profile, email, credentials }) {
-  // console.log("signIn was called");
-  //
-  //
-  //         const admin = await getAdminByUser(user.id);
-  //         console.log(admin);
-  //         if(admin == null && email == "tgetman@pvcsd.org"){
-  //           adminInsert(user.id);
-  //             return true;
-  //         }else if(admin != null){
-  //             return true "/admin/ControlPanel";
-  //         }else{
-  //           return true;
-  //         }
-  //       },
+
+        async signIn({ user, account, profile, email, credentials }) {
+        console.log(user);
+
+         await addUserToDebate(user.name,getDate());
+         console.log(await getAllDebates());
+         return true;
+        }
 
 
 }

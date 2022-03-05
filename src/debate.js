@@ -22,7 +22,19 @@ async function changeCurrentDebate(topic_name){
     })
   return currentDebate;
 }
-
+async function addUserToDebate(username,date){
+  const currentDebate = await prisma.debate.update({
+      where: {
+        date: date
+      },
+      data:{
+       present_users:{
+         push: username,
+       },
+      },
+  })
+  return currentDebate;
+}
 async function changeFutureDebate(id,topic_name,new_date){
   const futureDebate = await prisma.debate.upsert({
       where: {
@@ -80,4 +92,4 @@ async function debateInsert(name,new_date){
   })
 }
 
-export  {getCurrentDebate,debateInsert,getAllDebates,changeCurrentDebate,deleteAllDebates,changeFutureDebate,getDebateByTopic_Name}
+export  {getCurrentDebate,debateInsert,getAllDebates,changeCurrentDebate,deleteAllDebates,changeFutureDebate,getDebateByTopic_Name, addUserToDebate}

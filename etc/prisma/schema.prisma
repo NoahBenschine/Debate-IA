@@ -11,6 +11,7 @@ model debate {
   id         Int       @id @default(autoincrement())
   date       DateTime? @unique @db.Timestamptz(6)
   topic_name String?   @db.VarChar(90)
+  present_users  String[] 
   sides      sides[]
   vote       vote[]
 }
