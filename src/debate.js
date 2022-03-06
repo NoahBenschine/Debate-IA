@@ -33,6 +33,7 @@ async function addUserToDebate(username,date){
        },
       },
   })
+  console.log(currentDebate)
   return currentDebate;
 }
 async function changeFutureDebate(id,topic_name,new_date){
