@@ -37,6 +37,7 @@ res.send("topic updated");
   const date = new Date(body.time);
  debateInsert("ToBeChanged",date);
 console.log(await getAllDebates());
+res.send("debate has been added")
 }else if(req.headers.adminmethod == "getPresentUsers"){
   console.log(typeof body.date);
   const date = new Date(body.date);

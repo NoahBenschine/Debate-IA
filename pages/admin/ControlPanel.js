@@ -128,21 +128,7 @@ console.log(input);
     <Box sx={{ flexGrow: 1 ,width:"100%"}}>
       <Grid container sx={{height:"100%"}} direction="column" >
         <Grid container item direction="row" lg={4} xs={4} sm={4} md={4} xl={4}  spacing={3}>
-        <Button onClick={voteWinner} sx={{
-          fontFamily: "Helvetica",
-           fontSize: "1.5em",
-           fontWeight: "bold",
-          color: "#fff",
-          backgroundColor: "#f5ba13",
-          position:"absolute",
-          top:"0%",
-          left:"48%",
-          width: "7%",
-          height:"7%",
 
-        }} className={styles.EndVoting} variant="contained" size="large">
-             End Voting
-             </Button>
         </Grid>
         <Grid container direction="row"lg={4} xs={4} sm={4} md={4} xl={4}  item spacing={1} >
         <TextField  className={styles.box_tf} id="outlined-basic" label="Change Current Debate"sx={{
@@ -277,7 +263,21 @@ console.log(input);
 //   });
 //
 // }
-
+// <Button onClick={voteWinner} sx={{
+//   fontFamily: "Helvetica",
+//    fontSize: "1.5em",
+//    fontWeight: "bold",
+//   color: "#fff",
+//   backgroundColor: "#f5ba13",
+//   position:"absolute",
+//   top:"0%",
+//   left:"48%",
+//   width: "7%",
+//   height:"7%",
+//
+// }} className={styles.EndVoting} variant="contained" size="large">
+//      End Voting
+//      </Button>
   async function voteWinner() {
     const response = await fetch("/api/db/Calls/voteHandler", {
       method: "GET",
