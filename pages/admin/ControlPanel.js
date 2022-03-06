@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import VirtualizedList from "./VirtualizedList";
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import Autocomplete from '@mui/material/Autocomplete';
 import styles from "../../styles/Admin.module.css";
 import {getSession, useSession } from "next-auth/react";
 import useSWR from 'swr'
@@ -19,24 +20,29 @@ import $ from 'jquery';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 function useUser(id,token) {
-  const { data, error } = useSWR([`/api/db/Calls/${id}`,token], fetcher,{ refreshInterval: 10000 } )
+  const { data, error } = useSWR([`/api/db/Calls/${id}`,token], fetcher,)
 
     return {
-      user: data,
+      debates: data,
       isLoading: !error && !data,
       isError: error
 
     }
 }
 export default function Main(){
-const [input,setInputStates] = useState({changeTopic:"",addAdmin:"",setTime:""})
+const [input,setInputStates] = useState({changeTopic:"",addAdmin:"",setTime:"",setSearch:""})
+const [present_users,setPresent_Users] = useState([]);
+const [dates,setDates] = useState({});
   const { data: session} = useSession();
-  console.log(session);
 
 
-const {user,isLoading,isError} = useUser("adminHandler",{headers:{adminMethod:"getUsers"}})
-console.log(user);
-console.log(typeof user);
+
+const {debates,isLoading,isError} = useUser("adminHandler",{headers:{adminMethod:"searchForDebate"}})
+if(debates){
+
+}
+console.log(debates)
+console.log(present_users)
   async function changeCurrentDebate(new_topic){
     const response = await fetch("/api/db/Calls/adminHandler", {
       method: "POST",
@@ -49,29 +55,51 @@ console.log(typeof user);
     })
   }
 
-
+  async function updateUsers(date){
+    const response = await fetch("/api/db/Calls/adminHandler", {
+      method: "POST",
+      body: JSON.stringify({date:date}),
+      headers: { adminMethod: "getPresentUsers" }
+    })
+    const agreement = response.json();
+    agreement.then((result) => {
+      setPresent_Users(result)
+      console.log(result)
+    })
+  }
 
 function handleChange(event){
-  console.log(event.target);
-    const { name, value } = event.target;
+  console.log(event);
+  const { name, value } = event.target;
+
   setInputStates(prevState=>{
     if (name === "changeTopic") {
        return {
         changeTopic:value,
         addAdmin:prevState.addAdmin,
-        setTime:prevState.setTime
+        setTime:prevState.setTime,
+        setSearch:prevState.setSearch,
        };
      } else if (name === "addAdmin") {
        return {
          changeTopic:prevState.changeTopic,
          addAdmin:value,
-         setTime:prevState.setTime
+         setTime:prevState.setTime,
+         setSearch:prevState.setSearch,
        };
      } else if (name === "setTime") {
        return {
          changeTopic:prevState.changeTopic,
          addAdmin:prevState.addAdmin,
-         setTime:value
+         setTime:value,
+         setSearch:prevState.setSearch,
+       };
+     }else if (name === "searchForDebate" || event.type == "click") {
+       return {
+         changeTopic:prevState.changeTopic,
+         addAdmin:prevState.addAdmin,
+         setTime:prevState.setTime,
+         setSearch:value,
        };
      }
 
@@ -162,25 +190,51 @@ console.log(input);
         }}/>
         </Grid>
         <Grid lg={4} xs={4} sm={4} md={4} xl={4} sx={{width:"100%"}} container item direction="row">
+        <Autocomplete
+        className={styles.box_tf}
+        disablePortal
+        onInputChange={
+          (event,value) =>{handleChange(event)}
+        }
+        onKeyPress={(e)=>{
+
+                if (e.key === "Enter"){
+                  console.log("enter was pressed");
+                  console.log(e);
+                  const value = e.target.defaultValue.split(" Topic:");
+                  console.log(value);
+                  updateUsers(value[0]);
+                  // console.log(debates)
+
+                  // setPresent_Users(debates.present_users);
+                }}}
+        options={debates&&debates}
+        getOptionLabel={debates => debates.date+" Topic:"+debates.topic_name}
+        id="combo-box-demo"
+        sx={{ width: 300 ,
+
+        }}
+        renderInput={(params) => (<TextField {...params}
+          name="searchForDebate" />)}
+        />
         <Box className={styles.list_container}
           sx={{ width: "100%", height: "100%", maxWidth: 360, border:2
          }}
         >
-     <VirtualizedList
-       numItems={user?user.length:0}
-             itemHeight={40}
-             windowHeight={500}
-             renderItem={({ index, style }) => {
-               const i = user[index];
-               console.log(i);
-               return (
-                 <ListItem style={style} key={index} component="div" disablePadding>
-                 <ListItemText primary={i.user.name} />
-                  </ListItem>
-               );
-           }}
-     />
-
+        <VirtualizedList
+          numItems={present_users?present_users.length:0}
+                itemHeight={40}
+                windowHeight={500}
+                renderItem={({ index, style }) => {
+                  const i = present_users[index];
+                  console.log(i);
+                  return (
+                    <ListItem style={style} key={index} component="div" disablePadding>
+                    <ListItemText primary={i} />
+                     </ListItem>
+                  );
+              }}
+        />
      </Box>
         </Grid>
       </Grid>

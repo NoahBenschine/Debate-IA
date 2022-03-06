@@ -8,7 +8,7 @@ if (req.method =="GET") {
   var topics = []
   if ( req.headers.deepermethod == "voteRequest"){
   const topics = await getAllActiveTopics();
-    const debate = await getCurrentDebate();
+    const debate = await getCurrentDebate(getDate());
     const debate_id = debate.id;
      const active_users = await getSides(debate_id);
         res.send({active_topics:topics,active_users:active_users});

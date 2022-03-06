@@ -4,7 +4,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "/src/prismaClient"
 import {getAdminByUser,adminInsert} from "/src/admin.js"
 import {getAllSessions} from "/src/user.js"
-import {addUserToDebate,getAllDebates} from "/src/debate.js"
+import {addUserToDebate,getAllDebates,getCurrentDebate} from "/src/debate.js"
 import {getDate} from "/src/date.js"
 export default async function auth(req, res){
   return await NextAuth(req, res, {
@@ -30,8 +30,11 @@ export default async function auth(req, res){
 
         async signIn({ user, account, profile, email, credentials }) {
         console.log(user);
+        console.log(await getCurrentDebate(getDate()));
+        if (await getCurrentDebate(getDate()) != null){
+           await addUserToDebate(user.name,getDate());
+        }
 
-         await addUserToDebate(user.name,getDate());
          console.log(await getAllDebates());
          return true;
         }

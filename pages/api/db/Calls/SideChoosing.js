@@ -1,6 +1,7 @@
 
 import{getCurrentDebate,getAllDebates}  from "/src/debate.js";
 import {getUserId}  from "/src/user.js";
+import {getDate}  from "/src/date.js";
 import {topicInsert, getTopic,getAllTopics} from "/src/topic.js";
 import  {sideUpsert,getSides,getSide,deleteAllSides} from "/src/side.js";
 import { getSession } from "next-auth/react"
@@ -8,7 +9,7 @@ import {getAllSessions} from "/src/user.js";
 
 export default async function sideHandler(req,res){
 
-  const debate = await getCurrentDebate();
+  const debate = await getCurrentDebate(getDate());
   let debate_id = ""
 if(debate){
     console.log(debate);

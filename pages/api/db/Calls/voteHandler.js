@@ -7,7 +7,7 @@ export default async function voteHandler(req,res){
 
   const voteList = {}
 
-  const debate = await getCurrentDebate();
+  const debate = await getCurrentDebate(getDate());
   const debate_id = debate.id;
   if (req.headers.votemethod =="CreateVote"){
     const body = JSON.parse(req.body);

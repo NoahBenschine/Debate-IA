@@ -51,10 +51,10 @@ async function changeFutureDebate(id,topic_name,new_date){
   return futureDebate;
 }
 
- async function getCurrentDebate(){
+ async function getCurrentDebate(date_input){
   const currentDebate = await prisma.debate.findFirst({
       where: {
-        date: date
+        date: date_input
       },
     })
     return currentDebate;
