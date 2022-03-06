@@ -29,10 +29,13 @@ export default async function auth(req, res){
       callbacks: {
 
         async signIn({ user, account, profile, email, credentials }) {
-
+         console.log(user)
+         console.log(account)
+         console.log(profile)
         const debate = await getCurrentDebate(getDate());
 
         if (debate != null){
+          console.log(debate);
           if (debate.present_users.indexOf(user.name) == -1){
                  await addUserToDebate(user.name,getDate());
           }
