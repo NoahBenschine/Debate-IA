@@ -32,8 +32,10 @@ checkUsers();
 },[usersClicked,response&&response.active_users.length])
 
 function checkUsers(){
+  console.log(usersClicked);
+  console.log(response&&response.active_users.length/2);
   if(response&&response.active_users.length/2 <= usersClicked.length){
-
+    setUsersClicked([])
     props.winFunction();
     localStorage.clear();
      // setUsersClicked([]);
