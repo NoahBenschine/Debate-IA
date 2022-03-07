@@ -63,7 +63,7 @@ console.log(present_users)
     })
     const agreement = response.json();
     agreement.then((result) => {
-      setPresent_Users(result)
+      setPresent_Users(result.users)
       console.log(result)
     })
   }

@@ -45,7 +45,7 @@ res.send("debate has been added")
   console.log(date);
   const debate = await getCurrentDebate(date)
   console.log(debate);
-  res.send(debate.present_users);
+  res.send({users:debate.present_users});
 }else{
   res.send("something's wrong")
 }
