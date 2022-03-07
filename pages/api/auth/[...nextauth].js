@@ -31,10 +31,9 @@ export default async function auth(req, res){
         async signIn({ user, account, profile, email, credentials }) {
          // await deleteAllAdmins();
          // console.log(await  getAllAdmins());
-         // console.log()
+        console.log(getAllDebates);
         const debate = await getCurrentDebate(getDate());
         console.log(debate);
-        console.log(debate.present_users)
         if (debate != null){
           if(debate.present_users != null){
             if (debate.present_users.indexOf(user.name) == -1){

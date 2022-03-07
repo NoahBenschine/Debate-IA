@@ -3,18 +3,18 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model debate {
-  id         Int       @id @default(autoincrement())
-  date       DateTime? @unique @db.Timestamptz(6)
-  topic_name String?   @db.VarChar(90)
-  present_users  String[]
-  sides      sides[]
-  vote       vote[]
+  id            Int       @id @default(autoincrement())
+  date          DateTime? @unique @db.Timestamptz(6)
+  topic_name    String?   @db.VarChar(90)
+  present_users String[]
+  sides         sides[]
+  vote          vote[]
 }
 
 model sides {
