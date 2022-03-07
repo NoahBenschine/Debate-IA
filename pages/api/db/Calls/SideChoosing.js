@@ -21,6 +21,12 @@ if(debate){
   if(req.method == "POST" && debate_id != ""){
     const  body = JSON.parse(req.body);
     // deleteAllSides();
+    if (debate != null){
+      if(debate.present_users != null){
+        if (debate.present_users.indexOf(body.user) == -1){
+               await addUserToDebate(body.user,getDate());
+        }
+      }
     const user_id = await getUserId(body.user);
     const topic = await getTopic(debate.topic_name);
     const side = await getSide(user_id,debate_id)

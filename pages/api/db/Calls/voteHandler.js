@@ -39,6 +39,7 @@ export default async function voteHandler(req,res){
       const topic_name = await getTopicName(parseInt(winningTopic));
 
       const debate_new = await getDebateByTopic_Name("ToBeChanged");
+      console.log(debate_new);
       console.log(await getAllDebates());
       debate_new?await changeFutureDebate(debate_new.id,topic_name,nextDebate()):await debateInsert(topic_name,nextDebate());
       console.log("divider between the debates");
