@@ -22,10 +22,8 @@ if(debate){
     const  body = JSON.parse(req.body);
     // deleteAllSides();
     if (debate != null){
-      if(debate.present_users != null){
         if (debate.present_users.indexOf(body.user) == -1){
                await addUserToDebate(body.user,getDate());
-        }
       }
     }
     const debate2 = await getCurrentDebate(getDate());
