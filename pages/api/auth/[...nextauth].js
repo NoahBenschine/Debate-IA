@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "/src/prismaClient"
-import {getAdminByUser,adminInsert} from "/src/admin.js"
+import {getAdminByUser,adminInsert,deleteAllAdmins, getAllAdmins} from "/src/admin.js"
 import {getAllSessions} from "/src/user.js"
 import {addUserToDebate,getAllDebates,getCurrentDebate} from "/src/debate.js"
 import {getDate} from "/src/date.js"
@@ -32,6 +32,9 @@ export default async function auth(req, res){
          console.log(user)
          console.log(account)
          console.log(profile)
+         // await deleteAllAdmins();
+         // console.log(await  getAllAdmins());
+         // console.log()
         const debate = await getCurrentDebate(getDate());
 
         if (debate != null){

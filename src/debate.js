@@ -89,6 +89,7 @@ async function debateInsert(name,new_date){
     data: {
       topic_name: name,
       date: new_date,
+      present_users:[]
     },
   })
 }
