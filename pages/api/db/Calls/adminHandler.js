@@ -23,7 +23,8 @@ if(req.headers.adminmethod == "changeDebate"){
 const user_id = await getUserId(body.user);
 console.log(user_id);
 await topicUpsert(body.topic_name,user_id,true);
-await changeCurrentDebate(body.topic_name);
+const cDEBATE = await changeCurrentDebate(body.topic_name);
+console.log(cDEBATE);
 res.send("topic updated");
 }else if(req.headers.adminmethod == "addAdmin"){
   const user_id = await getUserId(body.name);

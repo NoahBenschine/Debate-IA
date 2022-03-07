@@ -10,6 +10,7 @@ import {getAllSessions} from "/src/user.js";
 export default async function sideHandler(req,res){
 
   const debate = await getCurrentDebate(getDate());
+  console.log(await getAllDebates());
   let debate_id = ""
 if(debate){
     console.log(debate);

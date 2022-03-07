@@ -17,7 +17,8 @@ async function changeCurrentDebate(topic_name){
    },
    create:{
      date:date,
-     topic_name:topic_name
+     topic_name:topic_name,
+     present_users:[]
    }
     })
   return currentDebate;
