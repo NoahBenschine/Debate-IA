@@ -31,7 +31,7 @@ export default async function auth(req, res){
         async signIn({ user, account, profile, email, credentials }) {
          // await deleteAllAdmins();
          // console.log(await  getAllAdmins());
-        console.log(getAllDebates);
+        console.log(await getAllDebates());
         const debate = await getCurrentDebate(getDate());
         console.log(debate);
         if (debate != null){
