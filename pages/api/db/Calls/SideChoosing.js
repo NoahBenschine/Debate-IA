@@ -28,6 +28,8 @@ if(debate){
         }
       }
     }
+    const debate2 = await getCurrentDebate(getDate());
+    console.log(debate2);
     const user_id = await getUserId(body.user);
     const topic = await getTopic(debate.topic_name);
     const side = await getSide(user_id,debate_id)
