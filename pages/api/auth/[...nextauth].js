@@ -38,7 +38,6 @@ export default async function auth(req, res){
         const debate = await getCurrentDebate(getDate());
 
         if (debate != null){
-          console.log(debate);
           if (debate.present_users.indexOf(user.name) == -1){
                  await addUserToDebate(user.name,getDate());
           }

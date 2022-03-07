@@ -46,7 +46,8 @@ async function changeFutureDebate(id,topic_name,new_date){
    },
    create:{
      date:new_date,
-     topic_name:topic_name
+     topic_name:topic_name,
+     present_users:[]
    }
     })
   return futureDebate;
