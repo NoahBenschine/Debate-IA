@@ -27,6 +27,7 @@ if(debate){
                await addUserToDebate(body.user,getDate());
         }
       }
+    }
     const user_id = await getUserId(body.user);
     const topic = await getTopic(debate.topic_name);
     const side = await getSide(user_id,debate_id)
