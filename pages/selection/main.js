@@ -44,6 +44,7 @@ console.log(session);
   const response = useTopics("topicHandler");
   if (response.topics != undefined && topicState.length == 0) {
     setTopicState(Object.values(response.topics));
+    setChosenTopics(response.active_topics);
     console.log(topicState);
   }
 
