@@ -18,7 +18,7 @@ function useTopics(id) {
   const { data, error } = useSWR(`/api/db/Calls/${id}`, fetcher)
 
   return {
-    topics: data,
+    response: data,
     isLoading: !error && !data,
     isError: error
   }
@@ -39,15 +39,24 @@ export default function Main(props) {
     })
   }
 
+console.log(Array.isArray(topicState))
+console.log(topicState);
 
-console.log(session);
-  const response = useTopics("topicHandler");
-  if (response.topics != undefined && topicState.length == 0) {
-    setTopicState(Object.values(response.topics));
-    setChosenTopics(response.active_topics);
-    console.log(topicState);
+
+const {response,isLoading,isError}  = useTopics("topicHandler");
+console.log(response)
+useEffect(()=>{
+  console.log("useeffect went off")
+  if (response != undefined) {
+    setTopicState(response[0]);
+    const names = []
+    response[1].forEach((element)=>{
+      names.push(element.name)
+    })
+    console.log(names)
+    localUpdate(names);
   }
-
+},[response])
   function createTopic(topic_name) {
     var present = true;
     chosenTopics.forEach((element) => {
@@ -166,18 +175,19 @@ function localUpdate(names){
 
     <Grid container sx={{height:1}} spacing={2}>
       <Grid item  sx={{height:.4,}}xs={12}>
+        {console.log(topicState)}
         <Autocomplete
         className={styles.Autocomplete}
         disablePortal
         freeSolo
         onInputChange={(event,value) =>{setInputState(value)}}
         options={topicState}
-        getOptionLabel={topicState => topicState.name}
+        getOptionLabel={(option) => option.name}
         id="combo-box-demo"
         sx={{ width: 300 ,
 
         }}
-        renderInput={(params) => (<TextField {...params} name="Topic" />)}
+        renderInput={(params) => (<TextField {...params} error={true} name="Topic" />)}
         />
         <Button className={styles.createTopic} sx={{
         fontFamily: "Helvetica",

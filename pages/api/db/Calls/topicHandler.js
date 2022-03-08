@@ -15,7 +15,7 @@ if (req.method =="GET") {
 }else{
      topics = await getAllTopics();
      const active_topics = await getAllActiveTopics();
-       res.send({topics:topics,active_topics:active_topics});
+       res.send([topics,active_topics]);
 }
 
 }else{
