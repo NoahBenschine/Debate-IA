@@ -1,5 +1,5 @@
 
-import{getCurrentDebate,getAllDebates}  from "/src/debate.js";
+import{getCurrentDebate,getAllDebates,addUserToDebate}  from "/src/debate.js";
 import {getUserId}  from "/src/user.js";
 import {getDate}  from "/src/date.js";
 import {topicInsert, getTopic,getAllTopics} from "/src/topic.js";
